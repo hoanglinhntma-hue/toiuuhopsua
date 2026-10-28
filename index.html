@@ -1,0 +1,1204 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#10345a">
+<title>STEAM • Nhiệm vụ 2: Mô phỏng đóng gói, vận chuyển và lưu kho</title>
+<style>[hidden]{display:none!important}
+:root{--ink:#172842;--muted:#61758d;--border:#dae5f0;--canvas:#f3f7fc;--white:#fff;--mint:#0a9877;--mint-pale:#e8f8f2;--violet:#6155cf;--violet-pale:#f0edff;--amber:#b96b0e;--navy:#0c2644;--shadow:0 10px 38px rgba(21,47,80,.075)}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:var(--canvas);font-family:"Segoe UI",Arial,sans-serif;color:var(--ink);font-size:15px;line-height:1.56}button,input{font:inherit}button{cursor:pointer}a{color:inherit}a:hover{text-decoration:none}button:focus-visible,input:focus-visible,a:focus-visible,summary:focus-visible{outline:3px solid #ffa529;outline-offset:3px}button:disabled{opacity:.48;cursor:not-allowed}
+.nav{background:#fff;border-bottom:1px solid #dbe4ef}.nav-in{max-width:1380px;margin:auto;min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 26px}.brand{display:flex;align-items:center;gap:11px;text-decoration:none;font-size:15px;font-weight:850;white-space:nowrap;letter-spacing:.02em}.logo{width:39px;height:39px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(145deg,#0c927d,#3ab89d);color:white;box-shadow:0 4px 9px rgba(0,128,108,.2)}.nav-items{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.nav-link{border:1px solid transparent;border-radius:999px;padding:7px 13px;text-decoration:none;font-weight:650;color:#52657b;font-size:13px}.nav-link.active{background:#e9f7f3;border-color:#b4e8d8;color:#087f66}.nav-link:hover{background:#edf4fa}.nav-action{border:1px solid #d7e3ef;background:#fff;color:#314960;border-radius:999px;padding:7px 13px;font-weight:650;font-size:13px}
+main{max-width:1380px;margin:auto;padding:24px 26px 72px}.hero{position:relative;overflow:hidden;border-radius:26px;background:radial-gradient(circle at 85% 10%,rgba(66,179,173,.2),transparent 34%),linear-gradient(114deg,#10345a 0%,#0d2344 62%,#173b59 100%);color:#fff;padding:30px 36px 31px;min-height:180px;box-shadow:0 16px 42px rgba(19,43,77,.15)}.hero::after{content:"";position:absolute;right:-50px;bottom:-140px;width:310px;height:310px;border:45px solid rgba(255,255,255,.045);border-radius:50%;pointer-events:none}.hero-kicker{display:inline-flex;gap:8px;align-items:center;color:#b6efe4;text-transform:uppercase;letter-spacing:.13em;font-size:11px;font-weight:850;margin-bottom:6px}.hero h1{font-size:clamp(25px,3vw,36px);line-height:1.2;margin:3px 0 9px;letter-spacing:-.035em;max-width:950px}.hero p{max-width:950px;font-size:15px;color:#d7e4f2;margin:0 0 18px}.chips{display:flex;flex-wrap:wrap;gap:8px}.chip{font-size:12px;font-weight:700;padding:5px 11px;background:#ffffff18;border:1px solid #ffffff29;border-radius:999px;color:#ecf7ff}.hero-art{position:absolute;right:45px;top:44px;opacity:.16;pointer-events:none}.hero-art svg{width:160px;height:120px}
+.section-heading{display:flex;justify-content:space-between;gap:16px;align-items:flex-end;margin:25px 0 12px;flex-wrap:wrap}.section-heading h2{margin:0;font-size:21px;letter-spacing:-.025em}.section-heading p{margin:2px 0 0;color:var(--muted);font-size:13px}.eyebrow{font-weight:800;font-size:11px;color:#55718d;letter-spacing:.11em;text-transform:uppercase}.layout-two{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:17px}.card{background:#fff;border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);overflow:hidden}.card-pad{padding:20px 22px}.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}.card-title{margin:0;font-weight:850;font-size:18px}.card-sub{margin:4px 0 0;color:var(--muted);font-size:12px}.pill{white-space:nowrap;border-radius:100px;padding:5px 10px;letter-spacing:.035em;font-weight:800;font-size:11px}.pill.a{background:var(--mint-pale);color:var(--mint)}.pill.b{background:var(--violet-pale);color:var(--violet)}.visual{border-radius:16px;background:radial-gradient(ellipse at 50% 68%,#eaf0f7 0,#f7fafd 67%);border:1px solid #e7eef7;min-height:265px;display:grid;place-items:center;margin:16px 0 15px;position:relative}.visual svg{height:auto;width:100%;max-height:310px;display:block}.visual-tint-a{background:radial-gradient(ellipse at 50% 68%,#e2f4ef 0,#f5fbf8 73%)}.visual-tint-b{background:radial-gradient(ellipse at 50% 68%,#e9e7fb 0,#f9f8ff 72%)}.corner-label{position:absolute;top:12px;left:14px;font-size:11px;color:#7a8ea6;font-weight:700;pointer-events:none}.dim-readout{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:7px}.dim-readout label{font-weight:750;font-size:14px}.dim-readout strong{font-size:19px;color:#27435a;font-variant-numeric:tabular-nums}.slider{width:100%;accent-color:var(--mint);cursor:pointer;height:7px}.slider.b{accent-color:var(--violet)}.range-endpoints{display:flex;justify-content:space-between;color:#8a99aa;font-size:11px;font-variant-numeric:tabular-nums;margin-top:0}.metrics{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:15px}.metric{border:1px solid #e7edf4;border-radius:13px;padding:10px 12px;background:#fbfdff}.metric-label{font-size:11px;color:#74869b;font-weight:750;display:block;margin-bottom:3px}.metric-value{font-size:19px;font-weight:850;font-variant-numeric:tabular-nums;line-height:1.25}.metric-unit{font-size:11px;color:#697d93;font-weight:650}.metric.accent-a .metric-value{color:#087d64}.metric.accent-b .metric-value{color:#5c4ccc}.formula{display:flex;align-items:center;justify-content:center;text-align:center;min-height:37px;background:#f1f6fa;border-radius:10px;margin-top:13px;padding:8px;font-weight:700;font-size:13px;color:#39526c}.formula em{font-style:normal;color:#647a8d}.card-footer{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:13px;flex-wrap:wrap}.note{color:#60768b;font-size:12px}.status-good{color:#007758;font-weight:800}.status-bad{color:#a05a10;font-weight:750}.btn{border:1px solid #d6e2ed;background:#fff;color:#243d58;border-radius:11px;padding:9px 15px;font-weight:750;font-size:13px;display:inline-flex;align-items:center;justify-content:center;gap:7px;transition:transform .12s,background .12s}.btn:hover{transform:translateY(-1px);background:#f7fbff}.btn-primary{background:#117e70;color:#fff;border-color:#117e70}.btn-primary:hover{background:#0a705e}.btn-purple{background:#6053c9;color:#fff;border-color:#6053c9}.btn-purple:hover{background:#5144b9}.btn-dark{background:#163759;border-color:#163759;color:#fff}.btn-dark:hover{background:#0d2948}.btn-soft{background:#ebf7f3;border-color:#d0ecdf;color:#0a8066}.btn:disabled:hover{transform:none}.btn-small{font-size:12px;padding:7px 10px;border-radius:9px}.actions{display:flex;gap:9px;flex-wrap:wrap}.divider{border:0;border-top:1px solid #e2eaf2;margin:17px 0}.infobar{border:1px solid #cce6dd;border-radius:15px;background:linear-gradient(90deg,#f0fbf6,#f8fdff);padding:13px 16px;color:#245b53;display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap}.infobar strong{color:#0b7059}.answer-box{background:#f3f7fb;border:1px solid #dae6f1;border-radius:16px;padding:17px 19px}.answer-box h3{font-size:16px;margin:0 0 8px}.answer-box p{margin:4px 0 9px}.answer-box .result{font-size:18px;font-weight:900;color:#087b65}.formula-block{background:#f5f8fc;border:1px solid #e0eaf4;border-radius:12px;padding:11px 15px;margin:10px 0;font-family:"Cambria Math","Times New Roman",serif;text-align:center;font-size:17px;color:#243951;overflow-wrap:anywhere}.formula-block small{font:12px "Segoe UI",Arial,sans-serif;color:#64788d}.tblwrap{overflow:auto;border-radius:13px;border:1px solid #dfe8f1}.tbl{border-collapse:collapse;width:100%;font-size:13px;min-width:420px}.tbl th{text-align:left;padding:11px 13px;background:#edf4f9;color:#324e68;font-weight:800}.tbl td{padding:11px 13px;border-top:1px solid #e8edf4;vertical-align:middle}.tbl tr:nth-child(odd) td{background:#fbfdff}.tbl td:nth-child(n+2){font-variant-numeric:tabular-nums}.tbl .positive{color:#087f65;font-weight:850}.footer-cta{display:flex;align-items:center;justify-content:space-between;gap:18px;background:linear-gradient(120deg,#163e65,#12314c);color:#fff;padding:20px 24px;border-radius:17px;margin-top:24px;flex-wrap:wrap}.footer-cta h3{margin:0 0 4px;font-size:19px}.footer-cta p{margin:0;font-size:13px;color:#d7e5f2}.footer-cta a{text-decoration:none}.footer-cta .btn{background:#fff;color:#15365b;border-color:white}.explain details{background:#fff;border:1px solid #dce7f1;border-radius:14px;padding:13px 17px;margin:10px 0}.explain summary{cursor:pointer;font-size:14px;font-weight:800;color:#2b4361}.explain details p{font-size:13px;color:#455b72;margin:10px 0}.explain details[open] summary{margin-bottom:9px}.badge-inline{font-weight:850;border-radius:7px;padding:2px 6px;font-size:12px;background:#ebf1f6;color:#455d76}.footnote{color:#61758b;font-size:12px;margin-top:11px}.progress-dots{display:flex;gap:6px;align-items:center}.dot{width:9px;height:9px;border-radius:50%;background:#d0e1ed}.dot.on{background:#009b7b}.quiz-options{display:flex;gap:10px;flex-wrap:wrap;margin:10px 0}.choice{border:1px solid #dce7f1;background:#fff;border-radius:11px;padding:9px 13px;color:#304a64;font-size:13px;font-weight:700}.choice:hover{border-color:#80bcb1}.choice.selected{background:#e5f7f1;border-color:#0f9d81;color:#087d65}.feedback{min-height:20px;margin-top:7px;font-size:13px;font-weight:750}.feedback.good{color:#08795c}.feedback.bad{color:#aa5a17}
+@media (max-width:940px){.layout-two{grid-template-columns:1fr}.hero-art{display:none}.card-pad{padding:17px}.hero{padding:25px}.section-heading{margin-top:21px}.nav-in{padding:10px 18px}main{padding:18px 16px 40px}}@media(max-width:620px){.hero h1{font-size:25px}.hero p{font-size:13px}.nav-items{gap:2px}.brand span:last-child{display:none}.nav-link{font-size:11px;padding:6px 8px}.nav-action{font-size:11px;padding:6px 9px}.card-title{font-size:16px}.metrics{grid-template-columns:1fr 1fr}.metric-value{font-size:17px}.actions{width:100%}.section-heading h2{font-size:19px}.visual{min-height:200px}}
+@media print{body{background:#fff}main{padding:5px}.hero{color:#182e4b;background:#f0f5fa;box-shadow:none}.hero p{color:#33455a}.nav,.btn,.slider,.footer-cta{display:none!important}.card{box-shadow:none;break-inside:avoid}.layout-two{grid-template-columns:1fr 1fr}.visual{min-height:190px}details:not([open]){display:none}}
+
+/* PAGE TWO */
+.control-bar{display:grid;grid-template-columns:1fr 1fr auto;gap:16px;align-items:end;background:#fff;border:1px solid #dbe7f0;border-radius:17px;padding:17px 20px}.control-item{min-width:0}.control-item label{display:flex;justify-content:space-between;gap:12px;font-size:12px;color:#597087;font-weight:780;margin-bottom:4px}.control-item label b{color:#123a55;font-size:15px;font-variant-numeric:tabular-nums}.control-hint{color:#8294a8;font-size:11px;margin:1px 0 0}.packing-toolbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:13px 0 12px;justify-content:space-between}.view-toggle{display:inline-flex;padding:4px;background:#e9f0f7;border-radius:11px;gap:3px}.view-toggle button{border:0;background:transparent;color:#687d91;padding:7px 12px;border-radius:8px;font-weight:780;font-size:12px}.view-toggle button.on{background:#fff;color:#183b59;box-shadow:0 2px 6px #b8cadb77}.packing-actions{display:flex;align-items:center;gap:7px;flex-wrap:wrap}.stack-count{min-width:75px;display:inline-block;padding:7px 8px;text-align:center;background:#e9f6f0;border-radius:9px;font-weight:900;font-variant-numeric:tabular-nums;color:#087c61}.pack-layout{display:grid;grid-template-columns:1fr 1fr;gap:16px}.pack-svg{width:100%;height:auto;display:block}.pack-visual{min-height:260px;background:radial-gradient(ellipse at 50% 70%,#ebf2f7 0,#f8fafc 74%);border:1px solid #e2ecf3;border-radius:14px;margin:12px 0;overflow:hidden}.pack-visual svg{width:100%;height:auto;max-height:345px;display:block}.dimensions{background:#eef5fa;border-radius:11px;padding:9px 11px;display:flex;gap:7px;justify-content:space-between;align-items:center;font-size:12px;color:#57738b;font-weight:750;flex-wrap:wrap}.dimensions strong{color:#204560;font-size:14px;font-variant-numeric:tabular-nums}.triplets{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:11px}.mini{background:#f7fafc;border:1px solid #e9eef3;border-radius:10px;padding:8px 9px}.mini span{font-size:10px;font-weight:750;color:#6f8296;display:block;white-space:normal}.mini strong{font-size:16px;font-variant-numeric:tabular-nums;white-space:nowrap}.mini strong.a{color:#087f64}.mini strong.b{color:#6251c9}.multi-bars{display:grid;grid-template-columns:1fr 1fr;gap:13px}.bar-panel{padding:15px 18px;border:1px solid #dfe8f0;border-radius:14px;background:#fff}.bar-title{font-weight:850;font-size:14px;margin:0 0 4px}.bar-sub{font-size:11px;color:#7d90a2;margin:0 0 14px}.bar-item{margin:10px 0}.bar-label{display:flex;justify-content:space-between;gap:8px;font-size:12px;font-weight:750;margin-bottom:5px}.bar-label span:last-child{font-variant-numeric:tabular-nums}.bar-track{height:17px;border-radius:999px;background:#edf3f8;overflow:hidden}.bar-fill{height:100%;border-radius:999px;transition:width .22s}.bar-fill.a{background:linear-gradient(90deg,#28b597,#0a9178)}.bar-fill.b{background:linear-gradient(90deg,#9e91ea,#6658c8)}.cost-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}.input-label{display:block;color:#506780;font-weight:800;font-size:13px;margin-bottom:4px}.input-extra{font-size:11px;color:#8899aa;display:block;margin-bottom:7px}.cost-input{width:100%;padding:11px 12px;border-radius:11px;border:1px solid #d6e3ee;background:#fbfdff;color:#203a55;font-size:17px;font-weight:800;font-variant-numeric:tabular-nums}.cost-result{display:grid;grid-template-columns:1fr 1fr;gap:13px;margin-top:13px}.cost-card{padding:14px 17px;border:1px solid #dfebf3;background:#f8fbfe;border-radius:13px}.cost-card span{display:block;color:#677d90;font-size:12px;font-weight:800}.cost-card strong{display:block;margin:3px 0;font-weight:900;font-size:26px;font-variant-numeric:tabular-nums}.cost-card.a strong{color:#0b856c}.cost-card.b strong{color:#6251c9}.winner{border-radius:13px;background:#eaf9f1;border:1px solid #bde7d0;color:#087553;padding:12px 15px;margin:12px 0;font-weight:800;font-size:14px}.winner.neutral{background:#edf5fd;border-color:#d1e1f1;color:#385975}.threshold{color:#556d82;font-size:13px}.caveat{border-left:4px solid #dfad5c;background:#fff8ea;border-radius:0 11px 11px 0;color:#765927;padding:12px 15px;font-size:12px;margin-top:15px}.student-task{border:1px solid #bce5d7;border-radius:16px;background:#f3fcf8;padding:15px 17px;margin-top:14px}.student-task h3{margin:0 0 7px;color:#087963;font-size:15px}.student-task p{margin:6px 0;font-size:13px;color:#3e6659}.readonly{background:#f2f6fa;border:1px solid #e2ebf3;border-radius:10px;padding:9px 13px;color:#344f69;font-weight:700;font-size:13px}
+@media(max-width:950px){.control-bar{grid-template-columns:1fr 1fr}.control-bar .actions{grid-column:span 2}.pack-layout{grid-template-columns:1fr}.multi-bars{grid-template-columns:1fr}}@media(max-width:620px){.control-bar{grid-template-columns:1fr}.control-bar .actions{grid-column:span 1}.cost-grid{grid-template-columns:1fr}.cost-result{grid-template-columns:1fr}.triplets{grid-template-columns:1fr 1fr 1fr}.mini strong{font-size:14px}.pack-visual{min-height:190px}}
+
+/* MILKLAB 12 studio extension. All classes are ml- namespaced. */
+.ml-toolbar{background:linear-gradient(110deg,#5b2dad 0%,#8038c0 48%,#d53c83 100%);color:#fff;position:sticky;top:0;z-index:80;box-shadow:0 8px 22px #2e174c20}
+.ml-toolbar-inner{max-width:1380px;min-height:68px;padding:10px 25px;margin:auto;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.ml-toolbar-title{display:flex;gap:10px;align-items:center;flex:1;min-width:215px}
+.ml-toolbar-logo{font-size:24px;background:#ffffff25;border:1px solid #ffffff45;border-radius:12px;padding:8px}
+.ml-toolbar-title strong{display:block;font-size:15px;letter-spacing:.015em}.ml-toolbar-title small{display:block;font-size:11px;color:#ebdfff}
+.ml-toolbar-actions{display:flex;gap:7px;align-items:center;flex-wrap:wrap}
+.ml-action{border:1px solid #ffffff58;background:#ffffff16;color:white;border-radius:10px;padding:10px 13px;font-weight:800;font-size:12px;cursor:pointer;transition:background .15s}
+.ml-action:hover{background:#ffffff36}.ml-action-gold{background:#ffde8a;color:#5c2a4e;border-color:#ffdf9a}.ml-action-gold:hover{background:#ffebac}
+.ml-overlay[hidden],.ml-chat[hidden],.ml-toast[hidden]{display:none!important}
+.ml-overlay{position:fixed;inset:0;z-index:110;background:#10253dba;padding:20px;display:flex;justify-content:center;align-items:center;backdrop-filter:blur(5px)}
+.ml-dialog{width:min(1320px,100%);height:min(92dvh,930px);min-height:340px;background:#f7f8ff;box-shadow:0 22px 80px #0b153759;border-radius:20px;overflow:hidden;display:flex;flex-direction:column;color:#222c49}
+.ml-dialog-head{flex:none;background:linear-gradient(110deg,#5930b2,#8b38c2 56%,#d03588);color:#fff;display:flex;align-items:center;gap:12px;padding:15px 20px}
+.ml-dialog-head h2{margin:0;font-size:18px;font-weight:850;flex:1}.ml-dialog-head small{font-size:11px;color:#f0e1ff;font-weight:700}
+.ml-icon-button{border:0;border-radius:9px;background:#ffffff2b;color:#fff;padding:7px 12px;font-size:21px;font-weight:bold;cursor:pointer}
+.ml-dialog-body{flex:1;min-height:0;overflow:auto;padding:18px}
+.ml-grid{display:grid;grid-template-columns:minmax(270px,.38fr) minmax(0,.62fr);gap:16px;min-height:100%}
+.ml-controls,.ml-preview-frame{background:#fff;border:1px solid #dfd8f8;border-radius:15px;padding:17px;min-width:0}
+.ml-controls h3,.ml-preview-frame h3{margin:0 0 13px;font-size:16px;color:#42217d}
+.ml-controls label{font-size:12px;color:#473e65;font-weight:750;display:block;margin:10px 0 4px}
+.ml-input,.ml-select,.ml-textarea{width:100%;border:1px solid #d4c8f0;border-radius:9px;background:#fff;color:#202e48;padding:9px 10px;font:inherit;font-size:13px}
+.ml-textarea{min-height:95px;resize:vertical}
+.ml-control-row{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.ml-control-row label{display:inline-flex;gap:6px;margin:9px 0;align-items:center;font-size:12px}
+.ml-btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:1px solid #cfcae5;border-radius:10px;background:#fff;color:#382b69;padding:10px 12px;font-size:12px;font-weight:850;cursor:pointer;min-height:37px}
+.ml-btn:hover{background:#f6efff}.ml-btn-primary{background:#6334c3;border-color:#6334c3;color:#fff}.ml-btn-primary:hover{background:#5125af}.ml-btn-pink{background:#cc397e;border-color:#cc397e;color:#fff}.ml-btn-pink:hover{background:#b72870}.ml-btn-teal{background:#078e77;border-color:#078e77;color:#fff}.ml-btn-teal:hover{background:#057a66}.ml-btn:disabled{opacity:.48;cursor:not-allowed}
+.ml-actions-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.ml-help{font-size:11px;color:#65738e;line-height:1.5;margin:7px 0}.ml-warning{font-size:12px;line-height:1.5;color:#785a20;background:#fff8df;border:1px solid #f2dda7;padding:10px 12px;border-radius:9px}
+.ml-preview-frame{overflow:auto;max-height:calc(92dvh - 132px);background:#eeeaf8;padding:18px}.ml-paper{background:#fff;max-width:790px;margin:auto;padding:26px 32px;border-radius:3px;box-shadow:0 5px 24px #18144119;font:14px/1.62 'Times New Roman',serif;color:#20212d;white-space:normal}
+.ml-paper h1{text-align:center;background:#51298f;color:white;font-size:21px;padding:15px 10px;border-radius:8px;margin:0 0 11px;line-height:1.24}.ml-paper h2{margin:24px 0 8px;color:#5a2f9f;font-size:16px;border-bottom:1px solid #e4d7fc;padding-bottom:6px}.ml-paper p{margin:6px 0}.ml-paper .ml-dotted{height:28px;border-bottom:1px dotted #7890af}.ml-paper .ml-math{font-family:Cambria,'Times New Roman',serif;text-align:center;font-weight:650;font-size:16px;margin:5px 0}.ml-paper .ml-answer{background:#f4efff;border:1px solid #e0d2fb;border-radius:9px;padding:10px;margin-top:10px}.ml-paper .ml-pagebreak{page-break-before:always;border-top:2px dashed #d0c6e3;padding-top:15px;margin-top:25px}
+.ml-study{display:grid;grid-template-columns:205px minmax(0,1fr);gap:13px;min-height:100%}
+.ml-study-steps{background:#fff;border:1px solid #dfd8f8;border-radius:12px;padding:12px;align-self:start}
+.ml-step-nav{width:100%;display:flex;align-items:center;gap:8px;text-align:left;padding:11px 9px;border:1px solid #ebe6f7;background:#fff;color:#514875;border-radius:9px;margin-bottom:7px;font-size:12px;font-weight:800}
+.ml-step-nav .ml-number{display:grid;place-items:center;flex:none;border-radius:7px;width:23px;height:23px;background:#eae2ff;color:#6545be}
+.ml-step-nav.active{background:#f3efff;border-color:#8e72df;color:#3e2591}.ml-step-nav.completed{background:#eafaf2;border-color:#a8e2c4}.ml-step-nav.completed .ml-number{background:#15a17e;color:#fff}
+.ml-study-content{background:#fff;border:1px solid #dfd8f8;border-radius:12px;padding:23px;min-width:0}
+.ml-study-content h3{font-size:21px;color:#3d2681;margin:0 0 12px}.ml-study-content p{line-height:1.62}.ml-study-fields{display:grid;grid-template-columns:repeat(2,minmax(150px,1fr));gap:13px;margin:16px 0}.ml-study-fields label{display:block;font-weight:800;font-size:12px;color:#56617b}.ml-study-fields input{margin-top:6px;width:100%;padding:10px;border-radius:9px;border:1px solid #bdcce1;font-size:17px;font-weight:800}
+.ml-field-note{color:#8593a8;font-weight:600;font-size:11px}.ml-field-correct{border-color:#149b74!important;background:#edfcf5}.ml-field-wrong{border-color:#e16d6d!important;background:#fff2f2}
+.ml-feedback{margin:12px 0;padding:11px 14px;border-radius:10px;background:#edf7ff;color:#2b5d83;border:1px solid #c6dfee;font-size:12.5px}.ml-feedback.good{background:#eafaef;color:#127550;border-color:#bde9cd}.ml-feedback.bad{background:#fff5e8;color:#8c591a;border-color:#f2d4a5}
+.ml-study-scene{background:#f6f9fd;border:1px solid #dfebf5;border-radius:12px;padding:10px;margin:12px 0}.ml-study-scene svg{width:100%;height:auto;max-height:220px;display:block}.ml-formula{font:600 18px/1.5 Cambria,'Cambria Math','Times New Roman',serif;background:#f7f5ff;padding:10px 13px;border:1px solid #e4daf9;border-radius:9px;text-align:center;margin:10px 0}
+.ml-slide-overlay{background:#15102c;align-items:stretch;padding:10px}.ml-slide-dialog{max-width:1920px;width:100%;height:100%;border-radius:14px;background:#f8f7ff;display:flex;flex-direction:column;overflow:hidden;color:#2c2544}
+.ml-slide-head{background:linear-gradient(110deg,#50218e,#7a36bf,#c62b83);color:#fff;padding:11px 19px;display:flex;gap:15px;align-items:center;flex:none}.ml-slide-head strong{font-size:16px;flex:1}.ml-slide-head .ml-btn{background:#ffffff24;color:#fff;border-color:#ffffff55}.ml-slide-head .ml-btn:hover{background:#ffffff38}
+.ml-slide-work{display:grid;grid-template-columns:210px minmax(0,1fr);gap:0;flex:1;min-height:0}
+.ml-slide-nav{background:#f1eafc;border-right:1px solid #d8c7ee;padding:14px;overflow:auto}.ml-slide-link{display:block;width:100%;text-align:left;background:transparent;border:0;border-left:3px solid transparent;padding:10px 8px;color:#65527b;font-size:12px;border-radius:7px;margin:3px 0;cursor:pointer}.ml-slide-link.active{border-left-color:#7c3eca;background:#fff;color:#3b217e;font-weight:900}
+.ml-slide-stage{overflow:auto;padding:18px 24px;display:flex;flex-direction:column;gap:11px}.ml-slide-kicker{font-size:12px;font-weight:850;color:#9553ba;letter-spacing:.08em}.ml-slide-stage h2{font-size:clamp(24px,2.5vw,36px);line-height:1.18;color:#26214a;margin:0 0 2px}.ml-slide-lead{font-size:clamp(16px,1.3vw,21px);color:#5d536e;margin:4px 0 9px}
+.ml-slide-card{background:white;border:1px solid #e7d9f3;border-radius:15px;padding:17px 20px;box-shadow:0 5px 16px #3722570b}.ml-slide-big{font:700 clamp(20px,2vw,29px)/1.45 Cambria,'Times New Roman',serif;color:#342466;text-align:center}
+.ml-slide-figures{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.ml-slide-figure{background:#f8fbff;border:1px solid #e1e9f6;border-radius:13px;padding:10px;min-width:0}.ml-slide-figure svg{display:block;width:100%;max-height:310px}.ml-slide-figure h4{margin:2px 4px 8px;font-size:15px;color:#443a7a}.ml-slide-metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.ml-slide-metric{background:white;border:1px solid #e4d9f0;border-radius:12px;padding:12px 15px;text-align:center}.ml-slide-metric span{display:block;color:#807494;font-size:12px}.ml-slide-metric b{font-size:clamp(17px,1.5vw,23px);font-variant-numeric:tabular-nums;color:#5131a8}.ml-slide-notes{background:#fff8e8;color:#715528;border:1px solid #f4dfac;padding:10px 12px;border-radius:10px;font-size:12px}
+.ml-slide-footer{background:#fff;border-top:1px solid #e0d8ed;padding:9px 18px;display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;flex:none}.ml-slide-footer .ml-control-row{gap:5px}.ml-slide-hidden-answer{background:#fff3c7;padding:12px 15px;border:1px dashed #dab057;border-radius:10px;color:#664a12;margin-top:12px}
+.ml-chat-fab{position:fixed;right:19px;bottom:18px;z-index:100;border:2px solid white;border-radius:999px;padding:11px 18px;background:linear-gradient(110deg,#6638ce,#c93394);box-shadow:0 9px 25px #492c854c;color:white;font-weight:850;font-size:13px;cursor:pointer}
+.ml-chat{position:fixed;right:18px;bottom:72px;z-index:120;width:min(420px,calc(100vw - 28px));max-height:min(620px,calc(100dvh - 92px));display:flex;flex-direction:column;background:white;color:#24304c;border:1px solid #ab8de6;border-radius:16px;box-shadow:0 20px 55px #1d17395c;overflow:hidden}
+.ml-chat-head{background:linear-gradient(110deg,#5d30ae,#9843c4);color:white;padding:11px;display:flex;align-items:center;justify-content:space-between;gap:6px}.ml-chat-head strong{font-size:13px}.ml-chat-status{font-size:10px;color:#f7e2ff}
+.ml-chat-messages{flex:1;min-height:170px;max-height:320px;overflow:auto;padding:13px;background:#f8f7fe;display:flex;flex-direction:column;gap:8px}
+.ml-message{padding:9px 11px;max-width:94%;border-radius:12px;align-self:flex-start;background:#fff;border:1px solid #e2d9f0;font-size:12.5px;line-height:1.55;white-space:pre-wrap}.ml-message.user{background:#6239ac;color:#fff;border-color:#6239ac;align-self:flex-end}
+.ml-chat-chips{display:flex;flex-wrap:wrap;gap:5px;padding:8px;border-top:1px solid #ede7f5}.ml-chat-chips button{font-size:10.5px;border:1px solid #d8c9eb;color:#4f3a88;background:#f8f4ff;border-radius:8px;padding:6px 8px;font-weight:700}
+.ml-chat-controls{display:flex;gap:6px;padding:9px;border-top:1px solid #e4dbef}.ml-chat-controls input{min-width:0;flex:1;border:1px solid #dacdea;border-radius:9px;padding:9px;font-size:12px}.ml-chat-controls button{background:#6234bd;color:#fff;border:0;border-radius:9px;padding:8px 11px;font-size:12px;font-weight:850}
+.ml-toast{position:fixed;z-index:160;bottom:25px;left:50%;transform:translateX(-50%);background:#2c2156;color:#fff;padding:10px 16px;border-radius:10px;box-shadow:0 10px 28px #11112655;font-size:13px;font-weight:750;max-width:90vw;text-align:center}
+.ml-poster-box{min-height:200px;max-width:600px;margin:auto}.ml-poster-box canvas{width:100%;height:auto;display:block;border-radius:10px;box-shadow:0 8px 32px #33234c25}
+@media(max-width:850px){.ml-grid{grid-template-columns:1fr}.ml-study{grid-template-columns:1fr}.ml-study-steps{display:flex;overflow-x:auto;gap:5px}.ml-step-nav{min-width:135px}.ml-slide-work{grid-template-columns:1fr}.ml-slide-nav{display:none}.ml-slide-figures{grid-template-columns:1fr}.ml-slide-stage{padding:14px}.ml-slide-metrics{grid-template-columns:1fr 1fr}.ml-toolbar-inner{padding:8px 12px}.ml-toolbar-title{min-width:0}.ml-action{padding:8px;font-size:11px}.ml-paper{padding:15px}.ml-overlay{padding:6px}}
+@media print{.ml-toolbar,.ml-overlay,.ml-chat-fab,.ml-chat,.ml-toast{display:none!important}}
+
+
+/* Typographic mathematical layout: native MathML, works fully offline. */
+.ml-formula math,.ml-slide-big math,.ml-math math,.ml-math-row math,.formula math,.formula-block math,.ml-slide-hidden-answer math,.ml-feedback math,.ml-paper math{font-family:'Cambria Math','STIX Two Math','Latin Modern Math','DejaVu Serif',serif;color:inherit;font-size:1.13em;line-height:1.5}
+.ml-formula,.ml-textbook-formula{overflow-x:auto;overflow-y:hidden;padding:14px 10px!important;min-height:58px;scrollbar-width:thin;text-align:center}
+.ml-math-rows{display:grid;gap:9px;justify-content:stretch;width:100%}
+.ml-math-row{display:flex;align-items:center;justify-content:center;max-width:100%;min-height:36px;overflow-x:auto;overflow-y:hidden;padding:5px 2px;scrollbar-width:thin}
+.ml-math-slot{display:inline-block!important;min-width:1.7em;min-height:1.15em;padding:.1em .38em!important;background:#f3eaff!important;color:#6933bd!important;border:2px dashed #9560d6!important;border-radius:7px;font-size:.88em;font-weight:800;text-align:center}
+.ml-math-guide{display:flex;gap:8px;align-items:center;flex-wrap:wrap;color:#603c93;font-size:12px;font-weight:650;background:#faf6ff;border:1px solid #e4d4ff;border-radius:9px;padding:9px 12px;margin:9px 0 15px}
+.ml-math-guide .ml-math-token{background:#f0e5ff;color:#6634aa;border:2px dashed #9360d2;border-radius:6px;font:bold 16px Cambria,serif;min-width:30px;text-align:center;line-height:1.5}
+.ml-formula .ml-math-row:not(:last-child){border-bottom:1px dashed #ddd4f4;padding-bottom:9px}
+.ml-formula .ml-math-rows .ml-math-row math{font-size:1.18em}
+.ml-paper .ml-math math{font-size:1.1em}.ml-paper .ml-math-row{padding:5px 0;overflow:visible}
+.ml-slide-big{overflow-x:auto}.ml-slide-big math{font-size:1.09em}.ml-slide-hidden-answer .ml-math-rows{margin-top:10px;border-top:1px solid #e6c777;padding-top:10px}
+.ml-slide-hidden-answer .ml-math-row{min-height:40px}.ml-math-extended{margin-top:12px}
+@media(max-width:700px){.ml-formula math,.ml-textbook-formula math{font-size:1em}.ml-math-row{justify-content:flex-start}.ml-paper .ml-math-row{justify-content:center}}
+@media print{.ml-math-rows{break-inside:avoid}.ml-textbook-formula{overflow:visible}.ml-math-row{overflow:visible}}
+
+</style><script>
+/* MILKLAB 12 · MathML Core (offline, zero CDN).  Formulas are explicitly
+   authored; deliberately empty student slots use \slot, never glyph □. */
+(function(){
+ 'use strict';
+ const xmlEscape = s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const MI=(v)=>'<mi>'+xmlEscape(v)+'</mi>', MN=v=>'<mn>'+xmlEscape(v)+'</mn>', MO=v=>'<mo>'+xmlEscape(v)+'</mo>';
+ function mathTex(source, display=false){
+  const src=String(source||'');let p=0;let failed=false;
+  const greek={pi:'π',eta:'η',Delta:'Δ',theta:'θ',alpha:'α',beta:'β',infty:'∞',prime:'′',times:'×',cdot:'·',le:'≤',ge:'≥',neq:'≠',approx:'≈',Rightarrow:'⇒',Leftrightarrow:'⇔',to:'→',gt:'>',lt:'<',pm:'±','%':'%'};
+  const readBrace=()=>{if(src[p]!=='{')return '';p++;let k=1,b='';while(p<src.length&&k){let c=src[p++];if(c==='{')k++;else if(c==='}')k--;if(k)b+=c;}if(k)failed=true;return b;};
+  const parse=(stop)=>{
+   const bits=[];
+   while(p<src.length){const c=src[p];if(stop&&c===stop){p++;return '<mrow>'+bits.join('')+'</mrow>';}
+    if(c===' '||c==='\n'||c==='\t'){p++;continue;}
+    let atom='';
+    if(c==='{' ){p++;atom=parse('}');}
+    else if(c==='\\'){
+     p++;let cmd='';if(/[A-Za-z]/.test(src[p]||'')){while(/[A-Za-z]/.test(src[p]||''))cmd+=src[p++];}else cmd=src[p++]||'';
+     if(cmd==='frac'||cmd==='dfrac'||cmd==='tfrac'){
+      const a=src[p]==='{'?(p++,parse('}')):(parseAtomOnly());
+      const b=src[p]==='{'?(p++,parse('}')):(parseAtomOnly());
+      atom='<mfrac>'+a+b+'</mfrac>';
+     }else if(cmd==='sqrt'){
+      let deg='';if(src[p]==='['){p++;while(p<src.length&&src[p]!==']')deg+=src[p++];if(src[p]===']')p++;}
+      const x=src[p]==='{'?(p++,parse('}')):parseAtomOnly();
+      atom=deg?'<mroot>'+x+MN(deg)+'</mroot>':'<msqrt>'+x+'</msqrt>';
+     }else if(cmd==='slot'){
+      atom='<mtext class="ml-math-slot" title="Ô trống dành cho học sinh">?</mtext>';
+     }else if(cmd==='text'||cmd==='mathrm'||cmd==='operatorname'){
+      atom='<mtext>'+xmlEscape(src[p]==='{'?readBrace():'')+'</mtext>';
+     }else if(cmd==='quad'||cmd==='qquad'||cmd===';'||cmd===','){
+      atom='<mspace width="'+(cmd==='qquad'?'2em':cmd==='quad'?'1em':'.3em')+'"/>';
+     }else if(cmd==='left'||cmd==='right') {atom='';}
+     else if(cmd==='min'){atom='<mtext>min</mtext>';}
+     else if(Object.prototype.hasOwnProperty.call(greek,cmd))atom=['pi','eta','Delta','theta','alpha','beta','infty'].includes(cmd)?MI(greek[cmd]):MO(greek[cmd]);
+     else{failed=true;atom='<mtext class="ml-math-unrecognized">['+xmlEscape(cmd)+']</mtext>';}
+    }else if(/[0-9]/.test(c)){
+     let n='';while(/[0-9]/.test(src[p]||''))n+=src[p++];if(src[p]==='.'&&/[0-9]/.test(src[p+1]||'')){n+=src[p++];while(/[0-9]/.test(src[p]||''))n+=src[p++];}
+     atom=MN(n);
+    }else if(/[A-Za-z]/.test(c)){p++;atom=MI(c);}
+    else if(c==='²'||c==='³'){p++;if(bits.length){const base=bits.pop();bits.push('<msup>'+base+MN(c==='²'?'2':'3')+'</msup>');}continue;}
+    else if(c==="'"){p++;if(bits.length){const base=bits.pop();bits.push('<msup>'+base+MO('′')+'</msup>');}continue;}
+    else {p++;atom=MO(c==='−'?'-':c);}
+    // collect subscript and superscript for a single base atom, including both orders
+    let sub=null,sup=null;
+    while(src[p]==='_'||src[p]==='^'){
+     const what=src[p++];const operand=src[p]==='{'?(p++,parse('}')):parseAtomOnly();
+     if(what==='_')sub=operand;else sup=operand;
+    }
+    if(sub!==null&&sup!==null)atom='<msubsup>'+atom+sub+sup+'</msubsup>';
+    else if(sub!==null)atom='<msub>'+atom+sub+'</msub>';
+    else if(sup!==null)atom='<msup>'+atom+sup+'</msup>';
+    bits.push(atom);
+   }
+   if(stop)failed=true;
+   return '<mrow>'+bits.join('')+'</mrow>';
+  };
+  function parseAtomOnly(){if(p>=src.length){failed=true;return '<mtext>?</mtext>';}const c=src[p++];return /\d/.test(c)?MN(c):MI(c);}
+  const inner=parse(null),math='<math xmlns="http://www.w3.org/1998/Math/MathML" display="'+(display?'block':'inline')+'" aria-label="'+xmlEscape(src.replace(/\\slot/g,'ô cần điền'))+'">'+inner+'</math>';
+  if(failed)console.warn('MILKLAB: kiểm tra cú pháp toán học đã biên soạn:',src);
+  return math;
+ }
+ window.mlkMath=mathTex;
+ window.mlkMathRows=(rows)=>'<div class="ml-math-rows">'+rows.map(tex=>'<div class="ml-math-row">'+mathTex(tex,true)+'</div>').join('')+'</div>';
+ window.mlkStudyFormulas=(mission,step)=>{
+  const task1=[
+   [String.raw`a^{2}h_{A}=1000\quad;\quad \pi r^{2}h_{B}=1000`,String.raw`h_{A}=\frac{\slot}{a^{2}}\quad;\quad h_{B}=\frac{\slot}{\pi r^{2}}`],
+   [String.raw`S_{A}(a)=2a^{2}+\frac{\slot}{a}`,String.raw`S_{B}(r)=2\pi r^{2}+\frac{\slot}{r}`],
+   [String.raw`S'_{A}(a)=4a-\frac{4000}{a^{2}}`,String.raw`S'_{B}(r)=4\pi r-\frac{2000}{r^{2}}`],
+   [String.raw`S_{A,\min}=S_{A}(a^{*})`,String.raw`S_{B,\min}=S_{B}(r^{*})`],
+   [String.raw`S_{A,\min}\quad \text{so với}\quad S_{B,\min}`]
+  ];
+  const task2=[
+   [String.raw`(L_{A},W_{A},H_{A})=(3a,2a,2h_{A})`,String.raw`(L_{B},W_{B},H_{B})=(6r,4r,2h_{B})`],
+   [String.raw`S_{\text{carton}}=2(LW+LH+WH)`],
+   [String.raw`V_{\text{carton}}=LWH`,String.raw`\eta=\frac{12000}{V_{\text{carton}}}`],
+   [String.raw`\text{Tỉ lệ tăng}=\frac{\text{Giá trị B}-\text{Giá trị A}}{\text{Giá trị A}}\times100\%`],
+   [String.raw`C=12pS_{\text{vỏ}}+qS_{\text{carton}}+tV_{\text{carton}}`]
+  ];
+  return (mission===1?task1:task2)[step]||[];
+ };
+ window.mlkStudyAnalysis=(mission,step)=>{
+  const a=[
+   [String.raw`h_{A}=\frac{1000}{a^{2}}`,String.raw`h_{B}=\frac{1000}{\pi r^{2}}`],
+   [String.raw`S_{A}(a)=2a^{2}+\frac{4000}{a}`,String.raw`S_{B}(r)=2\pi r^{2}+\frac{2000}{r}`],
+   [String.raw`S'_{A}(a)=0\;\Rightarrow\;a=10`,String.raw`S'_{B}(r)=0\;\Rightarrow\;r=\sqrt[3]{\frac{500}{\pi}}`],
+   [String.raw`S_{A,\min}=600\;\text{cm}^{2}`,String.raw`S_{B,\min}\approx553.58\;\text{cm}^{2}`],
+   [String.raw`S_{B,\min}<S_{A,\min}`]
+  ];
+  const b=[
+   [String.raw`(L_{A},W_{A},H_{A})=(30,20,20)`,String.raw`(L_{B},W_{B},H_{B})\approx(32.52,21.68,21.68)`],
+   [String.raw`S_{\text{carton},A}=3200\;\text{cm}^{2}`,String.raw`S_{\text{carton},B}\approx3759.15\;\text{cm}^{2}`],
+   [String.raw`V_{\text{carton},A}=12000\;\text{cm}^{3}`,String.raw`V_{\text{carton},B}=\frac{48000}{\pi}\;\text{cm}^{3}`,String.raw`\eta_{B}=\frac{\pi}{4}\approx78.54\%`],
+   [String.raw`\text{Tăng diện tích}=\frac{S_{\text{carton},B}-S_{\text{carton},A}}{S_{\text{carton},A}}\times100\%`,String.raw`\text{Tăng thể tích}=\frac{V_{\text{carton},B}-V_{\text{carton},A}}{V_{\text{carton},A}}\times100\%`],
+   [String.raw`C_{A}=12pS_{\text{vỏ},A}+qS_{\text{carton},A}+tV_{\text{carton},A}`,String.raw`C_{B}=12pS_{\text{vỏ},B}+qS_{\text{carton},B}+tV_{\text{carton},B}`]
+  ];
+  return (mission===1?a:b)[step]||[];
+ };
+ window.mlkStaticFormulas=(mission)=> mission===1?[
+  String.raw`S_{A}(a)=2a^{2}+\frac{4000}{a}`,
+  String.raw`S_{B}(r)=2\pi r^{2}+\frac{2000}{r}`,
+  String.raw`a^{2}h=1000\;\Rightarrow\;h=\frac{1000}{a^{2}}`,
+  String.raw`S_{A}(a)=2a^{2}+4ah=2a^{2}+\frac{4000}{a}`,
+  String.raw`S'_{A}(a)=4a-\frac{4000}{a^{2}}`,
+  String.raw`\pi r^{2}h=1000\;\Rightarrow\;h=\frac{1000}{\pi r^{2}}`,
+  String.raw`S_{B}(r)=2\pi r^{2}+2\pi rh=2\pi r^{2}+\frac{2000}{r}`,
+  String.raw`S'_{B}(r)=4\pi r-\frac{2000}{r^{2}}`
+ ]:[
+  String.raw`C=12pS_{\text{vỏ hộp}}+qS_{\text{carton}}+tV_{\text{carton}}`,
+  String.raw`L_{A}=3a\quad;\quad W_{A}=2a\quad;\quad H_{A}=2h_{A}`,
+  String.raw`L_{B}=6r\quad;\quad W_{B}=4r\quad;\quad H_{B}=2h_{B}`,
+  String.raw`S_{\text{carton}}=2(LW+LH+WH)`,
+  String.raw`V_{\text{carton}}=LWH`,
+  String.raw`\eta_{A}=\frac{12000}{V_{A}}=100\%`,
+  String.raw`\eta_{B}=\frac{12000}{V_{B}}=\frac{\pi}{4}\approx78.54\%`,
+  String.raw`12p(S_{A}-S_{B})>q(S_{\text{carton},B}-S_{\text{carton},A})+t(V_{\text{carton},B}-V_{\text{carton},A})`
+ ];
+ window.mlkStaticInit=(mission)=>{
+  const targets=[...document.querySelectorAll('main .formula, main .formula-block')],formula=window.mlkStaticFormulas(mission);
+  if(targets.length!==formula.length){console.warn('MILKLAB: công thức tĩnh cần rà soát',mission,targets.length,formula.length);return;}
+  targets.forEach((node,i)=>{node.innerHTML=mathTex(formula[i],true);node.classList.add('ml-textbook-formula');});
+ };
+})();
+
+</script>
+</head>
+<body>
+<header class="nav"><div class="nav-in"><a class="brand" href="#top"><span class="logo">▤</span><span>MILKLAB <span style="color:#0c987a">/ TOÁN 12</span></span></a><nav class="nav-items" aria-label="Điều hướng nhiệm vụ"><a class="nav-link" href="01_MILKLAB12_GiaoVien_HocSinh_ToiUuVoHop.html">← 01 · Thiết kế vỏ hộp</a><a class="nav-link active" href="#top" aria-current="page">02 · Đóng gói & vận chuyển</a><button type="button" id="fullscreen" class="nav-action">⛶ Trình chiếu</button></nav></div></header>
+<section class="ml-toolbar" aria-label="Bộ công cụ TOÁN 12 LAB">
+  <div class="ml-toolbar-inner">
+    <div class="ml-toolbar-title"><span class="ml-toolbar-logo">🧪</span><div><strong>TOÁN 12 LAB · MILKLAB STEAM</strong><small>Hai kiểu hộp – Mô hình hoá · Tự giải · Kiểm chứng · Mở rộng</small></div></div>
+    <div class="ml-toolbar-actions">
+      <button class="ml-action ml-action-gold" type="button" data-ml-open="worksheets">📝 Tạo phiếu luyện tập</button>
+      <button class="ml-action" type="button" data-ml-open="slides">🎬 Trình chiếu dạy</button>
+      <button class="ml-action" type="button" data-ml-open="study">🎓 Tự học theo bước</button>
+      <button class="ml-action" type="button" data-ml-open="extension">🔬 Thí nghiệm mở rộng</button>
+      <button class="ml-action" type="button" data-ml-open="poster">🖼️ Poster bài học</button>
+    </div>
+  </div>
+</section>
+
+<div id="ml-studio-overlay" class="ml-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="ml-studio-title">
+ <div class="ml-dialog">
+  <div class="ml-dialog-head"><div><h2 id="ml-studio-title">Công cụ giáo viên</h2><small id="ml-studio-sub">Xuất học liệu ngay trong trình duyệt</small></div><button id="ml-studio-close" class="ml-icon-button" type="button" aria-label="Đóng">×</button></div>
+  <div class="ml-dialog-body"><div class="ml-grid"><section class="ml-controls" id="ml-studio-controls"></section><section class="ml-preview-frame" id="ml-studio-preview" aria-label="Bản xem trước"></section></div></div>
+ </div>
+</div>
+
+<div id="ml-study-overlay" class="ml-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="ml-study-title">
+ <div class="ml-dialog">
+  <div class="ml-dialog-head"><div><h2 id="ml-study-title">HỌC SINH TỰ GIẢI – 5 BƯỚC</h2><small id="ml-study-progress">Làm từng bước, kiểm tra lập luận và dùng mô phỏng kiểm chứng</small></div><button id="ml-study-close" class="ml-icon-button" type="button" aria-label="Đóng">×</button></div>
+  <div class="ml-dialog-body"><div class="ml-study"><nav class="ml-study-steps" id="ml-study-steps" aria-label="Các bước tự giải"></nav><article class="ml-study-content" id="ml-study-content"></article></div></div>
+ </div>
+</div>
+
+<div id="ml-extend-overlay" class="ml-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="ml-extend-title">
+ <div class="ml-dialog">
+  <div class="ml-dialog-head"><div><h2 id="ml-extend-title">PHÒNG THÍ NGHIỆM MỞ RỘNG</h2><small>Đổi giả thiết → tính lại → đối chiếu → lập luận</small></div><button id="ml-extend-close" class="ml-icon-button" type="button" aria-label="Đóng">×</button></div>
+  <div class="ml-dialog-body" id="ml-extend-body"></div>
+ </div>
+</div>
+
+<div id="ml-slide-overlay" class="ml-overlay ml-slide-overlay" hidden role="dialog" aria-modal="true" aria-labelledby="ml-slide-title">
+ <div class="ml-slide-dialog" id="ml-slide-dialog">
+  <header class="ml-slide-head"><strong id="ml-slide-title">TRÌNH CHIẾU TƯƠNG TÁC</strong><span id="ml-slide-count" style="font-size:12px;white-space:nowrap">1 / 10</span><button type="button" id="ml-slide-fs" class="ml-btn">⛶ Toàn màn hình</button><button type="button" id="ml-slide-close" class="ml-icon-button" aria-label="Đóng">×</button></header>
+  <div class="ml-slide-work"><nav class="ml-slide-nav" id="ml-slide-nav" aria-label="Danh sách trang trình chiếu"></nav><div class="ml-slide-stage" id="ml-slide-stage"></div></div>
+  <footer class="ml-slide-footer"><span style="font-size:11px;color:#716482">← → chuyển trang · F toàn màn hình · Esc thoát</span><div class="ml-control-row"><button class="ml-btn" id="ml-slide-prev" type="button">← Trước</button><button class="ml-btn ml-btn-primary" id="ml-slide-reveal" type="button">👁 Hiện đáp án</button><button class="ml-btn ml-btn-primary" id="ml-slide-next" type="button">Tiếp →</button></div></footer>
+ </div>
+</div>
+
+<button type="button" class="ml-chat-fab" id="ml-chat-fab">🤖 Trợ giảng Socratic</button>
+<aside id="ml-chat" class="ml-chat" hidden aria-label="Trợ giảng Socratic">
+  <header class="ml-chat-head"><div><strong>🤖 Trợ giảng gợi mở Socratic</strong><div class="ml-chat-status" id="ml-chat-status">Bộ gợi ý nội bộ – dùng ngoại tuyến</div></div><button id="ml-chat-close" class="ml-icon-button" aria-label="Đóng" type="button">×</button></header>
+  <div style="padding:7px 11px;background:#f0eafb;font-size:10px;color:#594b78"><label style="display:flex;align-items:center;gap:7px"><input id="ml-online-check" type="checkbox" style="accent-color:#713dc2"> Dùng AI trực tuyến nếu website có máy chủ <code>/api/chat</code></label></div>
+  <div id="ml-chat-messages" class="ml-chat-messages" aria-live="polite"></div>
+  <div class="ml-chat-chips"><button type="button" data-ml-chat-hint="hint">💡 Gợi ý từng bước</button><button type="button" data-ml-chat-hint="model">📐 Lập mô hình</button><button type="button" data-ml-chat-hint="verify">📊 Kiểm chứng</button><button type="button" data-ml-chat-hint="extend">🧪 Mở rộng</button></div>
+  <div class="ml-chat-controls"><input id="ml-chat-input" type="text" placeholder="Hỏi điều em đang vướng..." aria-label="Câu hỏi gửi trợ giảng"><button type="button" id="ml-chat-send">Gửi</button></div>
+</aside>
+<div class="ml-toast" id="ml-toast" hidden aria-live="polite"></div>
+
+
+<main id="top">
+<section class="hero"><div class="hero-kicker">◈ PHÒNG THÍ NGHIỆM STEAM · NHIỆM VỤ 02 / 02</div><h1>Đóng gói 12 hộp sữa:<br>phương án nào <span style="color:#8ae3cf">tiết kiệm hơn?</span></h1><p>Quan sát cách xếp <strong style="color:#fff">3 × 2 × 2</strong> trong thùng carton chữ nhật, so sánh diện tích thùng, thể tích chiếm chỗ và mô phỏng chi phí thực tế.</p><div class="chips"><span class="chip">12 hộp sữa × 1 lít</span><span class="chip">3 dài × 2 rộng × 2 tầng</span><span class="chip">Xếp đứng, thẳng hàng</span><span class="chip">Không tính mép dán / độ dày</span></div><div class="hero-art" aria-hidden="true"><svg viewBox="0 0 170 130"><path d="M15 55 90 15 160 54 88 98Z M15 55v48l73 32V98M160 54v50l-72 31" stroke="white" stroke-width="3" fill="none"/><path d="M50 36 125 76 M90 15v50 M15 55l73 37 72-38" stroke="white" stroke-width="2" fill="none"/></svg></div></section>
+<div class="section-heading"><div><div class="eyebrow">CÀI ĐẶT KÍCH THƯỚC</div><h2>Dùng kết quả tối ưu từ nhiệm vụ 01</h2><p>Mặc định: a = 10,00 cm và r ≈ 5,42 cm. Có thể điều chỉnh để kiểm tra các thiết kế khác cùng thể tích 1 lít.</p></div><span class="pill a" id="optStatus">ĐANG DÙNG KÍCH THƯỚC TỐI ƯU</span></div>
+<div class="control-bar"><div class="control-item"><label for="aRange">Cạnh đáy vuông <i>a</i> <b id="aRead">10,00 cm</b></label><input id="aRange" type="range" class="slider" min="7" max="16" step="0.01" value="10"><p class="control-hint" id="aHeight">Chiều cao: 10,00 cm</p></div><div class="control-item"><label for="rRange">Bán kính hình trụ <i>r</i> <b id="rRead">5,42 cm</b></label><input id="rRange" type="range" class="slider b" min="4" max="8" step="0.001" value="5.419"><p class="control-hint" id="rHeight">Chiều cao: 10,84 cm</p></div><div class="actions"><button class="btn btn-soft" id="resetSizes" type="button">↺ Đưa về kích thước tối ưu</button></div></div>
+<div class="section-heading"><div><div class="eyebrow">THỰC NGHIỆM ĐÓNG GÓI</div><h2>Xếp từng hộp vào thùng carton</h2><p>Nhấn nút xếp hoặc kéo số lượng để quan sát hai phương án cùng lúc.</p></div></div>
+<div class="card card-pad"><div class="packing-toolbar"><div class="view-toggle" aria-label="Kiểu quan sát"><button id="view3d" class="on" type="button" aria-pressed="true">▧ Khối 3D</button><button id="viewTop" type="button" aria-pressed="false">◫ Mặt bằng</button></div><div class="packing-actions"><button id="removeOne" class="btn btn-small" type="button" aria-label="Lấy ra một hộp">− 1 hộp</button><span class="stack-count" id="packCount">0 / 12</span><button id="addOne" class="btn btn-small" type="button">+ 1 hộp</button><button id="autoFill" class="btn btn-primary btn-small" type="button">▶ Tự động xếp</button><button id="fillAll" class="btn btn-small" type="button">Đủ 12</button></div></div><label for="packSlider" class="tiny" style="display:block;margin-bottom:5px">Số hộp đã xếp (áp dụng cho cả hai phương án)</label><input class="slider" type="range" min="0" max="12" step="1" id="packSlider" value="12"><div id="floorSelect" class="actions" style="justify-content:center;margin-top:10px" hidden><span class="note" style="align-self:center">Mặt bằng tầng:</span><button type="button" class="btn btn-small btn-soft" id="floor1" aria-pressed="true">Tầng 1</button><button type="button" class="btn btn-small" id="floor2" aria-pressed="false">Tầng 2</button></div>
+<div class="pack-layout"><article><div class="card-top" style="margin-top:14px"><div><h3 class="card-title">A. 12 hộp đáy vuông</h3><p class="card-sub">Mỗi hộp có đáy a × a, chiều cao h<sub>A</sub>.</p></div><span class="pill a">ĐÁY VUÔNG</span></div><div class="pack-visual"><svg id="packA" viewBox="0 0 520 355" role="img" aria-label="Mô phỏng xếp hộp đáy vuông vào thùng chữ nhật"></svg></div><div class="dimensions"><span>Thùng carton (dài × rộng × cao)</span><strong id="dimsA">—</strong></div><div class="triplets"><div class="mini"><span>Diện tích carton</span><strong id="cartAreaA" class="a">—</strong><span>cm²</span></div><div class="mini"><span>Thể tích thùng</span><strong id="cartVolA" class="a">—</strong><span>lít</span></div><div class="mini"><span>Lấp đầy khi đủ 12</span><strong id="fillA" class="a">100%</strong><span>theo thể tích</span></div></div></article><article><div class="card-top" style="margin-top:14px"><div><h3 class="card-title">B. 12 hộp hình trụ</h3><p class="card-sub">Mỗi hộp có đường kính 2r, chiều cao h<sub>B</sub>.</p></div><span class="pill b">HÌNH TRỤ</span></div><div class="pack-visual"><svg id="packB" viewBox="0 0 520 355" role="img" aria-label="Mô phỏng xếp hộp hình trụ vào thùng chữ nhật"></svg></div><div class="dimensions"><span>Thùng carton (dài × rộng × cao)</span><strong id="dimsB">—</strong></div><div class="triplets"><div class="mini"><span>Diện tích carton</span><strong id="cartAreaB" class="b">—</strong><span>cm²</span></div><div class="mini"><span>Thể tích thùng</span><strong id="cartVolB" class="b">—</strong><span>lít</span></div><div class="mini"><span>Lấp đầy khi đủ 12</span><strong id="fillB" class="b">78,54%</strong><span>theo thể tích</span></div></div></article></div><p class="footnote">Mô hình minh họa theo phép chiếu trục đo. Diện tích và thể tích được tính từ kích thước toán học chính xác, không lấy theo kích cỡ hình vẽ trên màn hình. Thùng được chế tạo cho 12 hộp ngay cả khi đang mô phỏng xếp chưa đủ 12.</p></div>
+<div class="section-heading"><div><div class="eyebrow">SO SÁNH ĐỊNH LƯỢNG</div><h2>Phương án nào dùng ít carton và ít chỗ hơn?</h2><p>Chi phí carton được giả định tỉ lệ với diện tích toàn phần; không gian vận chuyển và lưu kho tỉ lệ với thể tích thùng.</p></div></div>
+<div class="multi-bars"><div class="bar-panel"><h3 class="bar-title">Diện tích bìa carton cho 1 thùng</h3><p class="bar-sub">Đơn vị cm² · số nhỏ hơn có lợi hơn</p><div class="bar-item"><div class="bar-label"><span>A · Đáy vuông</span><span id="barAreaALabel">—</span></div><div class="bar-track"><div id="barAreaA" class="bar-fill a" style="width:65%"></div></div></div><div class="bar-item"><div class="bar-label"><span>B · Hình trụ</span><span id="barAreaBLabel">—</span></div><div class="bar-track"><div id="barAreaB" class="bar-fill b" style="width:100%"></div></div></div><div class="readonly" id="areaDifference">—</div></div><div class="bar-panel"><h3 class="bar-title">Không gian 1 thùng chiếm chỗ</h3><p class="bar-sub">Đơn vị lít · số nhỏ hơn có lợi hơn</p><div class="bar-item"><div class="bar-label"><span>A · Đáy vuông</span><span id="barVolALabel">—</span></div><div class="bar-track"><div id="barVolA" class="bar-fill a" style="width:78.54%"></div></div></div><div class="bar-item"><div class="bar-label"><span>B · Hình trụ</span><span id="barVolBLabel">—</span></div><div class="bar-track"><div id="barVolB" class="bar-fill b" style="width:100%"></div></div></div><div class="readonly" id="volDifference">—</div></div></div>
+<div class="section-heading"><div><div class="eyebrow">THỬ THÁCH GIÁM ĐỐC</div><h2>Tính <em>tổng chi phí</em> trên 12 hộp sữa</h2><p>Thay đơn giá để khám phá: kết luận về phương án tốt nhất có thay đổi không?</p></div></div>
+<div class="card card-pad"><div class="cost-grid"><div><label for="pShell" class="input-label">Giá vật liệu vỏ hộp (p)</label><span class="input-extra">đồng / cm² diện tích vỏ sữa</span><input class="cost-input" id="pShell" type="number" min="0" max="100" step="0.1" value="2"></div><div><label for="pCart" class="input-label">Giá bìa carton (q)</label><span class="input-extra">đồng / cm² diện tích thùng</span><input class="cost-input" id="pCart" type="number" min="0" max="100" step="0.1" value="1"></div><div><label for="pSpace" class="input-label">Giá vận chuyển & lưu kho (t)</label><span class="input-extra">đồng / cm³ thể tích thùng</span><input class="cost-input" id="pSpace" type="number" min="0" max="100" step="0.05" value="0.2"></div></div><div class="formula" style="margin:15px 0">C = 12 × p × S<sub>vỏ hộp</sub> + q × S<sub>carton</sub> + t × V<sub>carton</sub></div><div class="actions" style="margin-bottom:6px"><span class="note" style="align-self:center">Tình huống:</span><button class="btn btn-small btn-soft" id="presetBalance" type="button">Cân bằng</button><button class="btn btn-small" id="presetMaterial" type="button">Vật liệu vỏ đắt</button><button class="btn btn-small" id="presetSpace" type="button">Lưu kho đắt</button></div><div class="cost-result"><div class="cost-card a"><span>Tổng chi phí A / 12 hộp</span><strong id="costA">—</strong><span>đồng / thùng</span></div><div class="cost-card b"><span>Tổng chi phí B / 12 hộp</span><strong id="costB">—</strong><span>đồng / thùng</span></div></div><div id="winner" class="winner" aria-live="polite">Đang tính toán...</div><div class="tblwrap"><table class="tbl"><thead><tr><th>Khoản chi (đồng / 12 hộp)</th><th>A. Đáy vuông</th><th>B. Hình trụ</th></tr></thead><tbody><tr><td>Vật liệu làm 12 vỏ hộp</td><td id="lineShellA">—</td><td id="lineShellB">—</td></tr><tr><td>Bìa làm 1 thùng carton</td><td id="lineCartA">—</td><td id="lineCartB">—</td></tr><tr><td>Vận chuyển và lưu kho quy đổi</td><td id="lineSpaceA">—</td><td id="lineSpaceB">—</td></tr><tr style="font-weight:850"><td>TỔNG CỘNG</td><td id="lineTotalA">—</td><td id="lineTotalB">—</td></tr></tbody></table></div><p id="threshold" class="threshold" aria-live="polite"></p><div class="caveat"><strong>Chú ý về mô hình:</strong> Các đơn giá là <em>giả định cho hoạt động học tập</em>, không phải bảng giá thị trường. Cách xếp 3 × 2 × 2 theo hàng và cột là ràng buộc của bài toán; không suy rộng sang mọi cách đóng gói hình trụ. Chi phí quy đổi theo thể tích không phải phép đo mức tiêu hao nhiên liệu thực tế.</div></div>
+<div class="section-heading"><div><div class="eyebrow">ĐẠO HÀM · HÌNH HỌC · KINH TẾ</div><h2>Giải thích và kiểm chứng kết quả</h2></div></div>
+<div class="explain"><details><summary>▸ Công thức tính kích thước thùng carton</summary><p>Gọi a là cạnh đáy vuông; r là bán kính trụ; h<sub>A</sub> = 1.000/a² và h<sub>B</sub> = 1.000/(πr²). Hộp sữa được dựng thẳng, đặt sát nhau thành 3 cột, 2 hàng và 2 tầng.</p><div class="formula-block">L<sub>A</sub> = 3a;&nbsp; W<sub>A</sub> = 2a;&nbsp; H<sub>A</sub> = 2h<sub>A</sub></div><div class="formula-block">L<sub>B</sub> = 6r;&nbsp; W<sub>B</sub> = 4r;&nbsp; H<sub>B</sub> = 2h<sub>B</sub></div><div class="formula-block">S<sub>carton</sub> = 2(LW + LH + WH)</div><div class="formula-block">V<sub>carton</sub> = LWH</div><p>Kết quả áp dụng cho thùng carton kín dạng hình hộp chữ nhật. Khi hiển thị số, chương trình chỉ làm tròn ở bước cuối.</p></details><details><summary>▸ Vì sao hình trụ không lấp kín thùng chữ nhật?</summary><p>Trong cách xếp có lưới hàng – cột, mỗi đáy tròn bán kính r nằm trong một hình vuông cạnh 2r; phần góc của ô vuông không được lấp đầy. Tỉ lệ thể tích được sữa chiếm trong thùng hình trụ là π/4 ≈ 78,54% (không kể vỏ hộp). Với hộp đáy vuông, tỉ lệ lý tưởng là 100%.</p><div class="formula-block">η<sub>A</sub> = 12.000 / V<sub>A</sub> = 100%</div><div class="formula-block">η<sub>B</sub> = 12.000 / V<sub>B</sub> = π/4 ≈ 78,54%</div><p>Hai tỉ lệ này chỉ đúng theo giả thiết bỏ qua bìa hộp, khe hở, nắp đóng và phần đệm bảo vệ.</p></details><details><summary>▸ Điều kiện để hình trụ có tổng chi phí thấp hơn</summary><p>Từ mô hình, nếu hai kích thước đã tối ưu và ký hiệu ΔS<sub>vỏ</sub> = S<sub>A</sub> − S<sub>B</sub> &gt; 0, hình trụ được chọn khi phần tiết kiệm vật liệu vỏ lớn hơn chi phí tăng thêm của carton và lưu kho:</p><div class="formula-block">12p(S<sub>A</sub> − S<sub>B</sub>) &gt; q(S<sub>carton,B</sub> − S<sub>carton,A</sub>) + t(V<sub>carton,B</sub> − V<sub>carton,A</sub>)</div><p>Hãy thử tăng p (vỏ hộp đắt) hoặc tăng t (lưu kho đắt) rồi quan sát quyết định của giám đốc.</p></details></div>
+<div class="student-task"><h3>Phiếu nhiệm vụ · kết luận của nhóm</h3><p><strong>1.</strong> Vì sao hộp hình trụ có thể tiết kiệm vật liệu sản xuất nhưng lại chiếm nhiều chỗ trong thùng carton?</p><p><strong>2.</strong> Đổi ít nhất hai mức đơn giá để tìm được hai tình huống có quyết định khác nhau. Ghi lại số liệu làm bằng chứng.</p><p><strong>3.</strong> Đề xuất loại hộp sữa công ty nên sản xuất trong tình huống của nhóm, đồng thời nêu ít nhất một giả thiết có thể làm quyết định thay đổi trong thực tế.</p></div>
+<div class="footer-cta"><div><h3>Thông điệp của hoạt động STEAM</h3><p>Tối ưu từng công đoạn không nhất thiết đồng nghĩa với tối ưu toàn bộ hệ thống sản xuất – logistics.</p></div><a class="btn" href="01_MILKLAB12_GiaoVien_HocSinh_ToiUuVoHop.html">← Quay lại nhiệm vụ 01</a></div>
+</main>
+<script>
+'use strict';
+const $=id=>document.getElementById(id);const fmt=(n,d=2)=>new Intl.NumberFormat('vi-VN',{minimumFractionDigits:d,maximumFractionDigits:d}).format(n);
+const RSTAR=Math.cbrt(500/Math.PI);
+const state={a:10,r:RSTAR,n:12,view:'3d',floor:1,timer:null};
+function calc(kind){const u=kind==='A'?state.a:2*state.r,h=kind==='A'?1000/(state.a*state.a):1000/(Math.PI*state.r*state.r);const L=3*u,W=2*u,H=2*h,cartArea=2*(L*W+L*H+W*H),cartVol=L*W*H;const shellArea=kind==='A'?2*state.a*state.a+4000/state.a:2*Math.PI*state.r*state.r+2000/state.r;return {u,h,L,W,H,cartArea,cartVol,shellArea,efficiency:12000/cartVol}}
+const coordinate=p=>p.map(v=>v.toFixed(2)).join(',');
+function diagram3D(kind,n){const data=calc(kind),u=data.u,h=data.h;
+ const k=Math.min(356/(5*u),288/(5*u*.36+2*h*.98));const sx=k,sy=k*.36,sz=k*.98;const ox=260-.5*u*sx,oy=28+2*h*sz;
+ const P=(x,y,z)=>[ox+(x-y)*sx,oy+(x+y)*sy-z*sz];
+ const polygon=(points,fill,stroke='#92aabe',sw=1.6)=>`<polygon points="${points.map(coordinate).join(' ')}" fill="${fill}" stroke="${stroke}" stroke-width="${sw}" stroke-linejoin="round"/>`;
+ const A='#0d9277',B='#6654c5',col=kind==='A'?A:B;
+ const zH=2*h,xE=3*u,yE=2*u;
+ const o=P(0,0,0),px=P(xE,0,0),pxy=P(xE,yE,0),py=P(0,yE,0),ot=P(0,0,zH),pxt=P(xE,0,zH),pxyt=P(xE,yE,zH),pyt=P(0,yE,zH);
+ let svg=`<defs><linearGradient id="can-${kind}" x1="0" x2="1"><stop stop-color="#9b94de"/><stop offset=".47" stop-color="#dad6ff"/><stop offset="1" stop-color="#8071d8"/></linearGradient></defs>`;
+ svg+=`<ellipse cx="260" cy="326" rx="156" ry="12" fill="#1a4666" opacity=".055"/>`;
+ svg+=polygon([o,px,pxy,py],'#e6eef3','#c6d5de',1.5);
+ svg+=polygon([o,px,pxt,ot],'#bedbdc22','#d0dde5',1);
+ svg+=polygon([o,py,pyt,ot],'#bedbdc1b','#d0dde5',1);
+ let order=[];for(let layer=0;layer<2;layer++)for(let j=0;j<2;j++)for(let i=0;i<3;i++)order.push({i,j,layer,index:layer*6+j*3+i});
+ order.sort((a,b)=>a.layer-b.layer||(a.i+a.j)-(b.i+b.j)||a.i-b.i);
+ for(const {i,j,layer,index} of order){if(index>=n)continue;const x=i*u,y=j*u,z=layer*h;
+ if(kind==='A'){
+  const p00=P(x,y,z+h),p10=P(x+u,y,z+h),p11=P(x+u,y+u,z+h),p01=P(x,y+u,z+h);
+  const q10=P(x+u,y,z),q11=P(x+u,y+u,z),q01=P(x,y+u,z);
+  svg+=polygon([q10,q11,p11,p10],'#4ea990','#239476',1.2);svg+=polygon([q01,q11,p11,p01],'#96d5c1','#278c72',1.2);svg+=polygon([p00,p10,p11,p01],'#ddfaf1','#46af90',1.2);
+  const c=P(x+.5*u,y+.5*u,z+h),id=index+1;
+  svg+=`<text x="${c[0]}" y="${c[1]+4}" text-anchor="middle" font-size="12" fill="#0b715d" font-weight="850">${id}</text>`;
+ }else{
+  const centerBottom=P(x+u/2,y+u/2,z),centerTop=P(x+u/2,y+u/2,z+h),rx=u*sx/Math.SQRT2,ry=u*sy/Math.SQRT2;
+  const cx=centerTop[0],yt=centerTop[1],yb=centerBottom[1];
+  svg+=`<path d="M ${cx-rx},${yt} L ${cx-rx},${yb} A ${rx},${ry} 0 0 0 ${cx+rx},${yb} L ${cx+rx},${yt} Z" fill="url(#can-${kind})" stroke="#7164c7" stroke-width="1.1"/>`;
+  svg+=`<ellipse cx="${cx}" cy="${yt}" rx="${rx}" ry="${ry}" fill="#ebe9ff" stroke="#8e83d6" stroke-width="1.2"/>`;
+  svg+=`<path d="M ${cx-rx},${yb} A ${rx},${ry} 0 0 0 ${cx+rx},${yb}" fill="none" stroke="#6456b8" stroke-width="1.1"/>`;
+  svg+=`<text x="${cx}" y="${(yt+yb)/2+4}" text-anchor="middle" font-size="11" fill="#493f9e" font-weight="850">${index+1}</text>`;
+ }
+ }
+ // Thung trong suot; mat ngoai hien thi ro ranh gioi, khong che mat cac hop ben trong.
+ svg+=polygon([px,pxy,pxyt,pxt],'#c5e0f021','#99b9ca',1.1);
+ svg+=polygon([py,pxy,pxyt,pyt],'#bdd6ea1e','#99b9ca',1.1);
+ const edge=(p1,p2,dash=false)=>`<line x1="${p1[0]}" y1="${p1[1]}" x2="${p2[0]}" y2="${p2[1]}" stroke="#718fa7" stroke-width="${dash?1.3:2.1}" ${dash?'stroke-dasharray="5 5"':''}/>`;
+ for(const [p1,p2] of [[o,ot],[px,pxt],[py,pyt],[pxy,pxyt],[ot,pxt],[pxt,pxyt],[pxyt,pyt],[pyt,ot],[o,px],[px,pxy],[pxy,py],[py,o]]){svg+=edge(p1,p2,p1===o)}
+ svg+=`<text x="258" y="346" text-anchor="middle" font-size="12" fill="#718ba0" font-weight="750">${n} / 12 hộp • 3 × 2 × 2</text>`;
+ return svg;
+}
+function diagramTop(kind,n,floor){const start=80,top=36,u=112;
+ let s=`<rect x="${start-7}" y="${top-7}" width="${3*u+14}" height="${2*u+14}" rx="8" fill="#f1f6fa" stroke="#93aaba" stroke-width="3"/>`;
+ for(let j=0;j<2;j++)for(let i=0;i<3;i++){let index=(floor-1)*6+j*3+i,x=start+i*u,y=top+j*u,full=index<n;
+  s+=`<rect x="${x}" y="${y}" width="${u}" height="${u}" fill="${kind==='A'?'#e3f2ed':'#f1effb'}" stroke="#bfceda" stroke-width="1"/>`;
+  if(kind==='A'){s+=`<rect x="${x+1.4}" y="${y+1.4}" width="${u-2.8}" height="${u-2.8}" rx="5" fill="${full?'#58b99a':'#f4faf8'}" stroke="${full?'#16896c':'#8db4a9'}" stroke-width="1.6" ${full?'':'stroke-dasharray="5 5"'}/>`}
+  else{s+=`<circle cx="${x+u/2}" cy="${y+u/2}" r="${u/2-1.1}" fill="${full?'#9587dd':'#fbfaff'}" stroke="${full?'#6357bd':'#b9addb'}" stroke-width="1.8" ${full?'':'stroke-dasharray="5 5"'}/>`}
+  s+=`<text x="${x+u/2}" y="${y+u/2+5}" text-anchor="middle" font-weight="850" font-size="15" fill="${full?'#fff':'#93a4b4'}">${full?index+1:'+'}</text>`;
+ }
+ s+=`<text x="250" y="311" text-anchor="middle" font-size="14" fill="#57728a" font-weight="800">TẦNG ${floor} · ${Math.min(6,Math.max(0,n-(floor-1)*6))} / 6 HỘP</text>`;
+ return s;
+}
+function renderDiagrams(){const view=state.view;
+ $('packA').innerHTML=view==='3d'?diagram3D('A',state.n):diagramTop('A',state.n,state.floor);
+ $('packB').innerHTML=view==='3d'?diagram3D('B',state.n):diagramTop('B',state.n,state.floor);
+ $('packCount').textContent=state.n+' / 12';$('packSlider').value=state.n;
+ $('removeOne').disabled=state.n===0;$('addOne').disabled=state.n===12;$('fillAll').disabled=state.n===12;
+ $('view3d').classList.toggle('on',view==='3d');$('viewTop').classList.toggle('on',view==='top');$('view3d').setAttribute('aria-pressed',view==='3d');$('viewTop').setAttribute('aria-pressed',view==='top');$('floorSelect').hidden=view!=='top';
+ $('floor1').classList.toggle('btn-soft',state.floor===1);$('floor2').classList.toggle('btn-soft',state.floor===2);$('floor1').setAttribute('aria-pressed',state.floor===1);$('floor2').setAttribute('aria-pressed',state.floor===2);
+}
+function bar(id1,id2,l1,l2,v1,v2,unit){const max=Math.max(v1,v2,1);$(id1).style.width=(v1/max*100).toFixed(3)+'%';$(id2).style.width=(v2/max*100).toFixed(3)+'%';$(l1).textContent=fmt(v1)+' '+unit;$(l2).textContent=fmt(v2)+' '+unit;}
+function updateCost(A,B){const p=Number($('pShell').value),q=Number($('pCart').value),t=Number($('pSpace').value);if(![p,q,t].every(Number.isFinite)||[p,q,t].some(x=>x<0)){const w=$('winner');w.className='winner neutral';w.textContent='Vui lòng nhập ba đơn giá không âm.';return}
+ const lineA=[12*p*A.shellArea,q*A.cartArea,t*A.cartVol],lineB=[12*p*B.shellArea,q*B.cartArea,t*B.cartVol];const cA=lineA.reduce((x,y)=>x+y,0),cB=lineB.reduce((x,y)=>x+y,0),delta=Math.abs(cA-cB);
+ $('costA').textContent=fmt(cA)+' đ';$('costB').textContent=fmt(cB)+' đ';
+ const keysA=['lineShellA','lineCartA','lineSpaceA','lineTotalA'],keysB=['lineShellB','lineCartB','lineSpaceB','lineTotalB'];
+ [...lineA,cA].forEach((x,i)=>$(keysA[i]).textContent=fmt(x));[...lineB,cB].forEach((x,i)=>$(keysB[i]).textContent=fmt(x));
+ $('winner').className='winner'+(delta<.005?' neutral':'');$('winner').textContent=delta<.005?'Hai phương án có tổng chi phí bằng nhau trong mô hình này.':`Theo ba đơn giá đang nhập: chọn phương án ${cA<cB?'A – hộp đáy vuông':'B – hộp hình trụ'}, tiết kiệm ${fmt(delta)} đồng / 12 hộp.`;
+ const ds=A.shellArea-B.shellArea,dc=B.cartArea-A.cartArea,dv=B.cartVol-A.cartVol;
+ if(ds>1e-7){const limit=(q*dc+t*dv)/(12*ds);if(limit>=0&&Number.isFinite(limit))$('threshold').innerHTML=`<b>Ngưỡng quyết định (giữ q, t và kích thước hiện tại):</b> Khi p &gt; ${fmt(limit,3)} đ/cm², hộp hình trụ rẻ hơn; khi p &lt; ngưỡng này, hộp đáy vuông rẻ hơn. Tại điểm bằng nhau, tổng chi phí bằng nhau.`;else $('threshold').textContent='Với các thông số hiện tại, mức chênh lệch các khoản chi không tạo ra ngưỡng p dương theo công thức đơn giản.';
+ }else $('threshold').textContent='Thiết kế đang thử có diện tích vỏ hình trụ không nhỏ hơn hình hộp đáy vuông; điều kiện ngưỡng p cần xem xét trực tiếp qua tổng chi phí ở trên.';
+}
+function updateAll(){const A=calc('A'),B=calc('B');
+ $('aRange').value=state.a;$('rRange').value=state.r;$('aRead').textContent=fmt(state.a)+' cm';$('rRead').textContent=fmt(state.r)+' cm';$('aHeight').textContent='Chiều cao hộp A: '+fmt(A.h)+' cm';$('rHeight').textContent='Chiều cao hộp B: '+fmt(B.h)+' cm';
+ const isOpt=Math.abs(state.a-10)<.000001&&Math.abs(state.r-RSTAR)<.000001;$('optStatus').textContent=isOpt?'ĐANG DÙNG KÍCH THƯỚC TỐI ƯU':'ĐANG THỬ KÍCH THƯỚC KHÁC';$('optStatus').className=isOpt?'pill a':'pill b';
+ $('dimsA').textContent=[A.L,A.W,A.H].map(x=>fmt(x)).join(' × ')+' cm';$('dimsB').textContent=[B.L,B.W,B.H].map(x=>fmt(x)).join(' × ')+' cm';
+ $('cartAreaA').textContent=fmt(A.cartArea);$('cartAreaB').textContent=fmt(B.cartArea);$('cartVolA').textContent=fmt(A.cartVol/1000);$('cartVolB').textContent=fmt(B.cartVol/1000);
+ $('fillA').textContent=fmt(A.efficiency*100)+'%';$('fillB').textContent=fmt(B.efficiency*100)+'%';
+ bar('barAreaA','barAreaB','barAreaALabel','barAreaBLabel',A.cartArea,B.cartArea,'cm²');bar('barVolA','barVolB','barVolALabel','barVolBLabel',A.cartVol/1000,B.cartVol/1000,'L');
+ const da=B.cartArea-A.cartArea,dv=B.cartVol-A.cartVol;
+ $('areaDifference').textContent=da>=0?`Hộp đáy vuông tiết kiệm ${fmt(da)} cm² carton (${fmt(da/A.cartArea*100)}%).`:`Hình trụ tiết kiệm ${fmt(-da)} cm² carton (${fmt(-da/B.cartArea*100)}%).`;
+ $('volDifference').textContent=`Hộp đáy vuông giảm ${fmt(dv/1000)} lít chiếm chỗ (${fmt(dv/A.cartVol*100)}% so với A).`;
+ updateCost(A,B);renderDiagrams();}
+function stopTimer(){if(state.timer){clearInterval(state.timer);state.timer=null;$('autoFill').textContent='▶ Tự động xếp'}}
+function setN(n){state.n=Math.min(12,Math.max(0,Math.floor(n)));renderDiagrams();if(state.n===12)stopTimer()}
+$('removeOne').addEventListener('click',()=>{stopTimer();setN(state.n-1)});$('addOne').addEventListener('click',()=>{stopTimer();setN(state.n+1)});$('fillAll').addEventListener('click',()=>{stopTimer();setN(12)});$('packSlider').addEventListener('input',e=>{stopTimer();setN(+e.target.value)});
+$('autoFill').addEventListener('click',()=>{if(state.timer){stopTimer();return}if(state.n>=12)state.n=0;$('autoFill').textContent='Ⅱ Tạm dừng';renderDiagrams();state.timer=setInterval(()=>setN(state.n+1),490)});
+$('view3d').addEventListener('click',()=>{state.view='3d';renderDiagrams()});$('viewTop').addEventListener('click',()=>{state.view='top';renderDiagrams()});$('floor1').addEventListener('click',()=>{state.floor=1;renderDiagrams()});$('floor2').addEventListener('click',()=>{state.floor=2;renderDiagrams()});
+$('aRange').addEventListener('input',e=>{state.a=+e.target.value;updateAll()});$('rRange').addEventListener('input',e=>{state.r=+e.target.value;updateAll()});$('resetSizes').addEventListener('click',()=>{state.a=10;state.r=RSTAR;updateAll()});
+['pShell','pCart','pSpace'].forEach(id=>$(id).addEventListener('input',()=>updateCost(calc('A'),calc('B'))));
+function preset(p,q,t){$('pShell').value=p;$('pCart').value=q;$('pSpace').value=t;updateCost(calc('A'),calc('B'))}
+$('presetBalance').addEventListener('click',()=>preset(2,1,.2));$('presetMaterial').addEventListener('click',()=>preset(3,1,.1));$('presetSpace').addEventListener('click',()=>preset(2,1,.5));
+$('fullscreen').addEventListener('click',()=>{if(!document.fullscreenElement)document.documentElement.requestFullscreen?.().catch(()=>{});else document.exitFullscreen?.().catch(()=>{})});
+updateAll();
+</script>
+<script>window.__mlMission=2;</script>
+<script>
+/* MILKLAB 12 STEAM – teacher, student and Socratic augmentation.
+   Standalone browser file. Online AI is never simulated: without a working
+   same-origin /api/chat endpoint, the assistant explicitly uses local prompts. */
+(() => {
+'use strict';
+const mission = Number(window.__mlMission || 1);
+const mlM = window.mlkMath, mlMR = window.mlkMathRows;
+const id = s => document.getElementById(s);
+const $ = id;
+const rstar = Math.cbrt(500 / Math.PI);
+const safe = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const number = (v,d=2) => Number(v).toLocaleString('vi-VN',{minimumFractionDigits:d,maximumFractionDigits:d});
+const nv = input => {
+ const str = String(input ?? '').trim().replace(/\s/g,'').replace(/,/g,'.');
+ if (!/^[+-]?(?:\d+(?:\.\d*)?|\.\d+)$/.test(str)) return NaN;
+ return Number(str);
+};
+const V0=1000, ax0=10, rx0=rstar;
+const boxArea=(a,V=1000)=>2*a*a+4*V/a;
+const cylArea=(r,V=1000)=>2*Math.PI*r*r+2*V/r;
+const boxHeight=(a,V=1000)=>V/(a*a);
+const cylHeight=(r,V=1000)=>V/(Math.PI*r*r);
+const boxOpt=V=>Math.cbrt(V);
+const cylOpt=V=>Math.cbrt(V/(2*Math.PI));
+function packData(kind, V, nx, ny, nz, size) {
+ const side = kind === 'A' ? size : 2*size;
+ const h = kind === 'A' ? boxHeight(size,V) : cylHeight(size,V);
+ const L=nx*side, W=ny*side, H=nz*h;
+ const area = 2*(L*W+L*H+W*H), volume=L*W*H;
+ const shell=kind==='A'?boxArea(size,V):cylArea(size,V);
+ return {L,W,H,area,volume,shell,V,n:nx*ny*nz,efficiency:nx*ny*nz*V/volume,side,h};
+}
+function getPricing(){return ['pShell','pCart','pSpace'].map(k => Number(id(k)?.value ?? [2,1,.2][['pShell','pCart','pSpace'].indexOf(k)]));}
+function modelCurrent(){
+ if (mission===1) return {a:state.a,r:state.r,V:1000,A:packData('A',1000,3,2,2,state.a),B:packData('B',1000,3,2,2,state.r)};
+ return {a:state.a,r:state.r,V:1000,A:packData('A',1000,3,2,2,state.a),B:packData('B',1000,3,2,2,state.r),pricing:getPricing(),packed:state.n};
+}
+const show = el => {if(el) el.hidden=false;};
+const hide = el => {if(el) el.hidden=true;};
+function notify(msg){const el=id('ml-toast');el.textContent=msg;show(el);clearTimeout(notify.timer);notify.timer=setTimeout(()=>hide(el),3200);}
+function closeAll(){['ml-studio-overlay','ml-study-overlay','ml-extend-overlay','ml-slide-overlay'].forEach(k=>hide(id(k)));if(document.fullscreenElement===id('ml-slide-dialog'))document.exitFullscreen?.().catch(()=>{});}
+function openModal(target){closeAll();show(id(target));}
+function cloneSVG(elemId){let el=id(elemId);return el?el.outerHTML.replace(/\sid="[^"]+"/,'').replace(/\st abindex="[^"]+"/,''):'<p>Đang cập nhật mô phỏng...</p>';}
+function renderSource(){mission===1?update():updateAll();}
+function setMainToOptimal(){state.a=10;state.r=rstar;renderSource();}
+for(const b of document.querySelectorAll('[data-ml-open]'))b.addEventListener('click',()=>{
+ let k=b.dataset.mlOpen;
+ if(k==='slides') return slideOpen();
+ if(k==='study') return studyOpen();
+ if(k==='extension')return extensionOpen();
+ if(k==='lesson')return studioOpen('lesson');
+ return studioOpen(k==='poster'?'poster':'worksheets');
+});
+for(const [b,overlay] of [['ml-studio-close','ml-studio-overlay'],['ml-study-close','ml-study-overlay'],['ml-extend-close','ml-extend-overlay'],['ml-slide-close','ml-slide-overlay']])id(b).addEventListener('click',()=>hide(id(overlay)));
+for(const k of ['ml-studio-overlay','ml-study-overlay','ml-extend-overlay']) id(k).addEventListener('pointerdown',e=>{if(e.target===id(k)) hide(id(k));});
+document.addEventListener('keydown', e => {
+ if(e.key==='Escape'){
+  if(!id('ml-slide-overlay').hidden)hide(id('ml-slide-overlay'));
+  else if(!id('ml-study-overlay').hidden)hide(id('ml-study-overlay'));
+  else if(!id('ml-studio-overlay').hidden)hide(id('ml-studio-overlay'));
+  else if(!id('ml-extend-overlay').hidden)hide(id('ml-extend-overlay'));
+  else hide(id('ml-chat'));
+ }
+});
+
+// ----- Student's self-directed reasoning with formative assessment -----
+let studyIndex=0,studyDone=[false,false,false,false,false],studyTries=[0,0,0,0,0],studyAnswersShown=[false,false,false,false,false],studyInputs=[{},{},{},{},{}],studyRemark='';
+function mkQuestion(label,key,expected,tolerance=.02,unit='') {return {label,key,expected,tolerance,unit};}
+function studyTasks() {
+ const p = mission===2?getPricing():[2,1,.2];
+ const A=packData('A',1000,3,2,2,10), B=packData('B',1000,3,2,2,rstar);
+ const C1=12*p[0]*A.shell+p[1]*A.area+p[2]*A.volume;
+ const C2=12*p[0]*B.shell+p[1]*B.area+p[2]*B.volume;
+ if(mission===1) return [
+  {name:'Đọc và mô hình hoá', title:'Bước 1 · Xác lập thể tích không đổi',
+   ask:'Mỗi hộp chứa 1 lít. Em hãy tự biểu diễn chiều cao h theo kích thước đáy, bằng cách điền hệ số trong hai công thức.',
+   formula:'Hộp A: h = □ / a²　;　Hộp B: h = □ / (πr²)',
+   fields:[mkQuestion('Hệ số trong hA = □/a²','c1',1000,.01,'cm³'),mkQuestion('Hệ số trong hB = □/(πr²)','c2',1000,.01,'cm³')],
+   hint:'Đổi lít ra xentimét khối. Dùng V = diện tích đáy × chiều cao và rút h từ mỗi phương trình.',
+   solution:'1 lít = 1.000 cm³. Do a²h = 1.000 và πr²h = 1.000 nên hA = 1.000/a², hB = 1.000/(πr²).'},
+  {name:'Lập hàm mục tiêu',title:'Bước 2 · Diện tích vỏ hộp kín',
+   ask:'Tính cả nắp, đáy và mặt xung quanh. Em hãy điền đúng các hệ số sau khi thay h theo biến số đáy.',
+   formula:'S_A(a) = 2a² + □/a　;　S_B(r) = 2πr² + □/r',
+   fields:[mkQuestion('Hệ số của 1/a','c1',4000,.01),mkQuestion('Hệ số của 1/r','c2',2000,.01)],
+   hint:'Hộp A: S = 2a² + 4ah. Hộp B: S = 2πr² + 2πrh. Thay biểu thức h đã tìm.',
+   solution:'S_A(a) = 2a² + 4.000/a; S_B(r) = 2πr² + 2.000/r. Điều kiện a > 0, r > 0.'},
+  {name:'Tìm cực trị bằng đạo hàm',title:'Bước 3 · Giải các phương trình S′ = 0',
+   ask:'Lấy đạo hàm rồi xét dấu để chứng minh đạt giá trị nhỏ nhất. Nhập kích thước đáy tối ưu, làm tròn hai chữ số khi cần.',
+   formula:'S′_A(a) = 4a − 4.000/a²　;　S′_B(r) = 4πr − 2.000/r²',
+   fields:[mkQuestion('Cạnh đáy tối ưu a*','c1',10,.03,'cm'),mkQuestion('Bán kính tối ưu r*','c2',rstar,.035,'cm')],
+   hint:'Đặt từng đạo hàm bằng 0, nhân hai vế với bình phương của biến dương. Sau đó xác định dấu đạo hàm ở hai phía nghiệm.',
+   solution:'S′_A = 0 ⇔ a³ = 1.000 ⇒ a* = 10 cm. S′_B = 0 ⇔ r³ = 500/π ⇒ r* ≈ 5,42 cm. Hai đạo hàm đổi dấu từ âm sang dương nên đều đạt GTNN.'},
+  {name:'Kiểm chứng giá trị',title:'Bước 4 · Thay số vào diện tích toàn phần',
+   ask:'Từ nghiệm cực tiểu, tính diện tích vỏ nhỏ nhất cho từng kiểu hộp. Không làm tròn kích thước trung gian trước khi tính.',
+   formula:'S_A,min = S_A(a*)　;　S_B,min = S_B(r*)',
+   fields:[mkQuestion('S_A nhỏ nhất','c1',600,.08,'cm²'),mkQuestion('S_B nhỏ nhất','c2',cylArea(rstar),.08,'cm²')],
+   hint:'Thay a = 10 và r = ∛(500/π) vào từng hàm mục tiêu. So sánh hai GTNN, không so sánh kích thước ngẫu nhiên.',
+   solution:'S_A,min = 600,00 cm²; S_B,min ≈ 553,58 cm². Hình trụ ít hơn khoảng 46,42 cm², tương đương 7,74% so với A.'},
+  {name:'Giải thích quyết định',title:'Bước 5 · Lập luận và đề xuất mở rộng',
+   ask:'Viết ít nhất hai câu: (i) nếu chỉ xét vật liệu vỏ thì chọn hộp nào và vì sao, (ii) điều kiện nào có thể khiến quyết định tổng chi phí đổi khác?',
+   formula:'S_A,min so với S_B,min → kết luận có điều kiện', fields:[],
+   hint:'Hãy phân biệt tiết kiệm vật liệu trên một hộp với tiết kiệm toàn bộ chi phí sản xuất, vận chuyển và lưu kho.',
+   solution:'Trong cùng điều kiện đơn giá vật liệu, chọn hình trụ để tiết kiệm vỏ. Quyết định tổng thể còn phụ thuộc cách đóng gói, giá carton, vận chuyển và lưu kho.'}
+ ];
+ return [
+  {name:'Phân tích cách xếp',title:'Bước 1 · Kích thước thùng 3 × 2 × 2',
+   ask:'Hãy dùng kết quả thiết kế tối ưu ở nhiệm vụ 1. Tính chiều dài và chiều cao thùng carton cho mỗi kiểu hộp.',
+   formula:'A: (3a, 2a, 2hA)　;　B: (6r, 4r, 2hB)',
+   fields:[mkQuestion('Chiều dài A','c1',A.L,.05,'cm'),mkQuestion('Chiều cao A','c2',A.H,.05,'cm'),mkQuestion('Chiều dài B','c3',B.L,.06,'cm'),mkQuestion('Chiều cao B','c4',B.H,.06,'cm')],
+   hint:'Hộp A: chiều ngang một hộp là a; hộp B: chiều ngang là đường kính 2r. Mỗi thùng có ba vị trí theo chiều dài và hai tầng.',
+   solution:`Thùng A: ${number(A.L)} × ${number(A.W)} × ${number(A.H)} cm; B: ${number(B.L)} × ${number(B.W)} × ${number(B.H)} cm.`},
+  {name:'Diện tích bìa carton',title:'Bước 2 · Tính diện tích thùng kín',
+   ask:'Áp dụng diện tích toàn phần hình hộp chữ nhật vào kích thước vừa xác định.',
+   formula:'S_carton = 2(LW + LH + WH)',
+   fields:[mkQuestion('S_carton,A','c1',A.area,.15,'cm²'),mkQuestion('S_carton,B','c2',B.area,.15,'cm²')],
+   hint:'Nhớ rằng một thùng kín có sáu mặt. Dùng số chưa làm tròn của r để tính chính xác trước khi làm tròn kết quả.',
+   solution:`S_carton,A = ${number(A.area)} cm²; S_carton,B ≈ ${number(B.area)} cm². B dùng hơn ${number(B.area-A.area)} cm² carton.`},
+  {name:'Thể tích không gian',title:'Bước 3 · Thể tích và hệ số lấp đầy',
+   ask:'Tính thể tích thùng, đổi sang lít, rồi tính tỉ lệ 12 lít sữa so với thể tích thùng B.',
+   formula:'V_carton = LWH　;　η = 12.000 / V_carton',
+   fields:[mkQuestion('V_carton,A','c1',A.volume/1000,.035,'lít'),mkQuestion('V_carton,B','c2',B.volume/1000,.035,'lít'),mkQuestion('Tỉ lệ lấp đầy B','c3',B.efficiency*100,.07,'%')],
+   hint:'1 lít = 1.000 cm³. Phần khoảng trống giữa các hình trụ không chứa sữa, nên thể tích thùng lớn hơn 12 lít.',
+   solution:`Thùng A = ${number(A.volume/1000)} lít; B ≈ ${number(B.volume/1000)} lít. Tỉ lệ lấp đầy B = π/4 ≈ ${number(B.efficiency*100)}%.`},
+  {name:'Đánh giá hiệu quả',title:'Bước 4 · So sánh chênh lệch phần trăm',
+   ask:'Lấy A làm mốc 100%. Hãy tính B tăng bao nhiêu phần trăm về diện tích carton và thể tích thùng.',
+   formula:'% tăng = (Giá trị B − Giá trị A) / Giá trị A × 100%',
+   fields:[mkQuestion('Carton B nhiều hơn A','c1',(B.area/A.area-1)*100,.09,'%'),mkQuestion('Thể tích B nhiều hơn A','c2',(B.volume/A.volume-1)*100,.09,'%')],
+   hint:'Mẫu số của tỉ lệ chênh lệch là giá trị phương án A vì ta đang hỏi B tăng bao nhiêu so với A.',
+   solution:`Diện tích carton tăng ≈ ${number((B.area/A.area-1)*100)}%; thể tích tăng ≈ ${number((B.volume/A.volume-1)*100)}%.`},
+  {name:'Lựa chọn có căn cứ',title:'Bước 5 · Tối ưu tổng chi phí',
+   ask:`Đơn giá hiện tại là p = ${number(p[0])} đ/cm², q = ${number(p[1])} đ/cm², t = ${number(p[2])} đ/cm³. Tính chi phí một thùng 12 hộp, rồi giải thích quyết định.`,
+   formula:'C = 12p × S_vỏ + q × S_carton + t × V_carton',
+   fields:[mkQuestion('Tổng chi phí A','c1',C1,.6,'đồng'),mkQuestion('Tổng chi phí B','c2',C2,.6,'đồng')],
+   hint:'Chỉ nhân diện tích vỏ sữa với 12; carton chỉ có một thùng. Chi phí không gian đã tính theo toàn bộ thể tích thùng.',
+   solution:`A ≈ ${number(C1)} đồng, B ≈ ${number(C2)} đồng. Trong tình huống giá đã nhập, phương án ${C1<C2?'A':C2<C1?'B':'A và B bằng nhau'} có chi phí ${C1===C2?'bằng đối thủ':'nhỏ hơn'}. Đây là mô hình chi phí giả định.`}
+ ];
+}
+function studyOpen(){
+ if(mission===2) setMainToOptimal();
+ studyIndex=0;openModal('ml-study-overlay');renderStudy();
+}
+function renderStudy(){
+ const tasks=studyTasks();const t=tasks[studyIndex];
+ id('ml-study-progress').textContent=`Đã kiểm chứng ${studyDone.filter(Boolean).length}/5 bước · Học sinh tự nhập, không giải hộ`;
+ id('ml-study-steps').innerHTML=tasks.map((x,i)=>`<button type="button" class="ml-step-nav ${i===studyIndex?'active':''} ${studyDone[i]?'completed':''}" data-ml-step="${i}"><span class="ml-number">${studyDone[i]?'✓':i+1}</span>${safe(x.name)}</button>`).join('');
+ id('ml-study-steps').querySelectorAll('[data-ml-step]').forEach(el=>el.addEventListener('click',()=>{captureStudy();studyIndex=Number(el.dataset.mlStep);renderStudy()}));
+ const studyExplanations=mission===1?[
+  'Từ điều kiện thể tích cố định, thay đổi cách biểu diễn chiều cao của từng hình.',
+  'Cộng diện tích hai đáy và diện tích xung quanh, sau đó dùng điều kiện thể tích để khử chiều cao.',
+  'Đặt đạo hàm bằng 0 và xét dấu đạo hàm trước, sau điểm dừng để khẳng định cực tiểu.',
+  'Thay kích thước tìm được vào hàm diện tích. Không làm tròn ở bước trung gian.',
+  'So sánh hai giá trị cực tiểu chỉ trong phạm vi giả thiết cùng vật liệu, cùng giá thành.'
+ ]:[
+  'Theo lưới xếp 3 × 2 × 2, chiều dài, chiều rộng và chiều cao được tính từ số hộp theo mỗi chiều.',
+  'Thùng carton kín có sáu mặt. Tính diện tích toàn phần của thùng, không phải tổng diện tích các vỏ hộp.',
+  'Thể tích các hộp sữa và thể tích thùng carton là hai đại lượng khác nhau.',
+  'Khi lấy A làm gốc so sánh, mẫu số phải là đại lượng của phương án A.',
+  'Tổng chi phí gồm ba thành phần: vỏ từng hộp, carton của một thùng và không gian thùng.'
+ ];
+ const answer=studyAnswersShown[studyIndex]?`<div class="ml-feedback good"><b>Phân tích toán học:</b><p>${safe(studyExplanations[studyIndex])}</p>${mlMR(window.mlkStudyAnalysis(mission,studyIndex))}</div>`:'';
+ const fields=t.fields.length?`<div class="ml-study-fields">${t.fields.map(f=>`<label>${safe(f.label)} <span class="ml-field-note">${safe(f.unit)}</span><input type="text" inputmode="decimal" autocomplete="off" data-ml-answer="${safe(f.key)}" placeholder="Tự tính rồi nhập" value="${safe(studyInputs[studyIndex][f.key]||'')}"></label>`).join('')}</div>`:
+ `<label for="ml-reflection" style="font-size:13px;font-weight:800">Lập luận của em</label><textarea id="ml-reflection" class="ml-textarea" placeholder="Em viết lời giải thích với số liệu, điều kiện áp dụng và khả năng mở rộng...">${safe(studyRemark)}</textarea><p class="ml-help">Bài viết tự luận được ghi nhận, không chấm đúng/sai tự động. Giáo viên cần xem xét lập luận.</p>`;
+ const viz=mission===1?`<div class="ml-slide-figures"><div class="ml-slide-figure">${cloneSVG('shapeA')}</div><div class="ml-slide-figure">${cloneSVG('shapeB')}</div></div>`:
+ `<div class="ml-slide-figures"><div class="ml-slide-figure">${cloneSVG('packA')}</div><div class="ml-slide-figure">${cloneSVG('packB')}</div></div>`;
+ id('ml-study-content').innerHTML=`<div class="ml-slide-kicker">THỰC HÀNH THEO QUY TRÌNH TOÁN HỌC</div><h3>${safe(t.title)}</h3><p>${safe(t.ask)}</p><div class="ml-formula">${mlMR(window.mlkStudyFormulas(mission,studyIndex))}</div>${window.mlkStudyFormulas(mission,studyIndex).some(x=>x.includes('\\slot'))?'<div class="ml-math-guide"><span class="ml-math-token">?</span><span><b>Ô trống dành cho học sinh:</b> dấu ? có viền tím là vị trí cần tìm, không phải lỗi công thức. Hãy điền giá trị vào ô nhập bên dưới.</span></div>':''}${fields}<div class="ml-actions-row"><button type="button" class="ml-btn ml-btn-primary" id="ml-study-check">✓ Kiểm tra bước này</button><button type="button" class="ml-btn" id="ml-study-hint">💡 Gợi ý</button><button type="button" class="ml-btn" id="ml-study-verify">📊 Xem mô phỏng</button><button type="button" class="ml-btn" id="ml-study-solution">${studyAnswersShown[studyIndex]?'Ẩn phân tích':'🔒 Xem phân tích'}</button></div><div id="ml-study-feedback" class="ml-feedback" hidden></div><div id="ml-study-hintpanel" class="ml-feedback" hidden>${safe(t.hint)}</div><div id="ml-study-solutionpanel">${answer}</div><details style="margin-top:13px"><summary style="font-weight:750;cursor:pointer">Mô hình đang dùng để kiểm chứng</summary><div class="ml-study-scene">${viz}</div></details><div class="ml-actions-row" style="justify-content:space-between;margin-top:18px"><button type="button" class="ml-btn" id="ml-study-prev" ${studyIndex===0?'disabled':''}>← Bước trước</button><button type="button" class="ml-btn ml-btn-teal" id="ml-study-next" ${studyIndex===4?'disabled':''}>Bước tiếp →</button></div>`;
+ id('ml-study-content').querySelectorAll('[data-ml-answer]').forEach(el=>el.addEventListener('input',()=>studyInputs[studyIndex][el.dataset.mlAnswer]=el.value));
+ if(id('ml-reflection')) id('ml-reflection').addEventListener('input',e=>studyRemark=e.target.value);
+ id('ml-study-check').addEventListener('click',()=>checkStudy());
+ id('ml-study-hint').addEventListener('click',()=>{id('ml-study-hintpanel').hidden=!id('ml-study-hintpanel').hidden});
+ id('ml-study-verify').addEventListener('click',()=>{hide(id('ml-study-overlay'));document.querySelector(mission===1?'#graphA':'#packA').scrollIntoView({behavior:'smooth',block:'center'});notify('Hãy thay đổi tham số, tự đối chiếu với kết quả em vừa tính.');});
+ id('ml-study-solution').addEventListener('click',()=>{if(studyDone[studyIndex]||studyTries[studyIndex]>=2){studyAnswersShown[studyIndex]=!studyAnswersShown[studyIndex];renderStudy();}else notify('Hãy tự kiểm tra kết quả ít nhất 2 lượt hoặc hoàn thành đúng bước hiện tại trước khi xem phân tích.');});
+ id('ml-study-prev').addEventListener('click',()=>{if(studyIndex){captureStudy();studyIndex--;renderStudy()}});
+ id('ml-study-next').addEventListener('click',()=>{if(studyIndex<4){captureStudy();studyIndex++;renderStudy()}});
+}
+function captureStudy(){id('ml-study-content').querySelectorAll('[data-ml-answer]').forEach(el=>studyInputs[studyIndex][el.dataset.mlAnswer]=el.value);if(id('ml-reflection'))studyRemark=id('ml-reflection').value;}
+function checkStudy(){
+ captureStudy();const task=studyTasks()[studyIndex];studyTries[studyIndex]++;
+ const area=id('ml-study-feedback');show(area);
+ if(task.fields.length===0){
+  if(studyRemark.trim().length<65){area.className='ml-feedback bad';area.textContent='Em hãy viết cụ thể hơn, ít nhất hai câu, có số liệu và điều kiện áp dụng.';return;}
+  studyDone[studyIndex]=true;area.className='ml-feedback good';area.textContent='Đã ghi nhận lập luận. Đây là câu tự luận: giáo viên hoặc em cần đối chiếu các tiêu chí và kiểm tra lập luận trước khi kết luận.';
+ }else{
+  let wrong=0;for(const f of task.fields){const el=id('ml-study-content').querySelector(`[data-ml-answer="${f.key}"]`);const got=nv(el?.value);const ok=Number.isFinite(got)&&Math.abs(got-f.expected)<=f.tolerance;el.classList.toggle('ml-field-correct',ok);el.classList.toggle('ml-field-wrong',!ok);if(!ok)wrong++;}
+  if(wrong){area.className='ml-feedback bad';area.textContent=`Còn ${wrong} ô cần kiểm tra. Hãy soát lại mô hình, phép biến đổi và đơn vị; em có thể xin gợi ý từng bước.`;}
+  else{studyDone[studyIndex]=true;area.className='ml-feedback good';area.textContent='Các giá trị đều chính xác trong sai số làm tròn. Em hãy giải thích vì sao kết quả đó hợp lí, rồi dùng mô phỏng kiểm chứng.';}
+ }
+ id('ml-study-progress').textContent=`Đã kiểm chứng ${studyDone.filter(Boolean).length}/5 bước · Em là người thực hiện lời giải`;
+ id('ml-study-steps').querySelector(`[data-ml-step="${studyIndex}"]`).classList.toggle('completed',studyDone[studyIndex]);
+ id('ml-study-steps').querySelector(`[data-ml-step="${studyIndex}"] .ml-number`).textContent=studyDone[studyIndex]?'✓':studyIndex+1;
+ if(studyDone[studyIndex]||studyTries[studyIndex]>=2) id('ml-study-solution').textContent='📘 Xem phân tích';
+}
+// ----- Editable worksheet, lesson-plan and independent exercise exports -----
+const studio={kind:'worksheets',count:3,includeOriginal:true,answerKey:false,guide:true,title:'PHIẾU LUYỆN TẬP TOÁN THỰC TIỄN',school:'',teacher:'',lessonMinutes:90,randomOffset:0};
+const cases1=[{V:750,product:'nước trái cây'},{V:1250,product:'sữa chua uống'},{V:1500,product:'nước uống thể thao'},{V:500,product:'nước dinh dưỡng'},{V:2000,product:'sữa tươi'}];
+const cases2=[
+ {V:750,product:'sữa chua uống',nx:3,ny:2,nz:1,p:3,q:1,t:.1},
+ {V:1000,product:'sữa tươi',nx:4,ny:3,nz:1,p:2,q:1,t:.5},
+ {V:1250,product:'sữa dinh dưỡng',nx:3,ny:3,nz:2,p:4,q:1.2,t:.12},
+ {V:500,product:'nước trái cây',nx:4,ny:3,nz:2,p:2,q:.8,t:.25},
+ {V:1500,product:'sữa tươi',nx:2,ny:3,nz:2,p:3,q:1.5,t:.2}
+];
+function worksheetCases(){
+ let list=[];
+ if(studio.includeOriginal)list.push(mission===1?{V:1000,product:'sữa tươi',orig:true}:{V:1000,product:'sữa tươi',nx:3,ny:2,nz:2,p:2,q:1,t:.2,orig:true});
+ const src=mission===1?cases1:cases2;
+ for(let i=0;list.length<studio.count;i++)list.push({...src[(i+studio.randomOffset)%src.length]});
+ return list.slice(0,studio.count);
+}
+function caseMath(c){
+ const a=boxOpt(c.V),r=cylOpt(c.V),sA=boxArea(a,c.V),sB=cylArea(r,c.V);
+ if(mission===1)return {a,r,sA,sB,saving:100*(sA-sB)/sA};
+ const A=packData('A',c.V,c.nx,c.ny,c.nz,a),B=packData('B',c.V,c.nx,c.ny,c.nz,r);
+ const p=c.p,q=c.q,t=c.t;
+ const costA=A.n*p*A.shell+q*A.area+t*A.volume;
+ const costB=B.n*p*B.shell+q*B.area+t*B.volume;
+ return {a,r,sA,sB,A,B,costA,costB,winner:Math.abs(costA-costB)<.001?'Hai phương án tương đương':costA<costB?'Hộp đáy vuông':'Hộp hình trụ'};
+}
+function buildWorksheetBlocks(){
+ const b=[{type:'title',text:studio.title},{type:'subtitle',text:[studio.school,studio.teacher].filter(Boolean).join(' · ')||'TOÁN 12 LAB – MILKLAB STEAM'},
+ {type:'p',text:'Họ và tên: ................................................... Lớp: ................... Ngày: ...................'},
+ {type:'note',text:'Làm tròn hai chữ số thập phân. Viết rõ mô hình toán học, điều kiện, đạo hàm (khi cần), đơn vị và kết luận.'}];
+ const cs=worksheetCases();
+ cs.forEach((c,i)=>{
+  const j=i+1;const math=caseMath(c);
+  b.push({type:'heading',text:`Bài ${j}. ${mission===1?'Thiết kế bao bì tiết kiệm vật liệu':'Đóng gói và lựa chọn chi phí'}`});
+  if(mission===1){
+   b.push({type:'p',text:`Một cơ sở sản xuất muốn thiết kế hộp kín chứa ${number(c.V,0)} mL ${c.product}. Có hai phương án: A – hình hộp chữ nhật đáy vuông; B – hình trụ tròn. Giả sử vật liệu có cùng đơn giá trên mỗi cm², bỏ qua mép ghép và chi phí gia công.`});
+   b.push({type:'p',text:'a) Gọi biến và thiết lập chiều cao từ điều kiện thể tích. b) Lập hàm diện tích toàn phần cho từng loại. c) Dùng đạo hàm tìm kích thước tối ưu. d) So sánh lượng vật liệu tiết kiệm và nhận xét giới hạn mô hình.'});
+   if(studio.guide){for(const s of ['Bước 1. Đổi đơn vị, đặt biến và điều kiện','Bước 2. Lập các hàm diện tích','Bước 3. Tính đạo hàm, xét dấu và tìm cực tiểu','Bước 4. Thay số, kiểm tra và kết luận']){b.push({type:'step',text:s});b.push({type:'lines',count:2});}}
+   else b.push({type:'lines',count:8});
+  }else{
+   b.push({type:'p',text:`Một công ty đóng ${c.nx*c.ny*c.nz} hộp ${c.product}, mỗi hộp ${number(c.V,0)} mL, vào một thùng carton kín hình hộp chữ nhật, xếp đứng theo ${c.nx} hộp dài × ${c.ny} hộp rộng × ${c.nz} tầng. Hai loại hộp đã tối ưu riêng về diện tích vỏ: A – đáy vuông; B – hình trụ. Bỏ qua khe hở, bìa vỏ và mép dán.`});
+   b.push({type:'p',text:`Đơn giá giả định: p = ${number(c.p)} đ/cm² vỏ hộp; q = ${number(c.q)} đ/cm² bìa carton; t = ${number(c.t)} đ/cm³ không gian lưu kho và vận chuyển.`});
+   b.push({type:'p',text:'a) Tìm kích thước từng hộp. b) Tính kích thước thùng và diện tích carton. c) So sánh thể tích chiếm chỗ và tỉ lệ lấp đầy. d) Lập hàm tổng chi phí của cả hai phương án, đưa ra quyết định có căn cứ.'});
+   if(studio.guide){for(const s of ['Bước 1. Xác định số hộp theo mỗi chiều','Bước 2. Dựng kích thước thùng A, B','Bước 3. Tính diện tích, thể tích thùng và tỉ lệ lấp đầy','Bước 4. Tính C = NpS_vỏ + qS_carton + tV_carton','Bước 5. Kết luận và nêu giả thiết']){b.push({type:'step',text:s});b.push({type:'lines',count:2});}}
+   else b.push({type:'lines',count:9});
+  }
+ });
+ if(studio.answerKey){
+  b.push({type:'pagebreak',text:'ĐÁP ÁN VÀ PHÂN TÍCH DÀNH CHO GIÁO VIÊN'});
+  cs.forEach((c,i)=>{
+   const m=caseMath(c);
+   b.push({type:'heading',text:`Bài ${i+1} · Đáp án kiểm chứng`});
+   if(mission===1){
+    b.push({type:'math',text:`V = ${number(c.V,0)} cm³; a* = ∛V ≈ ${number(m.a)} cm; r* = ∛(V/(2π)) ≈ ${number(m.r)} cm`});
+    b.push({type:'math',text:`S_A,min ≈ ${number(m.sA)} cm²; S_B,min ≈ ${number(m.sB)} cm²`});
+    b.push({type:'p',text:`Hình trụ tiết kiệm khoảng ${number(m.sA-m.sB)} cm²/hộp (${number(m.saving)}%). Hộp A tối ưu là hình lập phương; hình trụ tối ưu có h = 2r.`});
+    b.push({type:'p',text:`Phương pháp: S_A(a)=2a²+4V/a, S'_A(a)=4a−4V/a². S_B(r)=2πr²+2V/r, S'_B(r)=4πr−2V/r²; xét dấu đạo hàm trên (0;+∞).`});
+   }else{
+    b.push({type:'p',text:`Kích thước tối ưu riêng về vỏ: A a = ${number(m.a)} cm; B r = ${number(m.r)} cm, h_B = ${number(2*m.r)} cm.`});
+    b.push({type:'p',text:`Thùng A: ${number(m.A.L)} × ${number(m.A.W)} × ${number(m.A.H)} cm; S = ${number(m.A.area)} cm²; V = ${number(m.A.volume/1000)} lít.`});
+    b.push({type:'p',text:`Thùng B: ${number(m.B.L)} × ${number(m.B.W)} × ${number(m.B.H)} cm; S = ${number(m.B.area)} cm²; V = ${number(m.B.volume/1000)} lít.`});
+    b.push({type:'p',text:`Độ lấp đầy: A = 100%, B = π/4 ≈ 78,54%. Theo đơn giá giả định: C_A = ${number(m.costA)} đồng, C_B = ${number(m.costB)} đồng. Chọn ${m.winner}.`});
+    b.push({type:'p',text:'Kết quả được tính từ số chưa làm tròn. Kết luận chỉ áp dụng cho kiểu xếp hàng–cột và mô hình chi phí đã nêu.'});
+   }
+  });
+ }
+ return b;
+}
+function buildLessonBlocks(){
+ const is90=studio.lessonMinutes===90;
+ const title=mission===1?'Thiết kế hộp sữa 1 lít tiết kiệm vật liệu':'Đóng gói – vận chuyển – lưu kho hộp sữa 1 lít';
+ const steps=mission===1?
+  (is90?[['Khởi động – giao nhiệm vụ',8,'HS dự đoán kiểu hộp tiết kiệm vỏ, chỉ ra điều kiện cần so sánh.'],['Xây dựng mô hình',16,'HS đặt a, r, lập ràng buộc thể tích và diện tích.'],['Tự giải bằng đạo hàm',22,'HS giải, xét dấu đạo hàm và tìm hai kích thước cực tiểu.'],['Kiểm chứng bằng mô phỏng',16,'Kéo thanh trượt, đọc đồ thị, đối chiếu kết quả.'],['Chế tạo/đánh giá mô hình',14,'Nhóm dựng hai mẫu bìa hoặc vẽ triển khai; đánh giá sai lệch.'],['Báo cáo – phản biện',10,'Thuyết trình căn cứ lựa chọn và giới hạn giả thiết.'],['Đánh giá cuối bài',4,'Exit ticket và bài toán thay đổi thể tích.']]:
+  [['Đặt vấn đề',5,'Dự đoán và phân tích dữ kiện 1 lít.'],['Mô hình hoá',10,'Thiết lập S_A(a), S_B(r).'],['Tự giải',12,'Dùng đạo hàm tìm hai giá trị nhỏ nhất.'],['Mô phỏng kiểm chứng',11,'Kiểm tra trên đồ thị và thử kích thước khác.'],['Vận dụng – đánh giá',7,'Báo cáo và mở rộng đơn giá vật liệu.']]) :
+  (is90?[['Khởi động từ nhiệm vụ 1',8,'Nhắc lại hai thiết kế tối ưu và phát biểu mâu thuẫn về vận chuyển.'],['Phân tích giả thiết đóng gói',12,'Dựng cách xếp 3×2×2, mô tả kích thước thùng.'],['Lập mô hình tính toán',18,'Tính S_carton, V_carton, hệ số lấp đầy.'],['Mô phỏng xếp 12 hộp',15,'Nhóm thao tác 3D và mặt bằng, ghi nhận số liệu.'],['Thử nghiệm đơn giá',15,'HS lập C_A và C_B, thay p, q, t và giải thích ngưỡng.'],['Thử thách mở rộng',15,'Thay bố trí thùng, tối ưu tổng chi phí thay vì chỉ vỏ hộp.'],['Tranh biện – đánh giá',7,'Nhóm bảo vệ phương án, nêu giới hạn mô hình.']]:
+  [['Tình huống và giả thiết',5,'Dự đoán cách xếp 12 hộp.'],['Lập mô hình thùng',10,'Tính kích thước, S và V.'],['Mô phỏng kiểm chứng',12,'Quan sát 3D/mặt bằng, so sánh hiệu quả.'],['Thay đổi giá thành',11,'Tính chi phí tổng, thử hai kịch bản trái ngược.'],['Báo cáo – đánh giá',7,'Bảo vệ quyết định có điều kiện.']]);
+ const b=[{type:'title',text:`KẾ HOẠCH BÀI DẠY STEAM · ${studio.lessonMinutes} PHÚT`},{type:'subtitle',text:`TOÁN 12 LAB | ${title}`},
+ {type:'p',text:[studio.school,studio.teacher].filter(Boolean).join(' · ')||'Giáo viên: .......................................... – Trường: ..........................................'},
+ {type:'heading',text:'I. MỤC TIÊU'},
+ {type:'p',text:'Kiến thức: xây dựng mô hình toán học có biến, điều kiện và hàm mục tiêu; vận dụng đạo hàm (nhiệm vụ 1), hình học không gian và toán kinh tế (nhiệm vụ 2).'},
+ {type:'p',text:'Năng lực: mô hình hóa toán học, giải quyết vấn đề, lập luận và chứng minh, sử dụng công cụ số có trách nhiệm; phản biện trên cơ sở dữ liệu.'},
+ {type:'p',text:'Phẩm chất: trung thực khi tính toán, hợp tác, trách nhiệm và tôn trọng giới hạn của mô hình.'},
+ {type:'heading',text:'II. CHUẨN BỊ'},
+ {type:'p',text:'Giáo viên: máy tính, trình chiếu, hai mô phỏng HTML, phiếu học tập, bảng tiêu chí đánh giá. Học sinh: giấy nháp, thước, máy tính cầm tay; bìa giấy, kéo an toàn, băng dính nếu có hoạt động chế tạo.'},
+ {type:'p',text:'Thiết bị: học sinh có thể làm việc theo nhóm tại trạm máy hoặc quan sát một màn hình chung; không bắt buộc sử dụng điện thoại cá nhân.'},
+ {type:'heading',text:'III. TIẾN TRÌNH TỔ CHỨC HOẠT ĐỘNG'}];
+ steps.forEach((x,i)=>{
+  b.push({type:'step',text:`Hoạt động ${i+1}. ${x[0]} (${x[1]} phút)`});
+  b.push({type:'p',text:`Nhiệm vụ và tổ chức: ${x[2]}`});
+  b.push({type:'p',text:`Sản phẩm: câu trả lời/bảng số liệu/mô hình hoặc lập luận tương ứng. GV giao nhiệm vụ → HS tự làm → trao đổi nhóm → kiểm chứng bằng mô phỏng → GV kết luận.`});
+ });
+ b.push({type:'heading',text:'IV. PHIẾU ĐÁNH GIÁ – 10 ĐIỂM'});
+ for(const z of ['Mô hình hóa đầy đủ và đúng: 3 điểm','Đạo hàm, phép tính, đơn vị và lập luận chính xác: 3 điểm','Kiểm nghiệm mô phỏng và giải thích sai khác: 2 điểm','Hợp tác, trình bày, mở rộng giả thiết: 2 điểm'])b.push({type:'p',text:'• '+z});
+ b.push({type:'heading',text:'V. GỢI Ý ĐÁP ÁN VÀ LƯU Ý'});
+ if(mission===1)b.push({type:'p',text:'A tối ưu a = h = 10 cm, S = 600,00 cm². B tối ưu r = ∛(500/π) ≈ 5,42 cm, h = 2r ≈ 10,84 cm, S ≈ 553,58 cm². Mọi so sánh vật liệu phải dựa vào hai thiết kế đã tối ưu; chỉ đúng khi cùng đơn giá trên đơn vị diện tích.'});
+ else b.push({type:'p',text:'A: S_carton = 3.200,00 cm²; V = 12,00 lít. B: S_carton ≈ 3.759,15 cm²; V ≈ 15,28 lít. Chọn phương án tổng chi phí chỉ sau khi xác định p, q, t. Không suy ra trực tiếp mức tiêu hao nhiên liệu từ thể tích thùng.'});
+ b.push({type:'note',text:'Tài liệu được tạo tự động từ mô hình toán học của MILKLAB 12; giáo viên có thể chỉnh sửa trước khi sử dụng theo chương trình và điều kiện lớp học.'});
+ return b;
+}
+function blockToHTML(block){
+ switch(block.type){
+  case 'title':return `<h1>${safe(block.text)}</h1>`;
+  case 'subtitle':return `<p style="text-align:center;font-weight:700">${safe(block.text)}</p>`;
+  case 'heading':return `<h2>${safe(block.text)}</h2>`;
+  case 'step':return `<p style="margin-top:13px;font-weight:700;color:#543294">${safe(block.text)}</p>`;
+  case 'math':return `<div class="ml-math">${block.tex?mlMR(block.tex):safe(block.text)}</div>`;
+  case 'note':return `<p style="font-size:12px;color:#64748b">${safe(block.text)}</p>`;
+  case 'lines':return Array.from({length:block.count},()=>'<div class="ml-dotted"></div>').join('');
+  case 'pagebreak':return `<h2 class="ml-pagebreak">${safe(block.text)}</h2>`;
+  default:return `<p>${safe(block.text)}</p>`;
+ }
+}
+function paperHTML(blocks){return `<article class="ml-paper" id="ml-paper-preview">${blocks.map(blockToHTML).join('')}</article>`;}
+function syncStudio(){
+ const txt=k=>id(k)?.value||'';
+ studio.title=txt('ml-title')||studio.title;studio.school=txt('ml-school');studio.teacher=txt('ml-teacher');
+ studio.count=Math.min(6,Math.max(1,Math.round(Number(txt('ml-count'))||1)));
+ studio.includeOriginal=!!id('ml-include-original')?.checked;
+ studio.answerKey=!!id('ml-answers')?.checked;
+ studio.guide=!!id('ml-guides')?.checked;
+ studio.lessonMinutes=Number(txt('ml-minutes'))||90;
+}
+function studioOpen(kind){studio.kind=kind;openModal('ml-studio-overlay');renderStudio();}
+function studioControls(){
+ const global=`<label>Đơn vị / trường học</label><input id="ml-school" class="ml-input" value="${safe(studio.school)}" placeholder="Có thể để trống"><label>Giáo viên</label><input id="ml-teacher" class="ml-input" value="${safe(studio.teacher)}" placeholder="Có thể để trống">`;
+ if(studio.kind==='lesson')return `<h3>📚 Kế hoạch bài dạy STEAM</h3><label>Thời lượng</label><select id="ml-minutes" class="ml-select"><option value="45" ${studio.lessonMinutes===45?'selected':''}>45 phút (1 tiết)</option><option value="90" ${studio.lessonMinutes===90?'selected':''}>90 phút (2 tiết)</option></select>${global}<p class="ml-help">Bản Word có tiến trình hoạt động, sản phẩm dự kiến, cách đánh giá và lưu ý toán học. Có thể chỉnh sửa nội dung trong Word.</p><div class="ml-actions-row"><button class="ml-btn ml-btn-primary" data-ml-docx="1">⬇ Tải Word .docx</button><button class="ml-btn ml-btn-pink" data-ml-pdf="1">▣ In / Lưu PDF</button></div>`;
+ if(studio.kind==='poster')return `<h3>🖼️ Poster bài toán trực quan</h3>${global}<p class="ml-help">Poster tự tạo từ dữ liệu đang mô phỏng; có hình minh họa, phép tính và kết luận có điều kiện. Tải PNG hoặc lưu PDF để chiếu, in trên lớp.</p><div class="ml-actions-row"><button class="ml-btn ml-btn-primary" id="ml-download-png">⬇ Tải ảnh PNG</button><button class="ml-btn ml-btn-pink" id="ml-print-poster">▣ In / Lưu PDF</button></div>`;
+ return `<h3>📝 Tạo phiếu luyện tập &amp; bài tương tự</h3><label>Tiêu đề phiếu học tập</label><input id="ml-title" class="ml-input" value="${safe(studio.title)}">${global}<label>Số bài trên phiếu (tối đa 6)</label><input id="ml-count" class="ml-input" min="1" max="6" type="number" value="${studio.count}"><div class="ml-control-row"><label><input id="ml-include-original" type="checkbox" ${studio.includeOriginal?'checked':''}> Có bài mẫu gốc</label><label><input id="ml-guides" type="checkbox" ${studio.guide?'checked':''}> Khung các bước giải</label><label><input id="ml-answers" type="checkbox" ${studio.answerKey?'checked':''}> Đáp án ở trang riêng</label></div><div class="ml-actions-row"><button class="ml-btn" id="ml-regenerate">🎲 Đổi dữ liệu bài tương tự</button><button class="ml-btn ml-btn-primary" data-ml-docx="1">⬇ Xuất Word .docx</button><button class="ml-btn ml-btn-pink" data-ml-pdf="1">▣ In / Lưu PDF</button><button class="ml-btn ml-btn-teal" id="ml-export-analog">↗ Bài tương tự HTML</button></div><p class="ml-warning">Chỉ phần đáp án được bật mới xuất ra bản giáo viên. Các bài tương tự là mô hình giả định có lời giải tính lại theo dữ liệu mới, không phải kết quả được sao chép từ bài mẫu.</p>`;
+}
+function renderStudio(){
+ const names={worksheets:'TẠO PHIẾU LUYỆN TẬP – XUẤT WORD / PDF',lesson:'KẾ HOẠCH BÀI DẠY STEAM – 45 / 90 PHÚT',poster:'POSTER HỌC TẬP – TẢI ẢNH PNG'};
+ id('ml-studio-title').textContent=names[studio.kind]||names.worksheets;
+ id('ml-studio-controls').innerHTML=studioControls();
+ const controls=id('ml-studio-controls');
+ controls.querySelectorAll('input,select').forEach(el=>el.addEventListener('input',()=>{syncStudio();renderStudioPreview();}));
+ controls.querySelectorAll('[data-ml-docx]').forEach(b=>b.addEventListener('click',()=>{syncStudio();downloadDocx(studio.kind==='lesson'?buildLessonBlocks():buildWorksheetBlocks(),mission===1?'MilkLab12_Phiếu_bài_toán_vỏ_hộp.docx':'MilkLab12_Phiếu_đóng_gói.docx')}));
+ controls.querySelectorAll('[data-ml-pdf]').forEach(b=>b.addEventListener('click',()=>{syncStudio();printBlocks(studio.kind==='lesson'?buildLessonBlocks():buildWorksheetBlocks());}));
+ id('ml-regenerate')?.addEventListener('click',()=>{syncStudio();studio.randomOffset=(studio.randomOffset+1)%5;renderStudioPreview();notify('Đã tạo bộ số liệu bài tương tự mới và tính lại đáp án.');});
+ id('ml-export-analog')?.addEventListener('click',()=>{syncStudio();const c=worksheetCases().find(x=>!x.orig)||{...(mission===1?cases1:cases2)[studio.randomOffset%5]};exportAnalogHTML(c);});
+ id('ml-download-png')?.addEventListener('click',downloadPosterPNG);
+ id('ml-print-poster')?.addEventListener('click',printPoster);
+ renderStudioPreview();
+}
+function renderStudioPreview(){
+ if(studio.kind==='poster'){
+  id('ml-studio-preview').innerHTML='<div class="ml-poster-box"><canvas id="ml-poster-canvas" width="1200" height="1660" aria-label="Xem trước poster học tập"></canvas></div>';
+  drawPoster();return;
+ }
+ const blocks=studio.kind==='lesson'?buildLessonBlocks():buildWorksheetBlocks();
+ id('ml-studio-preview').innerHTML=paperHTML(blocks);
+}
+function printBlocks(blocks){
+ const html=`<!DOCTYPE html><html lang="vi"><head><meta charset="utf-8"><title>Học liệu MILKLAB 12</title><style>@page{size:A4;margin:16mm 18mm}body{font:13pt/1.55 'Times New Roman',serif;color:#111}.ml-paper h1{font-size:19pt;text-align:center;color:#502b88}.ml-paper h2{font-size:15pt;color:#583099;border-bottom:1px solid #cdb8e7;padding-bottom:4px}.ml-paper p{margin:6px 0}.ml-paper .ml-dotted{height:25px;border-bottom:1px dotted #999}.ml-paper .ml-math{text-align:center;font-size:14pt}.ml-pagebreak{break-before:page}.ml-paper h2,.ml-paper p{break-after:avoid}</style></head><body>${paperHTML(blocks)}</body></html>`;
+ const frame=document.createElement('iframe');frame.setAttribute('aria-hidden','true');frame.style='position:fixed;right:0;bottom:0;width:0;height:0;border:0;';document.body.appendChild(frame);
+ frame.onload=()=>{try{frame.contentWindow.focus();frame.contentWindow.print()}catch(e){notify('Trình duyệt đã chặn chức năng in. Vui lòng mở Chrome/Edge và thử lại.')}setTimeout(()=>frame.remove(),7000)};
+ frame.srcdoc=html;
+}
+// Minimal, standards-compliant DOCX package with Office Math runs.
+// It is intentionally standalone (no CDN, external scripts or credentials).
+function xmlText(v){return String(v ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));}
+function xmlParagraph(text,opts={}){
+ const {bold=false,color='20212D',size=25,center=false,spaceAfter=110,keep=false}=opts;
+ const pr=`<w:pPr>${center?'<w:jc w:val="center"/>':''}${keep?'<w:keepNext/>':''}<w:spacing w:after="${spaceAfter}" w:line="340" w:lineRule="auto"/></w:pPr>`;
+ const rpr=`<w:rPr><w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>${bold?'<w:b/>':''}<w:color w:val="${color}"/><w:sz w:val="${size}"/></w:rPr>`;
+ return `<w:p>${pr}<w:r>${rpr}<w:t xml:space="preserve">${xmlText(text)}</w:t></w:r></w:p>`;
+}
+/* Convert the same deliberately authored MathML AST to editable Word Equation (OMML).
+   This keeps stacked fractions and roots consistent with the in-browser preview. */
+function mathMLtoOMML(node){
+ if(!node)return '';
+ if(node.nodeType===3){const str=node.nodeValue||'';return str.trim()?`<m:r><m:t xml:space="preserve">${xmlText(str)}</m:t></m:r>`:'';}
+ if(node.nodeType!==1)return '';
+ const tag=(node.localName||'').toLowerCase(),kids=[...node.childNodes];
+ const inner=()=>kids.map(mathMLtoOMML).join('');
+ const child=i=>mathMLtoOMML(node.children[i]);
+ const wrap=(outer,parts)=>`<m:${outer}>${parts}</m:${outer}>`;
+ if(tag==='math'||tag==='mrow'||tag==='semantics')return inner();
+ if(['mn','mi','mo','mtext'].includes(tag)){
+  const isItalic=tag==='mi' && /^[a-zA-Z]$/.test(node.textContent||'');
+  return `<m:r><m:rPr><m:sty m:val="${isItalic?'i':'p'}"/></m:rPr><m:t xml:space="preserve">${xmlText(node.textContent)}</m:t></m:r>`;
+ }
+ if(tag==='mspace')return `<m:r><m:t xml:space="preserve"> </m:t></m:r>`;
+ if(tag==='mfrac')return wrap('f',`<m:fPr><m:type m:val="bar"/></m:fPr><m:num>${child(0)}</m:num><m:den>${child(1)}</m:den>`);
+ if(tag==='msup')return wrap('sSup',`<m:e>${child(0)}</m:e><m:sup>${child(1)}</m:sup>`);
+ if(tag==='msub')return wrap('sSub',`<m:e>${child(0)}</m:e><m:sub>${child(1)}</m:sub>`);
+ if(tag==='msubsup')return wrap('sSubSup',`<m:e>${child(0)}</m:e><m:sub>${child(1)}</m:sub><m:sup>${child(2)}</m:sup>`);
+ if(tag==='msqrt')return wrap('rad',`<m:radPr><m:degHide m:val="1"/></m:radPr><m:deg/><m:e>${inner()}</m:e>`);
+ if(tag==='mroot')return wrap('rad',`<m:radPr><m:degHide m:val="0"/></m:radPr><m:deg>${child(1)}</m:deg><m:e>${child(0)}</m:e>`);
+ return inner();
+}
+function mathParagraph(text,tex){
+ if(Array.isArray(tex)&&tex.length){
+  return tex.map(t=>{
+   const doc=new DOMParser().parseFromString(mlM(t,true),'text/html');
+   const math=doc.querySelector('math');
+   const omml=mathMLtoOMML(math);
+   return `<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="95" w:after="105"/></w:pPr><m:oMathPara><m:oMath>${omml}</m:oMath></m:oMathPara></w:p>`;
+  }).join('');
+ }
+ return `<w:p><w:pPr><w:jc w:val="center"/><w:spacing w:before="90" w:after="110"/></w:pPr><m:oMathPara><m:oMath><m:r><m:rPr><m:sty m:val="p"/></m:rPr><m:t xml:space="preserve">${xmlText(text)}</m:t></m:r></m:oMath></m:oMathPara></w:p>`;
+}
+function docxXml(blocks){
+ let body='';
+ for(const x of blocks){
+  if(x.type==='title')body+=xmlParagraph(x.text,{bold:true,color:'512990',size:37,center:true,spaceAfter:210,keep:true});
+  else if(x.type==='subtitle')body+=xmlParagraph(x.text,{bold:true,color:'403165',size:25,center:true,spaceAfter:180});
+  else if(x.type==='heading')body+=xmlParagraph(x.text,{bold:true,color:'5E32AD',size:29,spaceAfter:100,keep:true});
+  else if(x.type==='step')body+=xmlParagraph(x.text,{bold:true,color:'543294',size:25,spaceAfter:65,keep:true});
+  else if(x.type==='math')body+=mathParagraph(x.text,x.tex);
+  else if(x.type==='note')body+=xmlParagraph(x.text,{color:'61758D',size:22,spaceAfter:80});
+  else if(x.type==='lines')for(let i=0;i<x.count;i++)body+=xmlParagraph('.............................................................................................................',{color:'A8B0BF',size:22,spaceAfter:155});
+  else if(x.type==='pagebreak')body+=`<w:p><w:r><w:br w:type="page"/></w:r></w:p>`+xmlParagraph(x.text,{bold:true,size:33,color:'512990',center:true});
+  else body+=xmlParagraph(x.text,{size:25,spaceAfter:115});
+ }
+ const sect='<w:sectPr><w:pgSz w:w="11906" w:h="16838"/><w:pgMar w:top="1134" w:right="1134" w:bottom="1134" w:left="1417" w:header="567" w:footer="567" w:gutter="0"/></w:sectPr>';
+ return `<?xml version="1.0" encoding="UTF-8" standalone="yes"?><w:document xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main" xmlns:m="http://schemas.openxmlformats.org/officeDocument/2006/math"><w:body>${body}${sect}</w:body></w:document>`;
+}
+function zipStore(entries){
+ const encode=new TextEncoder(),parts=[],central=[];let offset=0;const table=new Uint32Array(256);
+ for(let n=0;n<256;n++){let c=n;for(let k=0;k<8;k++)c=c&1?0xEDB88320^(c>>>1):c>>>1;table[n]=c>>>0;}
+ function crc32(data){let c=0xffffffff;for(let b of data)c=table[(c^b)&255]^(c>>>8);return (c^0xffffffff)>>>0;}
+ function bytes16(v){return [v&255,(v>>>8)&255];}
+ function bytes32(v){return [v&255,(v>>>8)&255,(v>>>16)&255,(v>>>24)&255];}
+ const concat=a=>{const n=a.reduce((s,b)=>s+b.length,0),out=new Uint8Array(n);let o=0;for(const b of a){out.set(b,o);o+=b.length;}return out;};
+ for(const [filename,xml] of entries){
+  const name=encode.encode(filename),content=encode.encode(xml),crc=crc32(content);
+  const flags=0x0800,local=Uint8Array.from([0x50,0x4b,3,4,...bytes16(20),...bytes16(flags),...bytes16(0),0,0,0,0,...bytes32(crc),...bytes32(content.length),...bytes32(content.length),...bytes16(name.length),0,0]);
+  parts.push(local,name,content);
+  const ctr=Uint8Array.from([0x50,0x4b,1,2,...bytes16(20),...bytes16(20),...bytes16(flags),...bytes16(0),0,0,0,0,...bytes32(crc),...bytes32(content.length),...bytes32(content.length),...bytes16(name.length),0,0,0,0,0,0,0,0,0,0,0,0,...bytes32(offset)]);
+  central.push(ctr,name);offset+=local.length+name.length+content.length;
+ }
+ const centralBytes=concat(central),end=Uint8Array.from([0x50,0x4b,5,6,0,0,0,0,...bytes16(entries.length),...bytes16(entries.length),...bytes32(centralBytes.length),...bytes32(offset),0,0]);
+ return new Blob([...parts,centralBytes,end],{type:'application/vnd.openxmlformats-officedocument.wordprocessingml.document'});
+}
+function saveBlob(blob, filename){const u=URL.createObjectURL(blob);const a=document.createElement('a');a.href=u;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(u),20000);}
+function downloadDocx(blocks, filename){
+ const ct=`<?xml version="1.0" encoding="utf-8"?><Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/></Types>`;
+ const rels=`<?xml version="1.0" encoding="utf-8"?><Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="word/document.xml"/></Relationships>`;
+ saveBlob(zipStore([['[Content_Types].xml',ct],['_rels/.rels',rels],['word/document.xml',docxXml(blocks)]]),filename);
+ notify('Đã tạo tệp Word .docx có thể chỉnh sửa.');
+}
+function exportAnalogHTML(c){
+ const data=JSON.stringify({mission,...c}).replace(/</g,'\\u003c');
+ const html=analogTemplate(data);
+ saveBlob(new Blob([html],{type:'text/html;charset=utf-8'}),`MilkLab12_Bai_hoc_tuong_tu_${mission===1?'Thiet_ke':'Dong_goi'}_${c.V}ml.html`);
+ notify('Đã tạo một bài học HTML độc lập với dữ liệu và mô phỏng tương ứng.');
+}
+function analogTemplate(json){
+ // Script closing token is built by interpolation so this addon can be embedded
+ // safely inside an ordinary HTML <script> element.
+ const scriptEnd='<'+'/script>';
+ const gTitle=mission===1?'THIẾT KẾ BAO BÌ – TỐI ƯU VẬT LIỆU':'BÀI TOÁN ĐÓNG GÓI – TỐI ƯU CHI PHÍ';
+ return `<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bài học tương tự · MILKLAB 12</title><style>
+ :root{font-family:Segoe UI,Arial,sans-serif;color:#26314a;background:#f2f5fc}*{box-sizing:border-box}body{margin:0}.bar{background:linear-gradient(110deg,#49239a,#bd3685);padding:24px 30px;color:white}h1{font-size:25px;margin:5px 0}.wrap{max-width:1060px;margin:20px auto;padding:0 16px;display:grid;grid-template-columns:1fr 1fr;gap:15px}.panel{background:white;border:1px solid #d9e1ee;border-radius:16px;padding:22px;box-shadow:0 6px 15px #29335511}p{line-height:1.6}.formula{background:#eee9fc;padding:12px;border-radius:10px;text-align:center;font-family:Cambria,serif;font-size:18px}.btn{border:0;border-radius:9px;background:#6734b5;color:white;font-weight:800;padding:9px 14px;margin:5px 4px 5px 0;cursor:pointer}.btn.soft{background:#e9e1fc;color:#56339e}input{padding:8px;border:1px solid #b9c6de;border-radius:8px;min-width:0}input[type=range]{width:100%;accent-color:#7b3dcc}.ans{width:125px;margin:5px}.output{font-size:18px;font-weight:800;color:#57369d}.feedback{background:#e8f9ef;border:1px solid #c8e6d1;border-radius:10px;padding:11px;font-size:13px}.svgbox svg{width:100%;height:auto;border:1px solid #e4eaf2;border-radius:10px;background:#f6faff}label{display:block;font-weight:700;margin:9px 0;font-size:13px}.muted{font-size:12px;color:#67758e}.footer{max-width:1060px;margin:15px auto;padding:0 15px}.row{display:flex;gap:8px;flex-wrap:wrap}@media(max-width:740px){.wrap{grid-template-columns:1fr}}@media print{.btn,.bar .muted{display:none}.wrap{grid-template-columns:1fr 1fr}}
+ </style></head><body><header class="bar"><small>TOÁN 12 LAB · BÀI HỌC TƯƠNG TỰ CÓ MÔ PHỎNG</small><h1>${gTitle}</h1><div class="muted" style="color:#f2dcff">Đọc đề – Tự lập mô hình – Giải toán – Kiểm chứng – Mở rộng</div></header><main class="wrap"><section class="panel"><h2>01 · Tình huống thực tiễn</h2><p id="situation"></p><div id="math" class="formula"></div><h3>Tham số mô phỏng</h3><label id="la"></label><input type="range" min="4" max="17" value="10" step="0.01" id="aa"><label id="lr"></label><input type="range" min="2.5" max="10" value="5.5" step="0.01" id="rr"><div id="stats" class="feedback" style="margin-top:13px"></div><p class="muted">Mỗi lần kéo, chiều cao hộp được tính lại để thể tích hộp giữ nguyên.</p></section><section class="panel"><h2>02 · Mô phỏng trực quan</h2><div class="svgbox"><svg id="diagram" viewBox="0 0 680 330"></svg></div><h3>03 · Tự giải theo bước</h3><div id="tasks"></div><button class="btn" id="check">✓ Kiểm tra kết quả</button><button class="btn soft" id="hint">💡 Gợi ý</button><div id="fb" class="muted"></div><h3>04 · Kiểm chứng và mở rộng</h3><p id="extend"></p><textarea id="thought" style="width:100%;min-height:80px;border:1px solid #cbd5e1;border-radius:9px;padding:10px" placeholder="Viết lập luận hoặc đề xuất giả thiết mới..."></textarea></section></main><div class="footer"><button class="btn soft" onclick="window.print()">🖨 In / Lưu PDF</button><p class="muted">Bài tương tự được tạo tự động từ các công thức đã kiểm tra. Công cụ này không giải hộ: học sinh cần tự làm trước khi xem mô phỏng.</p></div><script>
+ 'use strict';const d=${json};const $=k=>document.getElementById(k);const f=(x,t=2)=>Number(x).toLocaleString('vi-VN',{minimumFractionDigits:t,maximumFractionDigits:t});
+ const V=d.V,n=(d.nx||3)*(d.ny||2)*(d.nz||2),A0=Math.cbrt(V),B0=Math.cbrt(V/(2*Math.PI));
+ const box=a=>2*a*a+4*V/a,cy=r=>2*Math.PI*r*r+2*V/r;
+ const pack=(kind,val)=>{let s=kind==='A'?val:2*val,h=kind==='A'?V/val**2:V/(Math.PI*val**2),L=(d.nx||3)*s,W=(d.ny||2)*s,H=(d.nz||2)*h;return {L,W,H,S:2*(L*W+L*H+W*H),Vol:L*W*H,shell:kind==='A'?box(val):cy(val)}};
+ const c=(kind,val)=>{const p=pack(kind,val);return n*(d.p||2)*p.shell+(d.q||1)*p.S+(d.t||.2)*p.Vol};
+ $('situation').textContent=d.mission===1?'Thiết kế hai hộp kín chứa '+f(V,0)+' mL '+d.product+'. A: hình hộp đáy vuông; B: hình trụ. Chọn thiết kế dùng ít vật liệu nhất (cùng đơn giá/cm²).':'Đóng gói '+n+' hộp '+d.product+' ('+f(V,0)+' mL/hộp) theo lưới '+d.nx+' × '+d.ny+' × '+d.nz+' trong thùng kín. Tính tổng chi phí với p='+d.p+', q='+d.q+', t='+d.t+' theo đơn vị trong bài gốc.';
+ $('math').innerHTML=d.mission===1?'<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>V</mi><mo>=</mo><msup><mi>a</mi><mn>2</mn></msup><mi>h</mi><mo>=</mo><mi>π</mi><msup><mi>r</mi><mn>2</mn></msup><mi>h</mi><mo>=</mo><mn>'+V+'</mn><mtext> cm³</mtext></mrow></math>':'<math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><mrow><mi>C</mi><mo>=</mo><mi>N</mi><mi>p</mi><msub><mi>S</mi><mtext>vỏ</mtext></msub><mo>+</mo><mi>q</mi><msub><mi>S</mi><mtext>carton</mtext></msub><mo>+</mo><mi>t</mi><msub><mi>V</mi><mtext>carton</mtext></msub></mrow></math>';
+ const fields=d.mission===1?[['Cạnh đáy a* (cm)',A0],['Bán kính r* (cm)',B0],['S_A,min (cm²)',box(A0)],['S_B,min (cm²)',cy(B0)]]:[['S_carton,A (cm²)',pack('A',A0).S],['S_carton,B (cm²)',pack('B',B0).S],['C_A (đồng)',c('A',A0)],['C_B (đồng)',c('B',B0)]];
+ $('tasks').innerHTML=fields.map((x,i)=>'<label>'+x[0]+': <input class="ans" type="text" data-n="'+i+'" placeholder="Tự tính"></label>').join('');
+ let tries=0;
+ $('check').onclick=()=>{tries++;let errors=[];document.querySelectorAll('[data-n]').forEach(e=>{let i=+e.dataset.n,z=Number(e.value.replace(',','.'));let ok=e.value.trim()&&Number.isFinite(z)&&Math.abs(z-fields[i][1])<=Math.max(.08,fields[i][1]*.00005);e.style.borderColor=ok?'#18a17a':'#d9495b';if(!ok)errors.push(fields[i][0])});$('fb').textContent=errors.length?'Cần soát lại: '+errors.join('; ')+'.':'Chính xác! Hãy giải thích vì sao mô hình cho kết quả đó.';};
+ $('hint').onclick=()=>{$('fb').textContent=d.mission===1?'Dùng V để rút h, lập S toàn phần, tính S′ rồi xét dấu.':'Từ a*, r*, tính kích thước thùng. Dùng S=2(LW+LH+WH), V=LWH rồi tính C.';};
+ $('extend').textContent='Nếu thay đổi số hộp, thể tích một hộp hoặc giá vật liệu thì kết luận có còn đúng không? Hãy lập dự đoán rồi giải thích.';
+ function draw(){let a=+$('aa').value,r=+$('rr').value;let sa=box(a),sb=cy(r);$('la').textContent='Cạnh đáy vuông a = '+f(a)+' cm, chiều cao = '+f(V/a**2)+' cm';$('lr').textContent='Bán kính trụ r = '+f(r)+' cm, chiều cao = '+f(V/(Math.PI*r**2))+' cm';let st=d.mission===1?'S_A = '+f(sa)+' cm²; S_B = '+f(sb)+' cm²':'S_carton A = '+f(pack('A',a).S)+' cm²; S_carton B = '+f(pack('B',r).S)+' cm²; C_A = '+f(c('A',a))+' đ; C_B = '+f(c('B',r))+' đ';$('stats').textContent=st;const w=90,hA=Math.min(165,110*V/(a**3)),hB=Math.min(165,110*V/(2*Math.PI*r**3));$('diagram').innerHTML='<rect width="680" height="330" fill="#f3f6fd"/><path d="M20 280 H660" stroke="#cad7eb" stroke-width="3"/><rect x="135" y="'+(274-hA)+'" width="'+w+'" height="'+hA+'" fill="#71c6ad" stroke="#208b7e" stroke-width="3"/><rect x="135" y="'+(274-hA)+'" width="'+w+'" height="18" fill="#def9f0"/><ellipse cx="480" cy="'+(274-hB)+'" rx="55" ry="16" fill="#d2c5ff"/><path d="M425 '+(274-hB)+'V274 Q480 310 535 274 V'+(274-hB)+'" fill="#a494ed" stroke="#7361be" stroke-width="2"/><ellipse cx="480" cy="'+(274-hB)+'" rx="55" ry="16" fill="#e1dcff" stroke="#7561c1" stroke-width="2"/><text x="180" y="310" text-anchor="middle" font-size="16" font-weight="bold">A. Đáy vuông</text><text x="480" y="310" text-anchor="middle" font-size="16" font-weight="bold">B. Hình trụ</text><text x="180" y="120" text-anchor="middle" font-size="15" fill="#127a69">'+f(a)+' cm</text><text x="480" y="120" text-anchor="middle" font-size="15" fill="#6351b8">'+f(r)+' cm</text>';};
+ $('aa').value=A0;$('rr').value=B0;$('aa').oninput=draw;$('rr').oninput=draw;draw();
+ ${scriptEnd}</body></html>`;
+}
+// ----- A4 poster (canvas, PNG, print-to-PDF) -----
+let posterReady=Promise.resolve();
+function wrapCanvas(ctx,text,x,y,maxWidth,lineHeight,maxLines=0){
+ let words=String(text).split(/\s+/),line='',lines=[];
+ for(let word of words){let test=line?line+' '+word:word;if(ctx.measureText(test).width>maxWidth&&line){lines.push(line);line=word;}else line=test;}
+ if(line)lines.push(line);if(maxLines>0)lines=lines.slice(0,maxLines);
+ for(let l of lines){ctx.fillText(l,x,y);y+=lineHeight;}
+ return y;
+}
+function roundRect(ctx,x,y,w,h,r,fill,stroke){ctx.beginPath();ctx.roundRect(x,y,w,h,r);if(fill){ctx.fillStyle=fill;ctx.fill()}if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=2;ctx.stroke()}}
+function svgToCanvasImage(sourceId){return new Promise(resolve=>{
+ const el=id(sourceId);if(!el){resolve(null);return;}
+ let str=el.outerHTML.replace(/<svg/,'<svg xmlns="http://www.w3.org/2000/svg"');
+ str=str.replace(/ xmlns="http:\/\/www.w3.org\/2000\/svg"([^>]*) xmlns="http:\/\/www.w3.org\/2000\/svg"/,' xmlns="http://www.w3.org/2000/svg"$1');
+ const blob=new Blob([str],{type:'image/svg+xml'}),url=URL.createObjectURL(blob),img=new Image();
+ img.onload=()=>{URL.revokeObjectURL(url);resolve(img)};img.onerror=()=>{URL.revokeObjectURL(url);resolve(null)};img.src=url;
+});}
+function drawPoster(){
+ const cv=id('ml-poster-canvas');if(!cv)return;
+ const ctx=cv.getContext('2d');cv.width=1200;cv.height=1660;ctx.clearRect(0,0,1200,1660);
+ const grd=ctx.createLinearGradient(0,0,1200,500);grd.addColorStop(0,'#5426a2');grd.addColorStop(.5,'#9036c3');grd.addColorStop(1,'#d13783');
+ ctx.fillStyle='#f7f7fd';ctx.fillRect(0,0,1200,1660);ctx.fillStyle=grd;ctx.fillRect(0,0,1200,285);
+ ctx.fillStyle='#f4e7ff';ctx.font='700 25px Segoe UI,Arial';ctx.fillText('TOÁN 12 LAB  /  MILKLAB STEAM',60,65);
+ ctx.fillStyle='#fff';ctx.font='bold 48px Segoe UI,Arial';ctx.fillText(mission===1?'THIẾT KẾ HỘP SỮA 1 LÍT':'ĐÓNG GÓI 12 HỘP SỮA',60,134);
+ ctx.font='600 27px Segoe UI,Arial';ctx.fillText(mission===1?'TỐI ƯU VẬT LIỆU BẰNG ĐẠO HÀM':'VẬN CHUYỂN, LƯU KHO & CHI PHÍ',60,183);
+ ctx.font='23px Segoe UI,Arial';ctx.fillStyle='#ffeed9';ctx.fillText('Mô hình hóa → Giải toán → Mô phỏng kiểm chứng → Mở rộng',60,236);
+ roundRect(ctx,52,313,1096,205,19,'#ffffff','#e4d8f5');
+ ctx.fillStyle='#5734a6';ctx.font='bold 27px Segoe UI,Arial';ctx.fillText('01. TÌNH HUỐNG THỰC TIỄN',80,358);
+ ctx.fillStyle='#27334b';ctx.font='23px Segoe UI,Arial';
+ const statement=mission===1?'Công ty chọn hộp sữa kín có thể tích 1.000 cm³: hộp chữ nhật đáy vuông hay hộp hình trụ? Thiết kế nào sử dụng ít vật liệu hơn khi mỗi kiểu được tối ưu?':
+ 'Đặt 12 hộp sữa 1 lít vào thùng carton kín theo lưới 3 × 2 × 2. Phương án đáy vuông hay hình trụ tốn ít diện tích carton và thể tích kho hơn?';
+ wrapCanvas(ctx,statement,80,407,1027,38);
+ roundRect(ctx,52,547,530,350,18,'#ffffff','#dce5f1');roundRect(ctx,615,547,533,350,18,'#ffffff','#dce5f1');
+ ctx.font='bold 25px Segoe UI,Arial';ctx.fillStyle='#0c876c';ctx.fillText('A · HỘP ĐÁY VUÔNG',77,590);ctx.fillStyle='#6250c6';ctx.fillText('B · HỘP HÌNH TRỤ',639,590);
+ const s=modelCurrent();
+ ctx.fillStyle='#26405c';ctx.font='22px Segoe UI,Arial';
+ if(mission===1){ctx.fillText('a = '+number(s.a)+' cm',80,841);ctx.fillText('r = '+number(s.r)+' cm',641,841);}
+ else{ctx.fillText('12 hộp: 3 × 2 × 2',80,841);ctx.fillText('12 hộp: 3 × 2 × 2',641,841);}
+ roundRect(ctx,52,926,1096,285,17,'#fff','#e5daf4');ctx.fillStyle='#5430a0';ctx.font='bold 27px Segoe UI,Arial';ctx.fillText('02. TÍNH TOÁN VÀ KIỂM CHỨNG',78,969);
+ const dataA=s.A,dataB=s.B;
+ if(mission===1){
+  const lines=[`Hình A: S_A = 2a² + 4.000/a = ${number(dataA.shell)} cm²`,`Hình B: S_B = 2πr² + 2.000/r = ${number(dataB.shell)} cm²`,
+  `Khi tối ưu: S_A,min = 600,00 cm²  ;  S_B,min = 553,58 cm²`];
+  ctx.fillStyle='#28364f';ctx.font='24px Cambria,Segoe UI,Arial';lines.forEach((z,i)=>ctx.fillText(z,78,1030+i*53));
+ }else{
+  const p=getPricing();ctx.fillStyle='#28364f';ctx.font='22px Cambria,Segoe UI,Arial';
+  [`Carton A: ${number(dataA.area)} cm²; thùng ${number(dataA.volume/1000)} lít`,`Carton B: ${number(dataB.area)} cm²; thùng ${number(dataB.volume/1000)} lít`,`C = 12pS_vỏ + qS_carton + tV_carton  (đơn giá giả định)`].forEach((z,i)=>ctx.fillText(z,78,1030+i*52));
+ }
+ roundRect(ctx,52,1244,1096,217,19,'#eaf8f3','#b6e4d4');ctx.fillStyle='#0c755b';ctx.font='bold 29px Segoe UI,Arial';ctx.fillText('03. KẾT LUẬN CÓ CĂN CỨ',80,1294);
+ ctx.fillStyle='#1d4e43';ctx.font='24px Segoe UI,Arial';
+ const conclusion=mission===1?'Nếu chỉ xét diện tích vật liệu cùng đơn giá: hộp hình trụ tối ưu tiết kiệm khoảng 7,74%. Kết quả không tự động khẳng định tiết kiệm chi phí vận chuyển.':
+ `Theo lưới xếp quy định, thùng A chiếm 12,00 lít, B chiếm 15,28 lít. Quyết định về tổng chi phí phải xét đơn giá vỏ, carton và lưu kho.`;
+ wrapCanvas(ctx,conclusion,80,1350,1026,37);
+ ctx.fillStyle='#586982';ctx.font='22px Segoe UI,Arial';
+ wrapCanvas(ctx,'THỬ THÁCH MỞ RỘNG: Thay đổi giả thiết về vật liệu, kích thước, cách xếp hoặc đơn giá. Kiểm nghiệm lại kết luận bằng mô hình mới.',60,1520,1070,36);
+ ctx.font='18px Segoe UI,Arial';ctx.fillStyle='#78849b';ctx.fillText('Mô hình học tập · Bỏ qua mép ghép, độ dày vật liệu và chi phí gia công · TOÁN 12 LAB',60,1623);
+ posterReady=Promise.all([svgToCanvasImage(mission===1?'shapeA':'packA'),svgToCanvasImage(mission===1?'shapeB':'packB')]).then(imgs=>{
+  for(let i=0;i<2;i++){const img=imgs[i];if(img){let x=i===0?85:647;ctx.drawImage(img,x,610,440,216);}}
+ });
+}
+async function downloadPosterPNG(){await posterReady;const canvas=id('ml-poster-canvas');canvas.toBlob(blob=>{if(blob)saveBlob(blob,`MilkLab12_Poster_nhiem_vu_${mission}.png`);else notify('Không tạo được ảnh PNG.');},'image/png');}
+async function printPoster(){await posterReady;const u=id('ml-poster-canvas').toDataURL('image/png');const frame=document.createElement('iframe');frame.style='position:fixed;bottom:0;right:0;width:0;height:0;border:0';document.body.appendChild(frame);
+ frame.onload=()=>{frame.contentWindow.print();setTimeout(()=>frame.remove(),6000)};
+ frame.srcdoc=`<!doctype html><html lang="vi"><head><meta charset="utf-8"><style>@page{size:A4;margin:7mm}html,body{margin:0;text-align:center}img{width:100%;max-height:277mm;object-fit:contain}</style></head><body><img src="${u}"></body></html>`;
+}
+// ----- Interactive 16:9 teaching presentation -----
+let slidePos=0,slideAnswers={};
+const figureBox=(label,html)=>`<div class="ml-slide-figure"><h4>${label}</h4>${html}</div>`;
+const metrics=items=>`<div class="ml-slide-metrics">${items.map(([k,v])=>`<div class="ml-slide-metric"><span>${k}</span><b>${v}</b></div>`).join('')}</div>`;
+function slideList(){
+ const A=packData('A',1000,3,2,2,10),B=packData('B',1000,3,2,2,rstar),live=modelCurrent();
+ const pics1=()=>`<div class="ml-slide-figures">${figureBox('Phương án A · Đáy vuông',cloneSVG('shapeA'))}${figureBox('Phương án B · Hình trụ',cloneSVG('shapeB'))}</div>`;
+ const graphs1=()=>`<div class="ml-slide-figures">${figureBox('Đồ thị diện tích A',cloneSVG('graphA'))}${figureBox('Đồ thị diện tích B',cloneSVG('graphB'))}</div>`;
+ const pics2=()=>`<div class="ml-slide-figures">${figureBox('A · 12 hộp đáy vuông',cloneSVG('packA'))}${figureBox('B · 12 hộp hình trụ',cloneSVG('packB'))}</div>`;
+ const currentCost=()=>{const p=getPricing(),tA=12*p[0]*live.A.shell+p[1]*live.A.area+p[2]*live.A.volume,tB=12*p[0]*live.B.shell+p[1]*live.B.area+p[2]*live.B.volume;return {p,tA,tB};};
+ const slide=(title,lead,body,answer,note)=>({title,lead,body,answer,note});
+ if(mission===1) return [
+  slide('Một lít sữa – Hai kiểu hộp','Vấn đề đặt ra: tối ưu vật liệu, không tối ưu theo cảm tính.',()=>pics1(),'Cần tìm GTNN diện tích toàn phần của từng dạng hộp rồi mới so sánh.','1–2 phút: cho HS quan sát, nêu dự đoán; không công bố đáp án ngay.'),
+  slide('Dự đoán và phân tích giả thiết','Hai hộp kín, cùng thể tích 1 lít, cùng đơn giá vật liệu.',()=>`<div class="ml-slide-card"><div class="ml-slide-big">${mlM(String.raw`V=1000\;\text{cm}^{3}`,true)}</div><p>Hình A có đáy vuông; hình B là hình trụ tròn. Cần tính đủ hai đáy/nắp và mặt xung quanh.</p><p>✍ Hãy dự đoán: vật liệu loại nào ít hơn sau khi đã tối ưu riêng?</p></div>`, 'Đưa về một biến với điều kiện a > 0 hoặc r > 0.','Đặt vấn đề mô hình hóa; yêu cầu học sinh giải thích thế nào là so sánh công bằng.'),
+  slide('Mô hình toán học – Hộp đáy vuông','Thiết lập hàm mục tiêu theo cạnh đáy a.',()=>`<div class="ml-slide-card"><div class="ml-slide-big">${mlM(String.raw`V=a^{2}h=1000`,true)}</div><p>Gọi a > 0 là cạnh đáy, h > 0 là chiều cao (cm). Hãy biến đổi điều kiện thể tích.</p><div class="ml-formula">S_A = 2a² + 4ah</div></div>`, 'h = 1.000/a². S_A(a) = 2a² + 4.000/a; S′_A(a) = 4a − 4.000/a².','Chỉ hiện công thức sau khi học sinh lập được điều kiện ràng buộc.'),
+  slide('Mô hình toán học – Hộp hình trụ','Thay chiều cao theo bán kính r.',()=>`<div class="ml-slide-card"><div class="ml-slide-big">${mlM(String.raw`V=\pi r^{2}h=1000`,true)}</div><p>Gọi r > 0 là bán kính, h > 0 là chiều cao (cm).</p><div class="ml-formula">S_B = 2πr² + 2πrh</div></div>`, 'h = 1.000/(πr²). S_B(r) = 2πr² + 2.000/r; S′_B(r) = 4πr − 2.000/r².','Hỏi: h phụ thuộc vào r như thế nào nếu thể tích không đổi?'),
+  slide('Giải toán – Xét đạo hàm','Tìm nghiệm S′ = 0 và kiểm tra chiều biến thiên.',()=>`<div class="ml-slide-figures">${figureBox('S_A(a)',cloneSVG('graphA'))}${figureBox('S_B(r)',cloneSVG('graphB'))}</div>`, 'a* = 10 cm. r* = ∛(500/π) ≈ 5,42 cm. Đạo hàm đổi dấu âm → dương tại mỗi nghiệm.','Cho HS giải trước, dùng đồ thị để kiểm chứng điểm cực tiểu.'),
+  slide('Thao tác mô phỏng trực tiếp','Kéo tham số rồi so sánh với giá trị tối ưu.',()=>`<div class="ml-slide-card"><div class="ml-slide-figures"><div><label>Cạnh đáy A: <b id="ml-live-a">${number(state.a)}</b> cm</label><input type="range" class="ml-input" data-ml-slide-slider="a" min="7" max="16" step="0.01" value="${state.a}"></div><div><label>Bán kính B: <b id="ml-live-r">${number(state.r)}</b> cm</label><input type="range" class="ml-input" data-ml-slide-slider="r" min="4" max="8" step="0.01" value="${state.r}"></div></div><div class="ml-slide-figures" style="margin-top:12px"><div id="ml-slide-live-shapeA">${cloneSVG('shapeA')}</div><div id="ml-slide-live-shapeB">${cloneSVG('shapeB')}</div></div><div id="ml-slide-live-metrics" class="ml-formula">S_A = ${number(boxArea(state.a))} cm² · S_B = ${number(cylArea(state.r))} cm²</div></div>`, 'Trong quá trình kéo, thể tích hai hộp vẫn bằng 1.000 cm³. Hộp có diện tích nhỏ hơn ở một cặp kích thước chưa chắc là tối ưu toàn cục.','Cho học sinh điều khiển tại máy trạm hoặc lên bảng; không giải hộ.'),
+  slide('Đối chiếu kết quả hai phương án','So sánh hai diện tích nhỏ nhất, không so sánh tùy ý.',()=>metrics([['Hộp A tối ưu','600,00 cm²'],['Hộp B tối ưu','553,58 cm²'],['Vật liệu tiết kiệm','7,74%']])+`<div class="ml-slide-card"><p>Yêu cầu học sinh chứng minh đây là giá trị nhỏ nhất, không chỉ là một điểm dừng của đồ thị.</p></div>`, 'Hình trụ tiết kiệm 46,42 cm²/hộp, khoảng 7,74% diện tích so với A.','Sử dụng lời giải học sinh rồi mới mở kết luận.'),
+  slide('Mở rộng mô hình và phản biện','Giả thiết thay đổi, kết quả có còn đúng?',()=>`<div class="ml-slide-card"><h3>Thử thách</h3><p>➊ Nếu hộp chỉ chứa 750 mL thì a* và r* thay đổi thế nào?</p><p>➋ Nếu nắp/đáy đắt hơn mặt bên, công thức chi phí thay đổi ra sao?</p><p>➌ Thiết kế nào thuận lợi hơn khi xếp nhiều hộp vào thùng chữ nhật?</p></div>`, 'Khi V thay đổi, a* = ∛V; r* = ∛(V/(2π)). Nếu đơn giá các mặt khác nhau, phải tối ưu hàm chi phí mới.','Chuyển sang Phòng thí nghiệm mở rộng để học sinh tự điều chỉnh giả thiết.'),
+  slide('Vận dụng vào logistics','Vật liệu tối ưu có đồng nghĩa tổng chi phí tối ưu?',()=>pics1()+`<div class="ml-slide-card"><p><b>Quy trình:</b> Mô hình hóa → Tính toán → Đánh giá giả thiết → Mô phỏng → Kiểm chứng → Mở rộng.</p><p>Tiếp tục nhiệm vụ 2: xếp 12 hộp vào thùng carton.</p></div>`, 'Không thể kết luận tổng chi phí trước khi xác định đơn giá carton, lưu kho và mô hình vận chuyển.','Giao nhiệm vụ 2 bằng liên kết ở đầu trang hoặc tải bộ hai HTML.'),
+ ];
+ return [
+  slide('Một lít sữa – Mâu thuẫn về logistics','Hộp ít vật liệu nhất chưa chắc tiết kiệm nhất khi vận chuyển.',()=>pics2(),'Cần so sánh cả vỏ hộp, bìa carton và thể tích thùng.','Tình huống mở đầu để học sinh dự đoán.'),
+  slide('Đọc giả thiết và xác định cách xếp','Mỗi thùng có 12 hộp: 3 hộp dài × 2 hộp rộng × 2 tầng.',()=>`<div class="ml-slide-card"><div class="ml-slide-big">${mlM(String.raw`3\times2\times2=12`,true)}</div><p>Thùng carton kín hình hộp chữ nhật. Các hộp dựng đứng theo hàng/cột, bỏ qua độ dày, khoảng hở và mép dán.</p></div>`, 'Từ lưới xếp: L = 3 × chiều ngang một hộp, W = 2 × chiều ngang, H = 2 × chiều cao mỗi hộp.','Nhấn mạnh hình trụ được xếp theo lưới vuông, không khẳng định mọi cách xếp tối ưu.'),
+  slide('Trực quan hóa 12 hộp · 3D','Quan sát mô hình mô phỏng của hai phương án.',()=>pics2(), 'A: các khối hộp lấp đầy thùng lý tưởng; B: giữa các đáy tròn có khoảng trống.','Chuyển mô phỏng gốc giữa 3D và mặt bằng để quan sát.'),
+  slide('Lập kích thước thùng carton','Hộp đáy vuông và hình trụ có chiều ngang khác nhau.',()=>`<div class="ml-slide-card"><div class="ml-slide-big">${mlMR([String.raw`(L_{A},W_{A},H_{A})=(3a,2a,2h_{A})`,String.raw`(L_{B},W_{B},H_{B})=(6r,4r,2h_{B})`])}</div><p>Từ bài toán 1: a = 10 cm; r = ∛(500/π) cm. Tự tính chiều dài, rộng và cao.</p></div>`, `A: (${number(A.L)}, ${number(A.W)}, ${number(A.H)}) cm. B: (${number(B.L)}, ${number(B.W)}, ${number(B.H)}) cm.`, 'Cho học sinh dùng kết quả nguyên/thực chưa làm tròn; giải thích nguồn gốc hệ số 6r.'),
+  slide('Tính lượng bìa carton','Tính diện tích của thùng kín.',()=>`<div class="ml-slide-card"><div class="ml-slide-big">${mlM(String.raw`S_{\text{carton}}=2(LW+LH+WH)`,true)}</div><p>Hãy tự thay các kích thước vào trước khi mở kết quả.</p></div>`, `S_A = ${number(A.area)} cm²; S_B ≈ ${number(B.area)} cm². B nhiều hơn ≈ ${number((B.area/A.area-1)*100)}%.`, 'Gắn điều kiện thùng carton là thùng kín; bỏ qua mép nối và độ dày.'),
+  slide('Thể tích chiếm chỗ và lấp đầy','Một thùng chứa 12 lít sữa nhưng kích thước thùng có thể lớn hơn.',()=>metrics([['V_carton,A','12,00 L'],['V_carton,B','15,28 L'],['Độ lấp đầy B','78,54%']]),`V_B = 48.000/π cm³; V_B/V_A = 4/π ≈ 1,27324. Phần trống giữa hộp trụ làm tỷ lệ lấp đầy chỉ π/4.`, 'Học sinh diễn giải kết quả theo thể tích, không khẳng định ngay mức tiêu hao nhiên liệu.'),
+  slide('Hóa thân thành giám đốc','Thay đổi các đơn giá giả định để ra quyết định.',()=>`<div class="ml-slide-card"><div class="ml-formula">${mlM(String.raw`C=12pS_{\text{vỏ}}+qS_{\text{carton}}+tV_{\text{carton}}`,true)}</div><div class="ml-slide-figures">${[['pShell','p · đồng/cm² vỏ'],['pCart','q · đồng/cm² carton'],['pSpace','t · đồng/cm³ kho']].map(([k,label],i)=>`<label>${label}<input class="ml-input" data-ml-slide-price="${k}" type="number" step="0.05" min="0" value="${getPricing()[i]}"></label>`).join('')}</div><div class="ml-formula" id="ml-slide-cost">${mlMR([String.raw`C_{A}=${number(currentCost().tA)}\;\text{đ}`,String.raw`C_{B}=${number(currentCost().tB)}\;\text{đ}`])}</div></div>`, 'Kết quả thay đổi theo p, q, t. Giá nhập vào chỉ là giả định, không phải dữ liệu thị trường.','Bấm tình huống "Vỏ hộp đắt" và "Lưu kho đắt" trên trang gốc để làm rõ sự khác biệt.'),
+  slide('Tranh biện – Có một phương án tốt nhất không?','Nêu quyết định kèm giả thiết và giá trị số.',()=>`<div class="ml-slide-card"><p>Nhóm A: bảo vệ kiểu hộp đáy vuông.</p><p>Nhóm B: bảo vệ kiểu hộp hình trụ.</p><p>Nhóm C: kiểm tra tính hợp lí của cách xếp và đơn giá.</p><p>Đề xuất thay đổi điều kiện để quyết định của giám đốc đảo chiều.</p></div>`, 'Không thể xác định phương án tối ưu tổng chi phí nếu chưa biết đơn giá. Phải tính C_A, C_B dưới cùng giả thiết.', 'Khuyến khích phản biện có số liệu; không chấm theo lựa chọn A/B đơn thuần.'),
+  slide('Thử thách mở rộng – Tối ưu hệ thống','Thiết kế tối ưu cho từng bộ phận có thể không tối ưu cho toàn hệ thống.',()=>`<div class="ml-slide-card"><p>➊ Thay kiểu xếp 3×2×2 bằng 4×3×1 hoặc 2×2×3.</p><p>➋ Thay thể tích mỗi hộp từ 1.000 mL thành 750 mL.</p><p>➌ Thay đơn giá carton, tìm kích thước vỏ tối ưu <b>tổng chi phí</b> chứ không chỉ tối ưu diện tích vỏ.</p><p><b>Kết luận:</b> Mô hình hóa phải đi kèm kiểm chứng và xác định rõ phạm vi áp dụng.</p></div>`, 'Để tối ưu tổng chi phí, biến số đáy của hộp được phép thay đổi theo p, q. Phòng thí nghiệm mở rộng tính lại các cực tiểu của hàm chi phí.', 'Mời HS mở nút 🔬 Thí nghiệm mở rộng và ghi kết quả vào phiếu.'),
+ ];
+}
+function slidePedagogicNotes(m,i){
+ const notes=m===1?[
+  'Cần tối ưu diện tích toàn phần của từng loại hộp trước khi so sánh.',
+  'Giữ đúng thể tích; các kích thước đều dương.',
+  'Dùng thể tích để biểu diễn chiều cao theo cạnh đáy.',
+  'Dùng thể tích để biểu diễn chiều cao theo bán kính.',
+  'Tìm nghiệm đạo hàm bằng 0 rồi xét dấu âm sang dương.',
+  'Diện tích thay đổi theo kích thước, nhưng thể tích mỗi hộp vẫn bằng 1 lít.',
+  'So sánh cực tiểu: hình trụ cần ít vật liệu hơn theo giả thiết.',
+  'Thay giả thiết thì phải lập hàm mục tiêu và giải lại.',
+  'Chưa thể kết luận tổng chi phí nếu chưa xét khâu đóng gói.'
+ ]:[
+  'Đánh giá cả vật liệu sản xuất, diện tích carton và thể tích không gian.',
+  'Số hộp và cách xếp quyết định kích thước thùng.',
+  'Trong lưới xếp, hộp hình trụ để lại các góc trống.',
+  'Nhân kích thước một hộp với số vị trí theo ba chiều.',
+  'Áp dụng công thức diện tích toàn phần thùng kín.',
+  'Độ lấp đầy không đồng nghĩa với nhiên liệu vận chuyển thực tế.',
+  'Chỉ so sánh tổng chi phí khi đã cố định cùng đơn giá giả định.',
+  'Cần trình bày số liệu, điều kiện áp dụng và giới hạn mô hình.',
+  'Tổng kết quá trình mô hình hóa, kiểm chứng và mở rộng.'
+ ];return notes[i]||'Hãy giải thích kết quả trong phạm vi giả thiết.';}
+function slideAnswerMath(m,i){
+ const a=[
+  [],[String.raw`V=1000\;\text{cm}^{3}`],
+  [String.raw`h_{A}=\frac{1000}{a^{2}}`,String.raw`S_{A}(a)=2a^{2}+\frac{4000}{a}`],
+  [String.raw`h_{B}=\frac{1000}{\pi r^{2}}`,String.raw`S_{B}(r)=2\pi r^{2}+\frac{2000}{r}`],
+  [String.raw`a^{*}=10`,String.raw`r^{*}=\sqrt[3]{\frac{500}{\pi}}\approx5.42`],
+  [String.raw`V_{A}=V_{B}=1000\;\text{cm}^{3}`],
+  [String.raw`S_{A,\min}=600\;\text{cm}^{2}`,String.raw`S_{B,\min}\approx553.58\;\text{cm}^{2}`],
+  [String.raw`a^{*}=\sqrt[3]{V}`,String.raw`r^{*}=\sqrt[3]{\frac{V}{2\pi}}`],
+  []
+ ];
+ const b=[
+  [],[],[String.raw`\eta_{A}=100\%`,String.raw`\eta_{B}=\frac{\pi}{4}`],
+  [String.raw`(L_{A},W_{A},H_{A})=(30,20,20)`,String.raw`(L_{B},W_{B},H_{B})\approx(32.52,21.68,21.68)`],
+  [String.raw`S_{\text{carton},A}=3200\;\text{cm}^{2}`,String.raw`S_{\text{carton},B}\approx3759.15\;\text{cm}^{2}`],
+  [String.raw`V_{A}=12000\;\text{cm}^{3}`,String.raw`V_{B}=\frac{48000}{\pi}\;\text{cm}^{3}`,String.raw`\eta_{B}=\frac{\pi}{4}`],
+  [String.raw`C=12pS_{\text{vỏ}}+qS_{\text{carton}}+tV_{\text{carton}}`],[],[]
+ ];return (m===1?a:b)[i]||[];
+}
+function slideOpen(){
+ if(mission===2){setMainToOptimal();if(state.n!==12){state.n=12;renderSource();}}
+ slidePos=0;slideAnswers={};openModal('ml-slide-overlay');renderSlide();
+}
+function renderSlide(){
+ const arr=slideList(),s=arr[slidePos];
+ id('ml-slide-title').textContent=`TRÌNH CHIẾU DẠY · NHIỆM VỤ ${mission} · TOÁN 12 LAB`;
+ id('ml-slide-count').textContent=`${slidePos+1} / ${arr.length}`;
+ id('ml-slide-nav').innerHTML=arr.map((z,i)=>`<button class="ml-slide-link ${slidePos===i?'active':''}" data-ml-slide="${i}">${i+1}. ${safe(z.title)}</button>`).join('');
+ id('ml-slide-nav').querySelectorAll('[data-ml-slide]').forEach(b=>b.addEventListener('click',()=>{slidePos=Number(b.dataset.mlSlide);renderSlide()}));
+ id('ml-slide-stage').innerHTML=`<div class="ml-slide-kicker">BÀI TOÁN 1 LÍT SỮA · ${slidePos+1}/${arr.length}</div><h2>${safe(s.title)}</h2><p class="ml-slide-lead">${safe(s.lead)}</p>${s.body()}${slideAnswers[slidePos]?`<div class="ml-slide-hidden-answer"><b>Phân tích để kiểm chứng:</b> ${safe(slidePedagogicNotes(mission,slidePos))}${mlMR(slideAnswerMath(mission,slidePos))}</div>`:''}<div class="ml-slide-notes"><b>Gợi ý tổ chức hoạt động:</b> ${safe(s.note)}</div>`;
+ id('ml-slide-stage').scrollTop=0;
+ id('ml-slide-prev').disabled=slidePos===0;id('ml-slide-next').disabled=slidePos===arr.length-1;
+ id('ml-slide-reveal').textContent=slideAnswers[slidePos]?'🙈 Ẩn đáp án':'👁 Hiện đáp án';
+ id('ml-slide-stage').querySelectorAll('[data-ml-slide-slider]').forEach(el=>el.addEventListener('input',()=>{
+  const k=el.dataset.mlSlideSlider;state[k]=Number(el.value);renderSource();
+  if(id('ml-live-'+k))id('ml-live-'+k).textContent=number(state[k]);
+  if(id('ml-slide-live-shapeA'))id('ml-slide-live-shapeA').innerHTML=cloneSVG('shapeA');
+  if(id('ml-slide-live-shapeB'))id('ml-slide-live-shapeB').innerHTML=cloneSVG('shapeB');
+  if(id('ml-slide-live-metrics'))id('ml-slide-live-metrics').textContent=`S_A = ${number(boxArea(state.a))} cm² · S_B = ${number(cylArea(state.r))} cm²`;
+ }));
+ id('ml-slide-stage').querySelectorAll('[data-ml-slide-price]').forEach(el=>el.addEventListener('input',()=>{
+  id(el.dataset.mlSlidePrice).value=el.value;renderSource();const {p}= {p:getPricing()};
+  const curr=modelCurrent(),ca=12*p[0]*curr.A.shell+p[1]*curr.A.area+p[2]*curr.A.volume,cb=12*p[0]*curr.B.shell+p[1]*curr.B.area+p[2]*curr.B.volume;
+  if(id('ml-slide-cost'))id('ml-slide-cost').innerHTML=mlMR([String.raw`C_{A}=${number(ca)}\;\text{đ}`,String.raw`C_{B}=${number(cb)}\;\text{đ}`]);
+ }));
+}
+function slideStep(d){const a=slideList();slidePos=Math.max(0,Math.min(a.length-1,slidePos+d));renderSlide();}
+id('ml-slide-prev').addEventListener('click',()=>slideStep(-1));id('ml-slide-next').addEventListener('click',()=>slideStep(1));
+id('ml-slide-reveal').addEventListener('click',()=>{slideAnswers[slidePos]=!slideAnswers[slidePos];renderSlide()});
+id('ml-slide-fs').addEventListener('click',()=>{const box=id('ml-slide-dialog');if(!document.fullscreenElement)box.requestFullscreen?.().catch(()=>notify('Trình duyệt hoặc khung nhúng không hỗ trợ toàn màn hình.'));else document.exitFullscreen?.()});
+document.addEventListener('keydown',e=>{
+ if(id('ml-slide-overlay').hidden||['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName))return;
+ if(e.key==='ArrowRight'){e.preventDefault();slideStep(1)}
+ if(e.key==='ArrowLeft'){e.preventDefault();slideStep(-1)}
+ if(e.key.toLowerCase()==='f'){e.preventDefault();id('ml-slide-fs').click()}
+});
+// ----- Model extension: new assumptions with independently recomputed optima -----
+const ext={V:1000,cap:1,side:1,pattern:'3,2,2',p:2,q:1,t:.2,sys:false};
+function mlChartSVG(fn,min,max,opt,color){
+ const w=530,h=245,x0=46,y0=206,gw=455,gh=166;const vals=[];
+ for(let i=0;i<=100;i++)vals.push(fn(min+(max-min)*i/100));
+ const lo=Math.min(...vals),hi=Math.max(...vals),low=lo-(hi-lo)*.08,up=hi+(hi-lo)*.08;
+ const xp=x=>x0+(x-min)/(max-min)*gw,yp=y=>y0-(y-low)/(up-low)*gh;
+ const path=Array.from({length:131},(_,i)=>{const x=min+(max-min)*i/130;return `${i?'L':'M'}${xp(x).toFixed(1)},${yp(fn(x)).toFixed(1)}`}).join(' ');
+ let ticks='';for(let i=0;i<=4;i++){const y=low+i*(up-low)/4,x=min+i*(max-min)/4;ticks+=`<line x1="${x0}" x2="${x0+gw}" y1="${yp(y)}" y2="${yp(y)}" stroke="#e4e6f3"/><text x="${x0-5}" y="${yp(y)+4}" text-anchor="end" font-size="11" fill="#6b7995">${number(y,0)}</text><text x="${xp(x)}" y="226" text-anchor="middle" font-size="11" fill="#6b7995">${number(x,1)}</text>`;}
+ return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 530 245" style="width:100%;height:auto"><rect width="530" height="245" fill="#fcfcff"/>${ticks}<path d="${path}" fill="none" stroke="${color}" stroke-width="3.5"/><line x1="${xp(opt)}" x2="${xp(opt)}" y1="${yp(fn(opt))}" y2="${y0}" stroke="${color}" stroke-dasharray="5 4"/><circle cx="${xp(opt)}" cy="${yp(fn(opt))}" r="6" fill="${color}" stroke="#fff" stroke-width="2"/><text x="${xp(opt)}" y="${Math.max(18,yp(fn(opt))-10)}" font-size="12" font-weight="850" text-anchor="middle" fill="${color}">min ≈ ${number(fn(opt))}</text></svg>`;
+}
+function selectExtControls(){
+ if(mission===1)return `<div class="ml-grid" style="grid-template-columns:310px 1fr"><section class="ml-controls"><h3>Thay đổi giả thiết bao bì</h3><label>Thể tích cần chứa (mL)</label><input class="ml-input" data-ext="V" type="number" min="250" max="3000" step="50" value="${ext.V}"><label>Đơn giá hai đáy / nắp (đ/cm²)</label><input class="ml-input" data-ext="cap" type="number" min="0.1" max="30" step="0.1" value="${ext.cap}"><label>Đơn giá mặt bên (đ/cm²)</label><input class="ml-input" data-ext="side" type="number" min="0.1" max="30" step="0.1" value="${ext.side}"><p class="ml-warning">Thí nghiệm này dùng mô hình tổng quát riêng. Trên trang gốc, mỗi hộp vẫn là 1 lít và đơn giá vật liệu như nhau.</p><button class="ml-btn ml-btn-primary" id="ml-ext-worksheet">⬇ Xuất phiếu mở rộng .docx</button></section><section class="ml-controls" id="ml-ext-output"></section></div>`;
+ return `<div class="ml-grid" style="grid-template-columns:310px 1fr"><section class="ml-controls"><h3>Cấu hình đóng gói mới</h3><label>Thể tích mỗi hộp (mL)</label><input class="ml-input" data-ext="V" type="number" min="250" max="3000" step="50" value="${ext.V}"><label>Cách xếp 12 hộp</label><select class="ml-select" data-ext="pattern">${[['3,2,2','3 dài × 2 rộng × 2 tầng'],['4,3,1','4 × 3 × 1'],['6,2,1','6 × 2 × 1'],['2,2,3','2 × 2 × 3'],['12,1,1','12 × 1 × 1'],['3,1,4','3 × 1 × 4']].map(([k,v])=>`<option value="${k}" ${ext.pattern===k?'selected':''}>${v}</option>`).join('')}</select><label>Giá vỏ p (đ/cm²)</label><input class="ml-input" data-ext="p" type="number" min="0" step="0.1" value="${ext.p}"><label>Giá carton q (đ/cm²)</label><input class="ml-input" data-ext="q" type="number" min="0" step="0.1" value="${ext.q}"><label>Phí không gian t (đ/cm³)</label><input class="ml-input" data-ext="t" type="number" min="0" step="0.05" value="${ext.t}"><div class="ml-control-row"><label><input type="checkbox" id="ml-ext-system" ${ext.sys?'checked':''}> Tối ưu tổng chi phí thay vì chỉ vỏ</label></div><p class="ml-warning">Các đơn giá và quy tắc xếp là giả định học tập. Thay cách xếp có thể thay đổi diện tích thùng; thể tích lưới hàng–cột vẫn phụ thuộc tổng lượng hộp.</p><button class="ml-btn ml-btn-primary" id="ml-ext-worksheet">⬇ Xuất phiếu mở rộng .docx</button></section><section class="ml-controls" id="ml-ext-output"></section></div>`;
+}
+function optimalSystem(V,nx,ny,nz,p,q){
+ const N=nx*ny*nz;
+ if(p+q<=0)return {a:boxOpt(V),r:cylOpt(V)};
+ const aC2=2*N*p+2*q*nx*ny,aInv=4*N*p*V+2*q*V*nz*(nx+ny);
+ const bC2=2*Math.PI*N*p+8*q*nx*ny,bInv=2*N*p*V+4*q*nz*V*(nx+ny)/Math.PI;
+ return {a:Math.cbrt(aInv/(2*aC2)),r:Math.cbrt(bInv/(2*bC2))};
+}
+function costExt(kind,V,nx,ny,nz,size,p,q,t){const x=packData(kind,V,nx,ny,nz,size);return {x,total:x.n*p*x.shell+q*x.area+t*x.volume};}
+function extensionOpen(){openModal('ml-extend-overlay');id('ml-extend-body').innerHTML=selectExtControls();
+ for(const el of id('ml-extend-body').querySelectorAll('[data-ext]'))el.addEventListener('input',()=>{
+  const key=el.dataset.ext;const z=key==='pattern'?el.value:Number(el.value);
+  if(key==='pattern'||Number.isFinite(z))ext[key]=z;
+  renderExtensionResult();
+ });
+ id('ml-ext-system')?.addEventListener('change',e=>{ext.sys=e.target.checked;renderExtensionResult()});
+ id('ml-ext-worksheet').addEventListener('click',()=>{
+  const blocks=buildExtensionBlocks();downloadDocx(blocks,`MilkLab12_Thí_nghiệm_mở_rộng_${mission}.docx`);
+ });
+ renderExtensionResult();
+}
+function buildExtensionBlocks(){
+ const heading=mission===1?'TỐI ƯU THIẾT KẾ KHI ĐƠN GIÁ VẬT LIỆU KHÁC NHAU':'TỐI ƯU CHI PHÍ ĐÓNG GÓI THEO CÁCH XẾP';
+ return [{type:'title',text:'PHIẾU THỬ NGHIỆM MÔ HÌNH MỞ RỘNG'},{type:'subtitle',text:heading},{type:'p',text:'Nhóm: ........................................... Lớp: ................ Ngày: ................'},
+ {type:'p',text:mission===1?`V = ${number(ext.V,0)} cm³; giá đáy/nắp = ${number(ext.cap)} đ/cm²; giá mặt bên = ${number(ext.side)} đ/cm².`:
+  `V = ${number(ext.V,0)} cm³/hộp; cách xếp ${ext.pattern.replaceAll(',', ' × ')}; p = ${ext.p}, q = ${ext.q}, t = ${ext.t}. ${ext.sys?'Tối ưu tổng chi phí':'Tối ưu riêng vỏ hộp'}.`},
+ ...['Bước 1. Xác định biến và giả thiết mới','Bước 2. Tự lập hàm mục tiêu và điều kiện','Bước 3. Tính đạo hàm, tìm cực tiểu','Bước 4. Kiểm chứng trên phần mềm và so sánh','Bước 5. Đánh giá giới hạn mô hình, đề xuất mở rộng'].flatMap(z=>[{type:'step',text:z},{type:'lines',count:3}]),
+ {type:'note',text:'Kết quả cần được kiểm chứng toán học và được diễn giải đúng trong phạm vi giả thiết. Không tự suy ra chi phí nhiên liệu thực tế.'}];
+}
+function renderExtensionResult(){
+ const area=id('ml-ext-output');if(!area)return;
+ const V=ext.V;if(!(V>=250&&V<=3000)){area.innerHTML='<p class="ml-warning">Thể tích cần nằm trong khoảng 250–3.000 mL.</p>';return;}
+ if(mission===1){
+  let cap=ext.cap,side=ext.side;if(!(cap>.0001&&side>.0001)){area.innerHTML='<p class="ml-warning">Hai đơn giá vật liệu phải dương.</p>';return;}
+  const a=Math.cbrt(V*side/cap),r=Math.cbrt(V*side/(2*Math.PI*cap));
+  const ca=2*cap*a*a+4*side*V/a,cb=2*Math.PI*cap*r*r+2*side*V/r;
+  const f1=x=>2*cap*x*x+4*side*V/x, f2=x=>2*Math.PI*cap*x*x+2*side*V/x;
+  area.innerHTML=`<h3>Diện tích không còn là hàm mục tiêu duy nhất</h3><p>Chi phí vật liệu tùy thuộc nhóm mặt:</p><div class="ml-formula">C_A(a) = 2p_đáy a² + 4p_bên V/a</div><div class="ml-formula">C_B(r) = 2πp_đáy r² + 2p_bên V/r</div>
+  ${metrics([['a* của hộp vuông',number(a)+' cm'],['r* của hình trụ',number(r)+' cm'],['Tiết kiệm B so với A',number(ca-cb)+' đ']])}
+  <div class="ml-slide-figures" style="margin-top:12px">${figureBox('Chi phí vỏ hộp A',mlChartSVG(f1,a*.62,a*1.55,a,'#0a8f76'))}${figureBox('Chi phí vỏ hộp B',mlChartSVG(f2,r*.62,r*1.55,r,'#7054c8'))}</div>
+  <div class="ml-feedback good">C_A,min = ${number(ca)} đ, C_B,min = ${number(cb)} đ. Cả hai cực tiểu được tìm bằng đạo hàm, không phải bằng mắt từ hình vẽ.</div><p class="ml-help">Kiểm tra: a³ = V·p_bên/p_đáy; r³ = V·p_bên/(2π·p_đáy). Khi hai đơn giá bằng nhau, thu lại bài toán gốc với V mới.</p>`;
+  return;
+ }
+ const [nx,ny,nz]=ext.pattern.split(',').map(Number),{p,q,t}=ext;
+ if([p,q,t].some(x=>!Number.isFinite(x)||x<0)){area.innerHTML='<p class="ml-warning">Đơn giá phải là số không âm.</p>';return;}
+ const best=ext.sys?optimalSystem(V,nx,ny,nz,p,q):{a:boxOpt(V),r:cylOpt(V)};
+ const ca=costExt('A',V,nx,ny,nz,best.a,p,q,t),cb=costExt('B',V,nx,ny,nz,best.r,p,q,t);
+ const otherPatterns=['3,2,2','4,3,1','6,2,1','2,2,3','12,1,1','3,1,4'];
+ const rows=otherPatterns.map(pattern=>{
+  const [x,y,z]=pattern.split(',').map(Number),o=ext.sys?optimalSystem(V,x,y,z,p,q):{a:boxOpt(V),r:cylOpt(V)};
+  const a=costExt('A',V,x,y,z,o.a,p,q,t),b=costExt('B',V,x,y,z,o.r,p,q,t);
+  return {pattern,a,b};
+ });
+ const bestPattern=rows.reduce((s,x)=>!s||Math.min(x.a.total,x.b.total)<Math.min(s.a.total,s.b.total)?x:s,null);
+ area.innerHTML=`<h3>${ext.sys?'Tối ưu tổng chi phí':'Dùng kích thước tối ưu vỏ hộp'} · ${nx} × ${ny} × ${nz}</h3>
+ ${metrics([['Cạnh đáy A',number(best.a)+' cm'],['Bán kính B',number(best.r)+' cm'],['Số hộp',nx*ny*nz+' hộp']])}
+ <div class="ml-formula">${mlMR([String.raw`C_{A}=${number(ca.total)}\;\text{đ}`,String.raw`C_{B}=${number(cb.total)}\;\text{đ}`])}</div>
+ <div class="ml-slide-figures">${figureBox('Đáy vuông · mặt bằng',extTopSVG('A',nx,ny))}${figureBox('Hình trụ · mặt bằng',extTopSVG('B',nx,ny))}</div>
+ <div class="ml-feedback good">Phương án tiết kiệm hơn theo mô hình hiện tại: <b>${ca.total<cb.total?'A · Đáy vuông':cb.total<ca.total?'B · Hình trụ':'Hai phương án bằng nhau'}</b> ${Math.abs(ca.total-cb.total)<.001?'':`(chênh lệch ${number(Math.abs(ca.total-cb.total))} đ)`}.</div>
+ <p class="ml-help">Các thùng đang so sánh: A = ${number(ca.x.L)} × ${number(ca.x.W)} × ${number(ca.x.H)} cm; B = ${number(cb.x.L)} × ${number(cb.x.W)} × ${number(cb.x.H)} cm. Thể tích: ${number(ca.x.volume/1000)} L và ${number(cb.x.volume/1000)} L.</p>
+ <h3>Thử so sánh nhiều cách xếp cùng ${nx*ny*nz===12?'12 hộp':'số hộp quy định'}</h3>
+ <div style="overflow:auto"><table class="tbl"><thead><tr><th>Cách xếp</th><th>C_A</th><th>C_B</th><th>Phương án thấp hơn</th></tr></thead><tbody>${rows.map(z=>`<tr ${z.pattern===ext.pattern?'style="background:#efe9ff"':''}><td>${z.pattern.replaceAll(',',' × ')}</td><td>${number(z.a.total)}</td><td>${number(z.b.total)}</td><td>${z.a.total<z.b.total?'A':'B'}</td></tr>`).join('')}</tbody></table></div>
+ <p class="ml-help">Trong danh sách cách xếp đang thử: ${bestPattern.pattern.replaceAll(',',' × ')} cho mức chi phí nhỏ nhất của một trong hai kiểu hộp. Đây là so sánh hữu hạn phương án, chưa chứng minh tối ưu mọi cách xếp ngoài danh sách.</p>
+ <p class="ml-warning">Khi chọn “tối ưu tổng chi phí”, kích thước tối ưu của vỏ có thể khác kích thước chỉ tối ưu diện tích vỏ. Đây là kết quả toán học quan trọng để học sinh khám phá.</p>`;
+}
+function extTopSVG(kind,nx,ny){const w=520,h=220,s=Math.min(400/nx,165/ny),sx=(w-nx*s)/2,sy=16;
+ let out=`<svg viewBox="0 0 ${w} ${h}" xmlns="http://www.w3.org/2000/svg"><rect width="${w}" height="${h}" fill="#f7f8fe"/>`;
+ for(let y=0;y<ny;y++)for(let x=0;x<nx;x++){
+  let xx=sx+x*s,yy=sy+y*s;
+  out+=`<rect x="${xx}" y="${yy}" width="${s}" height="${s}" fill="${kind==='A'?'#e4f5ed':'#f0ecfc'}" stroke="#bfc9df"/>`;
+  out+=kind==='A'?`<rect x="${xx+2}" y="${yy+2}" width="${s-4}" height="${s-4}" rx="3" fill="#63bca2"/>`:
+    `<circle cx="${xx+s/2}" cy="${yy+s/2}" r="${s/2-2}" fill="#9283dc"/>`;
+ }
+ return out+`<text x="260" y="${Math.min(215,sy+ny*s+22)}" fill="#576a87" font-size="13" text-anchor="middle">Một tầng ${nx} × ${ny}</text></svg>`;
+}
+// ----- Socratic tutor: local question engine + explicitly optional real AI -----
+const chatHistory=[];
+function pushChat(text,who='bot'){
+ const el=document.createElement('div');el.className='ml-message'+(who==='user'?' user':'');el.textContent=text;
+ id('ml-chat-messages').appendChild(el);id('ml-chat-messages').scrollTop=id('ml-chat-messages').scrollHeight;
+ if(who==='user')chatHistory.push({role:'user',content:text});else chatHistory.push({role:'assistant',content:text});
+ if(chatHistory.length>12)chatHistory.splice(0,chatHistory.length-12);
+}
+function chatContext(){
+ const m=modelCurrent();return {mission,step:studyIndex+1,volume:1000,a:m.a,r:m.r,price:mission===2?getPricing():undefined};
+}
+function localTutor(input){
+ const t=input.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'');
+ const steps=studyTasks();const curr=steps[studyIndex];
+ const model=mission===1? 'Em đang tìm cực tiểu diện tích vật liệu cho hai hộp cùng thể tích 1 lít.':'Em đang xét cách xếp 12 hộp thành 3 × 2 × 2 và đánh giá chi phí vận chuyển/lưu kho.';
+ if(/giai ho|dap an|cho ket qua|lam dum|lam ho|cau tra loi luon/.test(t)) return 'Mình sẽ không làm hộ toàn bộ bài. '+model+' Em hãy nói rõ đã đặt biến hoặc lập được công thức nào, mình sẽ giúp kiểm tra đúng một bước tiếp theo.';
+ if(/doi don vi|1 lit|1000|the tich|the tích|dung tich/.test(t))return mission===1?
+  'Thể tích phải giữ không đổi. Em hãy thử viết phương trình V = S_đáy·h cho A và B, sau đó tự rút h theo a hoặc r. Hai phương trình khác nhau ở điểm nào?':
+  'Mỗi hộp có 1.000 cm³. Em cần thể tích của 12 hộp sữa hay thể tích cả thùng? Hãy phân biệt hai đại lượng trước khi tính tỉ lệ lấp đầy.';
+ if(/dao ham|cuc tri|cuc tieu|bien thien|dau|nghiem/.test(t))return mission===1?
+  'Trong S_A(a) có các hạng tử a² và a⁻¹. Em hãy áp dụng (xⁿ)′ = nxⁿ⁻¹, rồi xét dấu S′ ở hai phía nghiệm. Vì sao một nghiệm S′=0 chưa đủ để khẳng định GTNN?':
+  'Hãy hỏi rõ biến quyết định là gì. Nếu tối ưu cả vỏ và thùng, hãy biểu diễn tổng C theo a hoặc r, sau đó dùng đạo hàm kiểm tra cực tiểu.';
+ if(/ve|do thi|mo phong|kiem chung|kiem tra|hinh/.test(t))return mission===1?
+  `Hiện hộp A có a = ${number(state.a)} cm và B có r = ${number(state.r)} cm. Em hãy dịch chuyển mỗi thanh trượt một chút, quan sát S tăng/giảm, rồi so với dấu đạo hàm. Em dự đoán ở đâu là đáy đồ thị?`:
+  `Hiện đang xếp ${state.n}/12 hộp. Em hãy chuyển giữa mặt bằng và 3D rồi chỉ ra phần nào bị bỏ trống khi dùng đáy tròn. Số hộp chứa thực tế có đổi không?`;
+ if(/thay doi|mo rong|gia thiet|don gia|gia tien|chi phi/.test(t))return mission===1?
+  'Nếu giá nắp/đáy khác giá thành bên, em sẽ viết hàm chi phí bằng tổng những phần nào? Hãy mở “Thí nghiệm mở rộng”, cho p_đáy khác p_bên, rồi kiểm tra vị trí cực tiểu.':
+  'Em thử tăng p, giữ nguyên q và t. Khoản chi nào sẽ có trọng số lớn hơn? Nếu tăng t thì loại hộp nào thường bất lợi hơn trong lưới xếp đang xét? Dự đoán trước khi kéo.';
+ if(/giai thich|vi sao|khong hieu|bo tay|khó/.test(t))return `Ta chia nhỏ bước ${studyIndex+1}: ${curr.name}. ${curr.hint} Em có thể nêu một phép biến đổi đã làm để mình hỏi tiếp không?`;
+ if(/ket luan|lua chon|chon hop|hop nao|tot nhat/.test(t))return mission===1?
+  'Hãy so sánh diện tích nhỏ nhất của cả hai dạng hộp, rồi nói rõ em đang tối ưu vật liệu hay toàn bộ chi phí. Tại sao hai kết luận đó có thể khác nhau?':
+  'Muốn chọn kiểu hộp, em cần so sánh C_A và C_B với cùng đơn giá p, q, t. Nếu thay một đơn giá, câu kết luận có còn giữ nguyên không?';
+ const m=input.match(/[-+]?\d+(?:[.,]\d+)?/);
+ if(m)return `Em đã nêu số ${m[0]}. Hãy cho biết đại lượng và đơn vị của số đó, rồi dùng công thức trong bước ${studyIndex+1} để kiểm tra. Em có thể chứng minh kết quả chứ không chỉ dựa vào hình mô phỏng không?`;
+ return `Mình đang đồng hành ở “${curr.name}”. ${curr.hint} Em hãy tự viết bước đầu tiên em định làm; mình sẽ giúp nhận ra điều kiện và phép toán cần kiểm tra, chứ không đưa ngay đáp số.`;
+}
+const systemPrompt=`Bạn là gia sư Socratic môn Toán 12 tiếng Việt, hỗ trợ bài toán một lít sữa hai kiểu hộp. Bắt buộc không giải hộ, không xuất lời giải hoàn chỉnh hoặc đáp số cuối cùng khi học sinh chưa tự làm. Trả lời ngắn, thân thiện và chính xác, bằng 1-2 câu hỏi gợi mở dựa theo bước đang học. Không bịa dữ kiện. Với việc kiểm tra kết quả, hỏi học sinh nêu phương trình, đơn vị, và điều kiện giả thiết. Bài 1: V=1000 cm³, hộp chữ nhật đáy vuông kín và hình trụ kín. Bài 2: xếp thẳng hàng 3×2×2 vào thùng kín; chi phí giả định theo diện tích và thể tích thùng; không suy rộng sang tiêu hao nhiên liệu. Nếu không chắc, nêu rõ. Không yêu cầu học sinh cung cấp thông tin cá nhân.`;
+async function realTutor(text){
+ if(!(/^https?:$/.test(location.protocol)))throw new Error('Chỉ hoạt động khi trang được host có máy chủ.');
+ const ctrl=new AbortController();const timer=setTimeout(()=>ctrl.abort(),11000);
+ try{
+  const resp=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:text,context:chatContext(),messages:[{role:'system',content:systemPrompt},...chatHistory.slice(-8)]}),signal:ctrl.signal});
+  if(!resp.ok)throw new Error('HTTP '+resp.status);
+  const data=await resp.json();
+  const out= typeof data==='string'?data:data.reply??data.response??data.answer??(typeof data.message==='string'?data.message:data.message?.content)??data.choices?.[0]?.message?.content;
+  if(typeof out!=='string'||!out.trim())throw new Error('Phản hồi máy chủ không có văn bản.');
+  return out.trim().slice(0,1900);
+ }finally{clearTimeout(timer)}
+}
+function chatOpen(){show(id('ml-chat'));if(!id('ml-chat-messages').children.length){pushChat('Chào em! Em hãy cho biết mình đang mắc ở bước nào. Thầy/cô mong em tự giải; mình sẽ hỏi gợi mở theo từng bước và giúp em kiểm tra lập luận.\n\nHiện tại: Bộ gợi ý Socratic nội bộ chạy ngoại tuyến.');}}
+id('ml-chat-fab').addEventListener('click',()=>id('ml-chat').hidden?chatOpen():hide(id('ml-chat')));
+id('ml-chat-close').addEventListener('click',()=>hide(id('ml-chat')));
+id('ml-online-check').addEventListener('change',e=>{
+ id('ml-chat-status').textContent=e.target.checked?'Yêu cầu máy chủ AI /api/chat · tự động dự phòng ngoại tuyến':'Bộ gợi ý nội bộ – dùng ngoại tuyến';
+ if(e.target.checked&&location.protocol==='file:')notify('Mở từ ổ đĩa: không có máy chủ AI. Chế độ nội bộ vẫn dùng được.');
+});
+async function sendChat(value){
+ const txt=String(value||'').trim();if(!txt)return;
+ id('ml-chat-input').value='';chatOpen();pushChat(txt,'user');
+ if(id('ml-online-check').checked){
+  id('ml-chat-status').textContent='Đang thử AI qua máy chủ...';
+  try{let out=await realTutor(txt);pushChat(out);id('ml-chat-status').textContent='AI trực tuyến qua máy chủ /api/chat';return;}
+  catch(e){pushChat('Chưa kết nối được máy chủ AI ('+e.message+'). Chuyển sang bộ gợi ý nội bộ.');id('ml-chat-status').textContent='Dự phòng bằng gợi ý nội bộ · không phải AI trực tuyến';}
+ }
+ pushChat(localTutor(txt));
+}
+id('ml-chat-send').addEventListener('click',()=>sendChat(id('ml-chat-input').value));
+id('ml-chat-input').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();sendChat(e.target.value)}});
+id('ml-chat').querySelectorAll('[data-ml-chat-hint]').forEach(b=>b.addEventListener('click',()=>sendChat({hint:'Em cần gợi ý',model:'Em cần lập mô hình',verify:'Em muốn kiểm chứng bằng mô phỏng',extend:'Em muốn mở rộng giả thiết'}[b.dataset.mlChatHint])));
+// Make teacher lesson-plan export accessible through the worksheet editor.
+const moreButton=document.createElement('button');moreButton.className='ml-action';moreButton.type='button';moreButton.textContent='📚 KHBD 45/90 phút';
+moreButton.addEventListener('click',()=>studioOpen('lesson'));id('ml-chat-fab').closest('body').querySelector('.ml-toolbar-actions').appendChild(moreButton);
+// Initial console-level verification for reproducibility; errors are not masked.
+(function selfCheck(){const A=packData('A',1000,3,2,2,10),B=packData('B',1000,3,2,2,rstar);
+ console.assert(Math.abs(A.shell-600)<1e-7,'Diện tích hộp đáy vuông không khớp');
+ console.assert(Math.abs(B.shell-553.581044593)<1e-5,'Diện tích hộp trụ không khớp');
+ console.assert(Math.abs(A.area-3200)<1e-6&&Math.abs(B.area-3759.153478)<1e-5,'Diện tích carton không khớp');
+ console.assert(Math.abs(B.volume-48000/Math.PI)<1e-6,'Thể tích thùng hình trụ không khớp');
+})();
+})();
+
+</script>
+<script>window.mlkStaticInit(2);</script>
+</body></html>
